@@ -80,6 +80,32 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 .kpi .dl{font-size:11px;font-weight:600;margin-top:6px;display:flex;align-items:center;gap:4px}
 .dl.neg{color:var(--red)}.dl.pos{color:var(--g600)}.dl.neu{color:var(--gray600)}
 
+/* BIG KPI CARDS (estilo ejecutivo con flechas) */
+.kpis-big{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+.kpi-big{background:var(--card);border-radius:12px;border-top:5px solid var(--brd);padding:22px 24px 20px;box-shadow:var(--sh);position:relative}
+.kpi-big.kb-red{border-top-color:var(--red)}
+.kpi-big.kb-grn{border-top-color:var(--g600)}
+.kpi-big.kb-gld{border-top-color:var(--gold)}
+.kpi-big.kb-nvy{border-top-color:var(--navy)}
+.kb-title{font-size:15px;font-weight:700;color:var(--gray800);line-height:1.2;margin-bottom:2px}
+.kb-sub{font-size:11px;color:var(--gray400);margin-bottom:14px}
+.kb-val{font-size:48px;font-weight:800;line-height:1;letter-spacing:-1.5px;margin-bottom:16px;font-family:'Inter Tight','Inter',-apple-system,sans-serif}
+.kb-red .kb-val{color:var(--red)}
+.kb-grn .kb-val{color:var(--g700)}
+.kb-gld .kb-val{color:var(--gold-d)}
+.kb-nvy .kb-val{color:var(--navy)}
+.kb-rows{display:flex;flex-direction:column;gap:8px}
+.kb-row{display:flex;align-items:center;gap:8px}
+.kb-arrow{font-size:0;width:0;height:0;flex-shrink:0}
+.kb-arrow.dn{border-left:9px solid transparent;border-right:9px solid transparent;border-top:14px solid var(--red)}
+.kb-arrow.up{border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:14px solid var(--g600)}
+.kb-pct{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.5px}
+.kb-row.row-red .kb-pct{color:var(--red)}
+.kb-row.row-grn .kb-pct{color:var(--g700)}
+.kb-lbl{font-size:12px;color:var(--gray600);font-weight:500;white-space:nowrap}
+/* responsive */
+@media(max-width:700px){.kpis-big{grid-template-columns:1fr}.kb-val{font-size:38px}}
+
 /* CHART CARD */
 .cc{background:var(--card);border:1px solid var(--brd);border-radius:12px;box-shadow:var(--sh);padding:20px 24px 22px;margin-bottom:14px}
 .cc-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
