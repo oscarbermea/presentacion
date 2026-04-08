@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="exelco.ico" type="image/x-icon">
-<title>08 · Flujo de Efectivo — Exelco 2026</title>
+<title>08 · Flujo Operativo — Exelco 2026</title>
 <link rel="stylesheet" href="styles.css">
 <script src="auth.js"></script>
 <script src="chart.min.js"></script>
@@ -49,9 +49,9 @@
 
 <main class="page">
   <div class="ph">
-    <div class="ey">08 · Flujo de Efectivo</div>
-    <h1>Flujo Operativo y UAFIR con Flujo Libre</h1>
-    <p class="sub">Generación de caja y componentes del flujo — Enero y Febrero 2026</p>
+    <div class="ey">08 · Flujo Operativo</div>
+    <h1>Flujo Operativo</h1>
+    <p class="sub">Fuente: Hoja FC en MXN — Saldo Inicial → Generación → Capital de Trabajo → Partidas → Inversiones → Eficiencia → Saldo Final</p>
   </div>
 
   <div class="mtabs">
@@ -60,197 +60,303 @@
     <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
   </div>
 
-  <!-- ENERO -->
+  <!-- ══════════ ENERO ══════════ -->
   <div id="m-ene" class="mpnl on">
     <div class="kpis kpis4">
-      <div class="kpi cg"><div class="lb">UAFIR</div><div class="vl">33,295</div><div class="dl pos">Margen 9.3%</div></div>
-      <div class="kpi cn"><div class="lb">UAFIR Flujo Libre</div><div class="vl">40,173</div><div class="dl pos">Margen 11.3%</div></div>
-      <div class="kpi cgo"><div class="lb">Diferencia FL vs UAFIR</div><div class="vl">+6,878</div><div class="dl pos">Ajuste positivo</div></div>
-      <div class="kpi cg"><div class="lb">Utilidad Neta</div><div class="vl">24,814</div><div class="dl pos">Margen 7.0%</div></div>
+      <div class="kpi cgr"><div class="lb">Saldo Inicial</div><div class="vl">70,505</div><div class="dl neu">Miles MXN</div></div>
+      <div class="kpi cg"><div class="lb">Generación Bruta</div><div class="vl">+31,267</div><div class="dl pos">Flujo operativo generado</div></div>
+      <div class="kpi cr"><div class="lb">Variación C de T</div><div class="vl">−26,248</div><div class="dl neg">Deudores Div. −32,789</div></div>
+      <div class="kpi cg"><div class="lb">Saldo Final</div><div class="vl">67,090</div><div class="dl neg">▼ −3,416 vs SI</div></div>
     </div>
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Enero 2026</div><h2>UAFIR vs UAFIR Flujo Libre</h2><p>Miles MXN — componentes de caja</p></div>
+        <div><div class="ey">Enero 2026 · Miles MXN</div><h2>Flujo Operativo — Waterfall</h2><p>FC en MXN · Mes Enero</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#1a3d2b"></div>UAFIR</div>
-          <div class="li"><div class="ld" style="background:#1e3a5f"></div>UAFIR Flujo Libre</div>
-          <div class="li"><div class="ld" style="background:#c9a84c"></div>Utilidad Neta</div>
+          <div class="li"><div class="ld" style="background:#9b9ea0"></div>Saldo Inicial / Final</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Positivo</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Negativo</div>
         </div>
       </div>
-      <div class="cw cw-md"><canvas id="flujoEne"></canvas></div>
+      <div class="cw cw-lg" style="position:relative"><canvas id="wfEne"></canvas></div>
       <div class="ins">
-        <strong>Enero 2026:</strong> El UAFIR de <strong>$33,295K</strong> se convierte en UAFIR Flujo Libre de <strong>$40,173K</strong>
-        al incorporar ajustes de capital de trabajo y depreciación (+$6,878K).
-        La conversión de UAFIR a efectivo es <strong>favorable</strong>, indicando que la empresa genera más caja que utilidad contable.
-        Tras intereses e impuestos, la utilidad neta es $24,814K.
+        <strong>Enero 2026:</strong> La generación bruta de <strong>+$31,267K</strong> se erosiona principalmente por la
+        <strong>variación en Capital de Trabajo de −$26,248K</strong>, impulsada por Deudores Diversos
+        (<span style="color:#c0392b;font-weight:700">−$32,789K</span>).
+        Las partidas no operativas suman +$14,569K, pero las inversiones (−$9,568K) y la eficiencia (−$13,436K)
+        resultan en un <strong>Flujo Neto de −$3,416K</strong>, con Saldo Final de <strong>$67,090K</strong>.
       </div>
     </div>
 
-    <div class="sdiv">Componentes del Flujo — Enero</div>
+    <div class="sdiv">Detalle de Componentes — Enero 2026</div>
     <div class="cc">
       <table class="dtbl">
-        <thead><tr><th>Componente</th><th style="text-align:right">Monto (K MXN)</th><th style="text-align:right">% Ventas</th><th>Descripción</th></tr></thead>
+        <thead>
+          <tr><th>Concepto</th><th style="text-align:right">Monto (K MXN)</th><th style="text-align:right">Impacto</th><th>Observación</th></tr>
+        </thead>
         <tbody>
-          <tr><td class="metric fw7">UAFIR</td><td style="text-align:right" class="ng fw7">33,295</td><td style="text-align:right">9.3%</td><td>Utilidad antes de financieros e impuestos</td></tr>
-          <tr><td class="metric">(+) Ajustes de caja</td><td style="text-align:right" class="ng">+6,878</td><td style="text-align:right">1.9%</td><td>D&A + variación capital de trabajo</td></tr>
-          <tr><td class="metric fw7">= UAFIR Flujo Libre</td><td style="text-align:right" class="ng fw7">40,173</td><td style="text-align:right fw7">11.3%</td><td>Generación operativa de caja</td></tr>
-          <tr><td class="metric">(−) Gastos financieros</td><td style="text-align:right" class="nr">—</td><td style="text-align:right">—</td><td>Incluidos en partida combinada</td></tr>
-          <tr><td class="metric">(−) ISR y PTU</td><td style="text-align:right" class="nr">(8,481)</td><td style="text-align:right">2.4%</td><td>Impuestos y participación</td></tr>
-          <tr><td class="metric fw7">= Utilidad Neta</td><td style="text-align:right" class="ng fw7">24,814</td><td style="text-align:right fw7">7.0%</td><td>Resultado neto del período</td></tr>
+          <tr><td class="metric fw7">Saldo Inicial</td><td style="text-align:right" class="fw7">70,505</td><td style="text-align:right">—</td><td>Cierre Diciembre 2025</td></tr>
+          <tr><td class="metric">(+) Generación Bruta</td><td style="text-align:right" class="ng">+31,267</td><td style="text-align:right"><span class="badge g">+44.4%</span></td><td>Flujo operativo bruto</td></tr>
+          <tr><td class="metric">(±) Variación C de T</td><td style="text-align:right" class="nr">−26,248</td><td style="text-align:right"><span class="badge r">−37.2%</span></td><td>Deudores Diversos −32,789K</td></tr>
+          <tr><td class="metric">(+) Total Partidas no Op.</td><td style="text-align:right" class="ng">+14,569</td><td style="text-align:right"><span class="badge g">+20.7%</span></td><td>Partidas no monetarias</td></tr>
+          <tr><td class="metric">(−) Total Inversiones</td><td style="text-align:right" class="nr">−9,568</td><td style="text-align:right"><span class="badge r">−13.6%</span></td><td>CAPEX y financiero</td></tr>
+          <tr><td class="metric">(−) Eficiencia</td><td style="text-align:right" class="nr">−13,436</td><td style="text-align:right"><span class="badge r">−19.1%</span></td><td>Principalmente Energía</td></tr>
+          <tr style="border-top:2px solid var(--g800)"><td class="metric">= Flujo Neto</td><td style="text-align:right" class="nr fw7">−3,416</td><td style="text-align:right">—</td><td>Variación neta de caja</td></tr>
+          <tr><td class="metric fw7">= Saldo Final</td><td style="text-align:right" class="ng fw7">67,090</td><td style="text-align:right">—</td><td>Cierre Enero 2026</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="sdiv">Análisis de Conversión de Caja</div>
-    <div class="g2">
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Métricas de Caja</h2></div></div>
-        <div class="mrow"><span class="mk">Conversión UAFIR→FL</span><span class="mv p">120.7% (1.21x)</span></div>
-        <div class="mrow"><span class="mk">Conversión FL→Ut.Neta</span><span class="mv p">61.8%</span></div>
-        <div class="mrow"><span class="mk">Ajuste FL sobre ventas</span><span class="mv p">+1.9%</span></div>
-        <div class="mrow"><span class="mk">Carga fiscal/financiera</span><span class="mv go">2.4% de ventas</span></div>
-        <div class="mrow"><span class="mk">Calidad del flujo</span><span class="mv p">Alta</span></div>
-      </div>
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Márgenes de Flujo</h2></div></div>
-        <div class="prog-row"><div class="prog-lbl">UAFIR / Ventas</div><div class="prog-bar"><div class="prog-fill" style="width:9.3%;background:#1a3d2b"></div></div><div class="prog-val">9.3%</div></div>
-        <div class="prog-row"><div class="prog-lbl">UAFIR FL / Ventas</div><div class="prog-bar"><div class="prog-fill" style="width:11.3%;background:#1e3a5f"></div></div><div class="prog-val">11.3%</div></div>
-        <div class="prog-row"><div class="prog-lbl">Ut. Neta / Ventas</div><div class="prog-bar"><div class="prog-fill" style="width:7%;background:#c9a84c"></div></div><div class="prog-val">7.0%</div></div>
-      </div>
+    <div class="sdiv">Desglose Capital de Trabajo — Enero 2026</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>Partida</th><th style="text-align:right">Monto (K MXN)</th><th>Impacto</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">Clientes</td><td style="text-align:right" class="ng">+2,380</td><td><span class="badge g">Positivo</span></td></tr>
+          <tr><td class="metric fw7" style="color:var(--red)">Deudores Diversos ⚠</td><td style="text-align:right" class="nr fw7">−32,789</td><td><span class="badge r">Principal driver</span></td></tr>
+          <tr><td class="metric">Inventarios</td><td style="text-align:right" class="ng">+2,102</td><td><span class="badge g">Positivo</span></td></tr>
+          <tr><td class="metric">Pagos Anticipados</td><td style="text-align:right" class="ng">+12,857</td><td><span class="badge g">Positivo</span></td></tr>
+          <tr><td class="metric">Proveedores</td><td style="text-align:right" class="nr">−7,147</td><td><span class="badge r">Negativo</span></td></tr>
+          <tr><td class="metric">Acreedores Diversos</td><td style="text-align:right" class="nr">−403</td><td><span class="badge r">Negativo</span></td></tr>
+          <tr><td class="metric">Gastos Acum. por Pagar</td><td style="text-align:right" class="nr">−3,248</td><td><span class="badge r">Negativo</span></td></tr>
+          <tr><td class="metric fw7">TOTAL C de T</td><td style="text-align:right" class="nr fw7">−26,248</td><td></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <!-- FEBRERO -->
+  <!-- ══════════ FEBRERO ══════════ -->
   <div id="m-feb" class="mpnl">
     <div class="kpis kpis4">
-      <div class="kpi cr"><div class="lb">UAFIR</div><div class="vl">17,338</div><div class="dl neg">Margen 5.6%</div></div>
-      <div class="kpi cr"><div class="lb">UAFIR Flujo Libre</div><div class="vl">24,324</div><div class="dl neg">Margen 7.8%</div></div>
-      <div class="kpi cgo"><div class="lb">Diferencia FL vs UAFIR</div><div class="vl">+6,986</div><div class="dl pos">Ajuste positivo</div></div>
-      <div class="kpi cr"><div class="lb">Utilidad Neta</div><div class="vl">8,900</div><div class="dl neg">Margen 2.9%</div></div>
+      <div class="kpi cgr"><div class="lb">Saldo Inicial</div><div class="vl">67,044</div><div class="dl neu">Miles MXN</div></div>
+      <div class="kpi cg"><div class="lb">Generación Bruta</div><div class="vl">+18,787</div><div class="dl pos">Flujo operativo generado</div></div>
+      <div class="kpi cg"><div class="lb">Variación C de T</div><div class="vl">+13,879</div><div class="dl pos">Recuperación parcial</div></div>
+      <div class="kpi cr"><div class="lb">Saldo Final</div><div class="vl">64,547</div><div class="dl neg">▼ −2,497 vs SI</div></div>
     </div>
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Febrero 2026</div><h2>UAFIR vs UAFIR Flujo Libre</h2><p>Miles MXN — componentes de caja</p></div>
+        <div><div class="ey">Febrero 2026 · Miles MXN</div><h2>Flujo Operativo — Waterfall</h2><p>FC en MXN · Mes Febrero</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#1a3d2b"></div>UAFIR</div>
-          <div class="li"><div class="ld" style="background:#1e3a5f"></div>UAFIR Flujo Libre</div>
-          <div class="li"><div class="ld" style="background:#c9a84c"></div>Utilidad Neta</div>
+          <div class="li"><div class="ld" style="background:#9b9ea0"></div>Saldo Inicial / Final</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Positivo</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Negativo</div>
         </div>
       </div>
-      <div class="cw cw-md"><canvas id="flujoFeb"></canvas></div>
+      <div class="cw cw-lg"><canvas id="wfFeb"></canvas></div>
       <div class="ins">
-        <strong>Febrero 2026:</strong> UAFIR cae a <strong>$17,338K</strong> pero el ajuste de flujo libre es similar (+$6,986K),
-        llevando el UAFIR FL a <strong>$24,324K (7.8%)</strong>.
-        La <strong>conversión UAFIR→FL sube a 140.3%</strong> (vs 120.7% enero), sugiriendo que la compañía liberó capital de trabajo.
-        Tras la carga financiera, la utilidad neta queda en solo <strong>$8,900K (2.9%)</strong>.
+        <strong>Febrero 2026:</strong> La generación bruta baja a <strong>+$18,787K</strong> (vs +$31,267K en enero, −39.9%).
+        El Capital de Trabajo es <strong>positivo +$13,879K</strong> gracias a la recuperación parcial de Deudores Diversos (+$5,146K)
+        y el aumento de Acreedores (+$23,645K). Sin embargo, las partidas no operativas (−$28,777K) y la eficiencia (−$9,671K)
+        resultan en un <strong>Flujo Neto de −$2,497K</strong>, con Saldo Final de <strong>$64,547K</strong>.
       </div>
     </div>
 
-    <div class="sdiv">Componentes del Flujo — Febrero</div>
+    <div class="sdiv">Detalle de Componentes — Febrero 2026</div>
     <div class="cc">
       <table class="dtbl">
-        <thead><tr><th>Componente</th><th style="text-align:right">Monto (K MXN)</th><th style="text-align:right">% Ventas</th><th>Descripción</th></tr></thead>
+        <thead>
+          <tr><th>Concepto</th><th style="text-align:right">Monto (K MXN)</th><th style="text-align:right">Impacto</th><th>Observación</th></tr>
+        </thead>
         <tbody>
-          <tr><td class="metric fw7">UAFIR</td><td style="text-align:right" class="nr fw7">17,338</td><td style="text-align:right">5.6%</td><td>Utilidad antes de financieros e impuestos</td></tr>
-          <tr><td class="metric">(+) Ajustes de caja</td><td style="text-align:right" class="ng">+6,986</td><td style="text-align:right">2.3%</td><td>D&A + variación capital de trabajo</td></tr>
-          <tr><td class="metric fw7">= UAFIR Flujo Libre</td><td style="text-align:right" class="nr fw7">24,324</td><td style="text-align:right fw7">7.8%</td><td>Generación operativa de caja</td></tr>
-          <tr><td class="metric">(−) Gastos financieros + ISR</td><td style="text-align:right" class="nr">(8,438)</td><td style="text-align:right">2.7%</td><td>Carga financiera prácticamente sin cambio</td></tr>
-          <tr><td class="metric fw7">= Utilidad Neta</td><td style="text-align:right" class="nr fw7">8,900</td><td style="text-align:right fw7">2.9%</td><td>Resultado neto del período</td></tr>
+          <tr><td class="metric fw7">Saldo Inicial</td><td style="text-align:right" class="fw7">67,044</td><td style="text-align:right">—</td><td>Cierre Enero 2026</td></tr>
+          <tr><td class="metric">(+) Generación Bruta</td><td style="text-align:right" class="ng">+18,787</td><td style="text-align:right"><span class="badge g">+28.0%</span></td><td>−39.9% vs enero</td></tr>
+          <tr><td class="metric">(+) Variación C de T</td><td style="text-align:right" class="ng">+13,879</td><td style="text-align:right"><span class="badge g">+20.7%</span></td><td>Acreedores +23,645K</td></tr>
+          <tr><td class="metric">(−) Total Partidas no Op.</td><td style="text-align:right" class="nr">−28,777</td><td style="text-align:right"><span class="badge r">−42.9%</span></td><td>Partidas no monetarias</td></tr>
+          <tr><td class="metric">(+) Total Inversiones</td><td style="text-align:right" class="ng">+3,278</td><td style="text-align:right"><span class="badge g">+4.9%</span></td><td>Neto positivo en feb</td></tr>
+          <tr><td class="metric">(−) Eficiencia</td><td style="text-align:right" class="nr">−9,671</td><td style="text-align:right"><span class="badge r">−14.4%</span></td><td>Principalmente Energía</td></tr>
+          <tr style="border-top:2px solid var(--g800)"><td class="metric">= Flujo Neto</td><td style="text-align:right" class="nr fw7">−2,504</td><td style="text-align:right">—</td><td>Variación neta de caja</td></tr>
+          <tr><td class="metric fw7">= Saldo Final</td><td style="text-align:right" class="nr fw7">64,547</td><td style="text-align:right">—</td><td>Cierre Febrero 2026</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="sdiv">Análisis de Conversión de Caja</div>
-    <div class="g2">
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Métricas de Caja</h2></div></div>
-        <div class="mrow"><span class="mk">Conversión UAFIR→FL</span><span class="mv p">140.3% (1.40x)</span></div>
-        <div class="mrow"><span class="mk">Conversión FL→Ut.Neta</span><span class="mv go">36.6%</span></div>
-        <div class="mrow"><span class="mk">Ajuste FL sobre ventas</span><span class="mv p">+2.3%</span></div>
-        <div class="mrow"><span class="mk">Carga fiscal/financiera</span><span class="mv r">2.7% de ventas</span></div>
-        <div class="mrow"><span class="mk">Calidad del flujo</span><span class="mv go">Media</span></div>
-      </div>
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Márgenes de Flujo</h2></div></div>
-        <div class="prog-row"><div class="prog-lbl">UAFIR / Ventas</div><div class="prog-bar"><div class="prog-fill" style="width:5.6%;background:#c0392b"></div></div><div class="prog-val" style="color:#c0392b">5.6%</div></div>
-        <div class="prog-row"><div class="prog-lbl">UAFIR FL / Ventas</div><div class="prog-bar"><div class="prog-fill" style="width:7.8%;background:#1e3a5f"></div></div><div class="prog-val">7.8%</div></div>
-        <div class="prog-row"><div class="prog-lbl">Ut. Neta / Ventas</div><div class="prog-bar"><div class="prog-fill" style="width:2.9%;background:#c9a84c"></div></div><div class="prog-val" style="color:#c0392b">2.9%</div></div>
-      </div>
+    <div class="sdiv">Desglose Capital de Trabajo — Febrero 2026</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>Partida</th><th style="text-align:right">Monto (K MXN)</th><th>Impacto</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">Clientes</td><td style="text-align:right" class="ng">+8,583</td><td><span class="badge g">Positivo</span></td></tr>
+          <tr><td class="metric">Deudores Diversos</td><td style="text-align:right" class="ng">+5,146</td><td><span class="badge g">Recuperación parcial</span></td></tr>
+          <tr><td class="metric">Inventarios</td><td style="text-align:right" class="nr">−7,822</td><td><span class="badge r">Negativo</span></td></tr>
+          <tr><td class="metric">Pagos Anticipados</td><td style="text-align:right" class="nr">−11,887</td><td><span class="badge r">Negativo</span></td></tr>
+          <tr><td class="metric">Proveedores</td><td style="text-align:right" class="nr">−6,519</td><td><span class="badge r">Negativo</span></td></tr>
+          <tr><td class="metric fw7">Acreedores Diversos</td><td style="text-align:right" class="ng fw7">+23,645</td><td><span class="badge g">Principal driver +</span></td></tr>
+          <tr><td class="metric">Gastos Acum. por Pagar</td><td style="text-align:right" class="ng">+2,733</td><td><span class="badge g">Positivo</span></td></tr>
+          <tr><td class="metric fw7">TOTAL C de T</td><td style="text-align:right" class="ng fw7">+13,879</td><td></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <!-- COMPARATIVO -->
+  <!-- ══════════ COMPARATIVO ══════════ -->
   <div id="m-cmp" class="mpnl">
     <div class="kpis kpis4">
-      <div class="kpi cr"><div class="lb">Δ UAFIR</div><div class="vl">−15,957</div><div class="dl neg">▼ −47.9%</div></div>
-      <div class="kpi cr"><div class="lb">Δ UAFIR FL</div><div class="vl">−15,849</div><div class="dl neg">▼ −39.5%</div></div>
-      <div class="kpi cgo"><div class="lb">Δ Ajuste FL</div><div class="vl">+108</div><div class="dl pos">+$108K más</div></div>
-      <div class="kpi cr"><div class="lb">Δ Ut. Neta</div><div class="vl">−15,914</div><div class="dl neg">▼ −64.1%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Gen. Bruta</div><div class="vl">−12,480</div><div class="dl neg">▼ −39.9%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Saldo Final</div><div class="vl">−2,543</div><div class="dl neg">67,090 → 64,547</div></div>
+      <div class="kpi cg"><div class="lb">Δ Variación CT</div><div class="vl">+40,127</div><div class="dl pos">−26,248 → +13,879</div></div>
+      <div class="kpi cr"><div class="lb">Δ Partidas no Op.</div><div class="vl">−43,347</div><div class="dl neg">+14,569 → −28,777</div></div>
     </div>
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Ene vs Feb 2026</div><h2>Flujo de Efectivo — Comparativo</h2><p>Miles MXN</p></div>
+        <div><div class="ey">Ene vs Feb 2026 · Miles MXN</div><h2>Comparativo de Componentes del Flujo</h2><p>FC en MXN · Mes a mes</p></div>
         <div class="leg">
           <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
           <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
         </div>
       </div>
-      <div class="cw cw-md"><canvas id="flujoCmp"></canvas></div>
+      <div class="cw cw-lg"><canvas id="cmpChart"></canvas></div>
       <div class="ins">
-        <strong>El ajuste de flujo libre es casi idéntico en ambos meses (+$6,878K vs +$6,986K)</strong>, lo que indica que la
-        depreciación y las variaciones de capital de trabajo son estables. La compresión del flujo es 100% atribuible
-        a la caída operativa. La carga financiera se mantiene prácticamente constante ($8,481K vs $8,438K),
-        lo que amplifica el impacto en la utilidad neta cuando bajan los ingresos.
+        <strong>Principales movimientos Ene→Feb:</strong>
+        La Generación Bruta cae −39.9% (−$12,480K) acorde con la baja de ventas.
+        El Capital de Trabajo invierte su señal radicalmente: de −$26,248K a <strong>+$13,879K (+$40,127K)</strong>
+        por recuperación de Deudores Diversos y aumento de Acreedores.
+        Las Partidas no Operativas se revierten de +$14,569K a <strong>−$28,777K</strong>, siendo el factor de mayor volatilidad.
+        El Saldo Final cae de $67,090K a $64,547K (<strong>−$2,543K</strong>).
       </div>
     </div>
 
     <div class="sdiv">Tabla Comparativa de Flujo</div>
     <div class="cc">
       <table class="dtbl">
-        <thead><tr><th>Métrica</th><th style="text-align:right">Enero $K</th><th style="text-align:right">Feb $K</th><th style="text-align:right">Var $K</th><th style="text-align:right">Var %</th><th style="text-align:right">Ene %V</th><th style="text-align:right">Feb %V</th></tr></thead>
+        <thead><tr><th>Concepto</th><th style="text-align:right">Enero $K</th><th style="text-align:right">Febrero $K</th><th style="text-align:right">Variación $K</th><th style="text-align:right">Var %</th></tr></thead>
         <tbody>
-          <tr><td class="metric fw7">UAFIR</td><td style="text-align:right" class="ng fw7">33,295</td><td style="text-align:right" class="nr fw7">17,338</td><td style="text-align:right" class="nr">−15,957</td><td style="text-align:right"><span class="badge r">−47.9%</span></td><td style="text-align:right">9.3%</td><td style="text-align:right">5.6%</td></tr>
-          <tr><td class="metric">(+) Ajuste FL</td><td style="text-align:right" class="ng">6,878</td><td style="text-align:right" class="ng">6,986</td><td style="text-align:right" class="ng">+108</td><td style="text-align:right"><span class="badge g">+1.6%</span></td><td style="text-align:right">1.9%</td><td style="text-align:right">2.3%</td></tr>
-          <tr><td class="metric fw7">UAFIR FL</td><td style="text-align:right" class="ng fw7">40,173</td><td style="text-align:right" class="nr fw7">24,324</td><td style="text-align:right" class="nr">−15,849</td><td style="text-align:right"><span class="badge r">−39.5%</span></td><td style="text-align:right">11.3%</td><td style="text-align:right">7.8%</td></tr>
-          <tr><td class="metric">(−) Fin. + ISR</td><td style="text-align:right">8,481</td><td style="text-align:right">8,438</td><td style="text-align:right" class="ng">−43</td><td style="text-align:right"><span class="badge g">−0.5%</span></td><td style="text-align:right">2.4%</td><td style="text-align:right">2.7%</td></tr>
-          <tr><td class="metric fw7">Ut. Neta</td><td style="text-align:right" class="ng fw7">24,814</td><td style="text-align:right" class="nr fw7">8,900</td><td style="text-align:right" class="nr">−15,914</td><td style="text-align:right"><span class="badge r">−64.1%</span></td><td style="text-align:right">7.0%</td><td style="text-align:right">2.9%</td></tr>
+          <tr><td class="metric fw7">Saldo Inicial</td><td style="text-align:right">70,505</td><td style="text-align:right">67,044</td><td style="text-align:right" class="nr">−3,461</td><td style="text-align:right">—</td></tr>
+          <tr><td class="metric">(+) Generación Bruta</td><td style="text-align:right" class="ng">31,267</td><td style="text-align:right" class="ng">18,787</td><td style="text-align:right" class="nr">−12,480</td><td style="text-align:right"><span class="badge r">−39.9%</span></td></tr>
+          <tr><td class="metric">(±) Variación C de T</td><td style="text-align:right" class="nr">−26,248</td><td style="text-align:right" class="ng">+13,879</td><td style="text-align:right" class="ng">+40,127</td><td style="text-align:right"><span class="badge g">Reversión</span></td></tr>
+          <tr><td class="metric">(±) Total Partidas</td><td style="text-align:right" class="ng">+14,569</td><td style="text-align:right" class="nr">−28,777</td><td style="text-align:right" class="nr">−43,347</td><td style="text-align:right"><span class="badge r">Reversión</span></td></tr>
+          <tr><td class="metric">(±) Total Inversiones</td><td style="text-align:right" class="nr">−9,568</td><td style="text-align:right" class="ng">+3,278</td><td style="text-align:right" class="ng">+12,846</td><td style="text-align:right"><span class="badge g">Reversión</span></td></tr>
+          <tr><td class="metric">(−) Eficiencia</td><td style="text-align:right" class="nr">−13,436</td><td style="text-align:right" class="nr">−9,671</td><td style="text-align:right" class="ng">+3,765</td><td style="text-align:right"><span class="badge g">−28.0%</span></td></tr>
+          <tr><td class="metric">= Flujo Neto</td><td style="text-align:right" class="nr">−3,416</td><td style="text-align:right" class="nr">−2,504</td><td style="text-align:right" class="ng">+912</td><td style="text-align:right"><span class="badge g">Mejora</span></td></tr>
+          <tr><td class="metric fw7">= Saldo Final</td><td style="text-align:right" class="ng fw7">67,090</td><td style="text-align:right" class="nr fw7">64,547</td><td style="text-align:right" class="nr fw7">−2,543</td><td style="text-align:right"><span class="badge r">−3.8%</span></td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <div class="foot">
-    <span>EXELCO · 08 · Flujo de Efectivo · ENE–FEB 2026</span>
+    <span>EXELCO · 08 · Flujo Operativo · ENE–FEB 2026 · Fuente: FC en MXN</span>
     <span>CONFIDENCIAL</span>
   </div>
 </main>
 
 <script>
-const G={g800:'#1a3d2b',navy:'#1e3a5f',gold:'#c9a84c',red:'#c0392b'};
+const G={g800:'#1a3d2b',g600:'#2e7d4f',gold:'#c9a84c',gray:'#9b9ea0',red:'#c0392b',navy:'#1e3a5f'};
+
+// Waterfall builder: returns [bases, absVals, colors]
+function waterfallData(vals, colors){
+  const bases=[], abs=[];
+  let cum=0;
+  vals.forEach((v,i)=>{
+    const isTotal=(i===0||i===vals.length-1);
+    if(isTotal){ bases.push(0); abs.push(Math.abs(v)); }
+    else if(v>=0){ bases.push(cum); abs.push(v); }
+    else{ bases.push(cum+v); abs.push(-v); }
+    cum += isTotal ? 0 : v;
+  });
+  return {bases,abs};
+}
+
+const LABELS=['Saldo\nInicial','Gen.\nBruta','Var.\nC de T','Total\nPartidas','Total\nInversiones','Eficiencia','Saldo\nFinal'];
+
+// ── ENERO ──
+const ENE_VALS=[70505, 31267, -26248, 14569, -9568, -13436, 67090];
+const ENE_COLS=[G.gray, G.g800, G.gold, G.g600, G.gold, G.gold, G.g800];
+
+// ── FEBRERO ──
+const FEB_VALS=[67044, 18787, 13879, -28777, 3278, -9671, 64547];
+const FEB_COLS=[G.gray, G.g800, G.g600, G.gold, G.g600, G.gold, G.gray];
+
+function buildWF(id, vals, cols, labelAnnotation){
+  const {bases,abs} = waterfallData(vals, cols);
+  const canvas = document.getElementById(id);
+  const chart = new Chart(canvas,{
+    type:'bar',
+    data:{
+      labels:LABELS,
+      datasets:[
+        {data:bases, backgroundColor:'transparent', stack:'s', borderWidth:0},
+        {data:abs, backgroundColor:cols, stack:'s', borderRadius:4,
+         borderSkipped:false}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{
+          label:(ctx)=>{
+            if(ctx.datasetIndex===0) return null;
+            const raw=vals[ctx.dataIndex];
+            const sign=raw>=0?'+':'';
+            return sign+raw.toLocaleString('es-MX')+'K';
+          }
+        }}
+      },
+      scales:{
+        x:{stacked:true,grid:{display:false},ticks:{font:{size:11}}},
+        y:{stacked:true,grid:{color:'#f0f0f0'},
+          ticks:{callback:v=>v>=1000?(v/1000).toFixed(0)+'K':v}}
+      }
+    },
+    plugins:[{
+      id:'wfLabels',
+      afterDatasetsDraw(chart){
+        const {ctx,data}=chart;
+        const ds1=chart.getDatasetMeta(1);
+        ctx.save();
+        ctx.font='bold 11px Inter,-apple-system,sans-serif';
+        ctx.textAlign='center';
+        ds1.data.forEach((bar,i)=>{
+          const raw=vals[i];
+          const sign=(i===0||i===vals.length-1)?'':raw>=0?'+':'';
+          const lbl=sign+raw.toLocaleString('es-MX');
+          const isNeg=(raw<0)&&i!==0&&i!==vals.length-1;
+          ctx.fillStyle=isNeg?G.gold:raw>=0&&i!==0&&i!==vals.length-1?G.g800:'#555';
+          const yPos=isNeg?bar.y+bar.height+14:bar.y-6;
+          ctx.fillText(lbl, bar.x, yPos);
+        });
+        // Deudores annotation for Enero (index 2)
+        if(labelAnnotation){
+          const bar=ds1.data[2];
+          ctx.strokeStyle=G.red;
+          ctx.lineWidth=1.5;
+          ctx.setLineDash([3,3]);
+          const midX=bar.x, midY=bar.y+bar.height/2;
+          ctx.beginPath();ctx.moveTo(midX+5,midY);ctx.lineTo(midX+70,midY+18);ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle=G.red;
+          ctx.font='11px Inter,-apple-system,sans-serif';
+          ctx.textAlign='left';
+          ctx.fillText('Deudores Diversos (−32,789K)',midX+72,midY+20);
+        }
+        ctx.restore();
+      }
+    }]
+  });
+  return chart;
+}
 
 document.addEventListener('DOMContentLoaded',()=>{
-  const labels=['UAFIR','UAFIR FL','Ut. Neta'];
-  const grpOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-    scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}};
+  buildWF('wfEne', ENE_VALS, ENE_COLS, true);
+  buildWF('wfFeb', FEB_VALS, FEB_COLS, false);
 
-  new Chart(document.getElementById('flujoEne'),{type:'bar',
-    data:{labels,datasets:[{data:[33295,40173,24814],backgroundColor:[G.g800,G.navy,G.gold],borderRadius:5}]},
-    options:grpOpts});
-
-  new Chart(document.getElementById('flujoFeb'),{type:'bar',
-    data:{labels,datasets:[{data:[17338,24324,8900],backgroundColor:[G.red,'#8b1a1a','#a07c2a'],borderRadius:5}]},
-    options:grpOpts});
-
-  new Chart(document.getElementById('flujoCmp'),{type:'bar',
-    data:{labels,datasets:[
-      {label:'Enero 2026',data:[33295,40173,24814],backgroundColor:G.g800,borderRadius:4},
-      {label:'Febrero 2026',data:[17338,24324,8900],backgroundColor:G.red,borderRadius:4}
+  // Comparativo grouped bars (components only, no totals)
+  const cmpLabels=['Gen. Bruta','Var. C de T','Total Partidas','Total Inversiones','Eficiencia'];
+  const eneComp=[31267,-26248,14569,-9568,-13436];
+  const febComp=[18787,13879,-28777,3278,-9671];
+  new Chart(document.getElementById('cmpChart'),{
+    type:'bar',
+    data:{labels:cmpLabels,datasets:[
+      {label:'Enero 2026',data:eneComp,backgroundColor:G.g800,borderRadius:4},
+      {label:'Febrero 2026',data:febComp,backgroundColor:G.red,borderRadius:4}
     ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}}});
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},
+              y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v>=0?'+'+v.toLocaleString():v.toLocaleString()}}}}
+  });
 });
 </script>
 </body>
