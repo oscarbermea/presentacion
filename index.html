@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exelco — Reportes Financieros 2026</title>
+<link rel="stylesheet" href="styles.css">
+<script src="auth.js"></script>
+</head>
+<body>
+
+<!-- LOGIN OVERLAY -->
+<div id="lov">
+  <div class="lbox">
+    <div class="llogo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg></div>
+    <h2>Exelco Dashboard</h2>
+    <p>Reportes Financieros Consejo 2026</p>
+    <input id="lu" class="lf" type="text" placeholder="Usuario" autocomplete="username">
+    <input id="lp" class="lf" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="lbtn" onclick="doLogin()">Ingresar</button>
+    <div id="lerr" class="lerr"></div>
+  </div>
+  <div class="lbadge">EXELCO · CONFIDENCIAL · 2026</div>
+</div>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg>
+    <span class="tb-brand">EXELCO</span>
+  </div>
+  <div class="tb-nav">
+    <a href="index.html" class="tb-link active">Inicio</a>
+    <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
+    <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
+    <a href="05_energia.html" class="tb-link">05 · Energía</a>
+    <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
+    <a href="07_inmobiliaria.html" class="tb-link">07 · Inmobiliaria</a>
+    <a href="08_flujo.html" class="tb-link">08 · Flujo</a>
+    <a href="09_deuda.html" class="tb-link">09 · Deuda</a>
+    <a href="10_operaciones.html" class="tb-link">10 · Operaciones</a>
+    <a href="11_cartera.html" class="tb-link">11 · Cartera</a>
+  </div>
+  <div class="tb-right">
+    <span class="badge-c">ENE–FEB 2026</span>
+    <button class="logoutb" onclick="doLogout()">Salir</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="page">
+  <div class="ph">
+    <div class="ey">Exelco · Consejo de Administración</div>
+    <h1>Reportes Financieros 2026</h1>
+    <p class="sub">Selecciona una sección para ver el análisis detallado con datos de Enero y Febrero 2026</p>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpis kpis4" style="margin-bottom:28px">
+    <div class="kpi cg">
+      <div class="lb">Ventas Ene 2026</div>
+      <div class="vl">356,169</div>
+      <div class="dl neu">Miles MXN</div>
+    </div>
+    <div class="kpi cr">
+      <div class="lb">Ventas Feb 2026</div>
+      <div class="vl">310,593</div>
+      <div class="dl neg">▼ −12.8% vs Ene</div>
+    </div>
+    <div class="kpi cgo">
+      <div class="lb">UAFIR Ene 2026</div>
+      <div class="vl">33,295</div>
+      <div class="dl neu">Margen 9.3%</div>
+    </div>
+    <div class="kpi cr">
+      <div class="lb">UAFIR Feb 2026</div>
+      <div class="vl">17,338</div>
+      <div class="dl neg">▼ Margen 5.6%</div>
+    </div>
+  </div>
+
+  <div class="sdiv">Secciones del Reporte</div>
+
+  <div class="hub">
+    <a href="01_resumen.html" class="hub-card">
+      <div class="hnum">01</div>
+      <div class="hico">📊</div>
+      <div class="htitle">Dashboard Ejecutivo</div>
+      <div class="hdesc">KPIs principales: Ventas, UAFIR, Utilidad Neta y tipo de cambio. Vista consolidada Enero vs Febrero.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+    <a href="02_ventas.html" class="hub-card">
+      <div class="hnum">02</div>
+      <div class="hico">📉</div>
+      <div class="htitle">Desaceleración de Ingresos</div>
+      <div class="hdesc">Análisis de ventas por división. Desglose de la caída de −12.8% en febrero respecto a enero.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+    <a href="03_pl_bridge.html" class="hub-card">
+      <div class="hnum">03</div>
+      <div class="hico">🌉</div>
+      <div class="htitle">Puente P&L</div>
+      <div class="hdesc">Waterfall de Ventas → Costo Directo → Margen → OpEx → UAFIR → Utilidad Neta.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+    <a href="04_divisiones.html" class="hub-card">
+      <div class="hnum">04</div>
+      <div class="hico">🥧</div>
+      <div class="htitle">Mezcla Divisional</div>
+      <div class="hdesc">Composición porcentual de ventas por división: Gas LP, Gasolina, Alimentos, Inmobiliaria.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+    <a href="05_energia.html" class="hub-card">
+      <div class="hnum">05</div>
+      <div class="hico">⛽</div>
+      <div class="htitle">División Energía</div>
+      <div class="hdesc">Gas LP y Gasolina. Volúmenes, márgenes y comparativo mensual detallado.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+    <a href="06_alimentos.html" class="hub-card">
+      <div class="hnum">06</div>
+      <div class="hico">🍽️</div>
+      <div class="htitle">División Alimentos</div>
+      <div class="hdesc">Operaciones México y Estados Unidos. Ventas, costos y márgenes por mercado.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+    <a href="07_inmobiliaria.html" class="hub-card">
+      <div class="hnum">07</div>
+      <div class="hico">🏢</div>
+      <div class="htitle">División Inmobiliaria</div>
+      <div class="hdesc">Portafolio México y EU. Ingresos por renta, ocupación y comparativo mensual.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+    <a href="08_flujo.html" class="hub-card">
+      <div class="hnum">08</div>
+      <div class="hico">💧</div>
+      <div class="htitle">Flujo de Efectivo</div>
+      <div class="hdesc">Flujo operativo, de inversión y financiero. UAFIR FL y posición de caja.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+    <a href="09_deuda.html" class="hub-card">
+      <div class="hnum">09</div>
+      <div class="hico">🏦</div>
+      <div class="htitle">Deuda</div>
+      <div class="hdesc">Estructura de deuda total, vencimientos, cobertura y apalancamiento Deuda/UAFIR.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+    <a href="10_operaciones.html" class="hub-card">
+      <div class="hnum">10</div>
+      <div class="hico">👥</div>
+      <div class="htitle">Operaciones & Personal</div>
+      <div class="hdesc">Headcount por división, productividad, unidades operativas y métricas operacionales.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+    <a href="11_cartera.html" class="hub-card">
+      <div class="hnum">11</div>
+      <div class="hico">📋</div>
+      <div class="htitle">Cartera Vencida</div>
+      <div class="hdesc">Análisis de cuentas por cobrar vencidas por división. Antigüedad y concentración de riesgo.</div>
+      <div class="hbadge">Ene · Feb · Comparativo</div>
+    </a>
+  </div>
+
+  <div class="foot">
+    <span>EXELCO · Reportes Financieros 2026 · Consejo de Administración</span>
+    <span>CONFIDENCIAL — Solo para uso interno</span>
+  </div>
+</main>
+</body>
+</html>

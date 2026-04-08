@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>01 · Dashboard Ejecutivo — Exelco 2026</title>
+<link rel="stylesheet" href="styles.css">
+<script src="auth.js"></script>
+<script src="chart.min.js"></script>
+</head>
+<body>
+
+<div id="lov">
+  <div class="lbox">
+    <div class="llogo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg></div>
+    <h2>Exelco Dashboard</h2><p>Reportes Financieros Consejo 2026</p>
+    <input id="lu" class="lf" type="text" placeholder="Usuario" autocomplete="username">
+    <input id="lp" class="lf" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="lbtn" onclick="doLogin()">Ingresar</button>
+    <div id="lerr" class="lerr"></div>
+  </div>
+  <div class="lbadge">EXELCO · CONFIDENCIAL · 2026</div>
+</div>
+
+<nav class="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg>
+    <span class="tb-brand">EXELCO</span>
+  </div>
+  <div class="tb-nav">
+    <a href="index.html" class="tb-link">Inicio</a>
+    <a href="01_resumen.html" class="tb-link active">01 · Resumen</a>
+    <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
+    <a href="05_energia.html" class="tb-link">05 · Energía</a>
+    <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
+    <a href="07_inmobiliaria.html" class="tb-link">07 · Inmobiliaria</a>
+    <a href="08_flujo.html" class="tb-link">08 · Flujo</a>
+    <a href="09_deuda.html" class="tb-link">09 · Deuda</a>
+    <a href="10_operaciones.html" class="tb-link">10 · Operaciones</a>
+    <a href="11_cartera.html" class="tb-link">11 · Cartera</a>
+  </div>
+  <div class="tb-right">
+    <span class="badge-c">ENE–FEB 2026</span>
+    <button class="logoutb" onclick="doLogout()">Salir</button>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="ph">
+    <div class="ey">01 · Dashboard Ejecutivo</div>
+    <h1>Resumen Financiero Consolidado</h1>
+    <p class="sub">Indicadores clave de desempeño — Enero y Febrero 2026</p>
+  </div>
+
+  <!-- MONTH TABS -->
+  <div class="mtabs">
+    <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
+    <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
+    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+  </div>
+
+  <!-- ENERO -->
+  <div id="m-ene" class="mpnl on">
+    <div class="kpis kpis4">
+      <div class="kpi cg"><div class="lb">Ventas Netas</div><div class="vl">356,169</div><div class="dl neu">Miles MXN</div></div>
+      <div class="kpi cgo"><div class="lb">UAFIR</div><div class="vl">33,295</div><div class="dl pos">Margen 9.3%</div></div>
+      <div class="kpi cn"><div class="lb">UAFIR con Flujo Libre</div><div class="vl">40,173</div><div class="dl pos">Margen 11.3%</div></div>
+      <div class="kpi cg"><div class="lb">Utilidad Neta</div><div class="vl">24,814</div><div class="dl pos">Margen 7.0%</div></div>
+    </div>
+    <div class="kpis kpis4">
+      <div class="kpi cgr"><div class="lb">Costo Directo</div><div class="vl">207,869</div><div class="dl neu">58.4% de ventas</div></div>
+      <div class="kpi cg"><div class="lb">Margen de Contribución</div><div class="vl">148,300</div><div class="dl pos">41.6% de ventas</div></div>
+      <div class="kpi cgr"><div class="lb">Gastos Operativos</div><div class="vl">115,005</div><div class="dl neu">32.3% de ventas</div></div>
+      <div class="kpi cgr"><div class="lb">Tipo de Cambio Prom.</div><div class="vl">17.33</div><div class="dl neu">MXN / USD</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Enero 2026</div><h2>Composición del P&L</h2><p>De ventas a utilidad neta</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#2e7d4f"></div>Ingresos / Positivo</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Costos / Negativo</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="plEne"></canvas></div>
+      <div class="ins">
+        <strong>Enero 2026:</strong> Ventas de <strong>$356,169K</strong> con margen de contribución del <strong>41.6%</strong>.
+        Los gastos operativos de $115,005K comprimen el UAFIR a <strong>$33,295K (9.3%)</strong>.
+        Tras gastos financieros e impuestos de $8,481K, la utilidad neta queda en <strong>$24,814K (7.0%)</strong>.
+      </div>
+    </div>
+
+    <div class="sdiv">Métricas Clave</div>
+    <div class="g2">
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Estado de Resultados</h2></div></div>
+        <div class="mrow"><span class="mk">Ventas Netas</span><span class="mv p">$356,169K</span></div>
+        <div class="mrow"><span class="mk">Costo Directo</span><span class="mv r">($207,869K)</span></div>
+        <div class="mrow"><span class="mk">Margen de Contribución</span><span class="mv p">$148,300K — 41.6%</span></div>
+        <div class="mrow"><span class="mk">Gastos Operativos</span><span class="mv r">($115,005K)</span></div>
+        <div class="mrow"><span class="mk">UAFIR</span><span class="mv p">$33,295K — 9.3%</span></div>
+        <div class="mrow"><span class="mk">Gastos Financieros + ISR</span><span class="mv r">($8,481K)</span></div>
+        <div class="mrow"><span class="mk">Utilidad Neta</span><span class="mv p">$24,814K — 7.0%</span></div>
+      </div>
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Ventas por División</h2></div></div>
+        <div class="mrow"><span class="mk">Gas LP</span><span class="mv p">$135,451K — 38.0%</span></div>
+        <div class="mrow"><span class="mk">Gasolina</span><span class="mv p">$112,601K — 31.6%</span></div>
+        <div class="mrow"><span class="mk">Alimentos MX</span><span class="mv go">$84,967K — 23.8%</span></div>
+        <div class="mrow"><span class="mk">Alimentos EU</span><span class="mv go">$14,541K — 4.1%</span></div>
+        <div class="mrow"><span class="mk">Inmobiliaria MX</span><span class="mv">$6,842K — 1.9%</span></div>
+        <div class="mrow"><span class="mk">Inmobiliaria EU</span><span class="mv">$1,768K — 0.5%</span></div>
+        <div class="mrow"><span class="mk" style="font-weight:700">Total</span><span class="mv p" style="color:#1a3d2b">$356,169K</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEBRERO -->
+  <div id="m-feb" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Ventas Netas</div><div class="vl">310,593</div><div class="dl neg">▼ −12.8% vs Ene</div></div>
+      <div class="kpi cr"><div class="lb">UAFIR</div><div class="vl">17,338</div><div class="dl neg">Margen 5.6%</div></div>
+      <div class="kpi cn"><div class="lb">UAFIR con Flujo Libre</div><div class="vl">24,324</div><div class="dl neg">Margen 7.8%</div></div>
+      <div class="kpi cr"><div class="lb">Utilidad Neta</div><div class="vl">8,900</div><div class="dl neg">Margen 2.9%</div></div>
+    </div>
+    <div class="kpis kpis4">
+      <div class="kpi cgr"><div class="lb">Costo Directo</div><div class="vl">184,196</div><div class="dl neu">59.3% de ventas</div></div>
+      <div class="kpi cg"><div class="lb">Margen de Contribución</div><div class="vl">126,397</div><div class="dl neg">40.7% de ventas</div></div>
+      <div class="kpi cgr"><div class="lb">Gastos Operativos</div><div class="vl">109,059</div><div class="dl neu">35.1% de ventas</div></div>
+      <div class="kpi cgr"><div class="lb">Tipo de Cambio Prom.</div><div class="vl">17.22</div><div class="dl neg">▼ −0.65% vs Ene</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Febrero 2026</div><h2>Composición del P&L</h2><p>De ventas a utilidad neta</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#2e7d4f"></div>Ingresos / Positivo</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Costos / Negativo</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="plFeb"></canvas></div>
+      <div class="ins">
+        <strong>Febrero 2026:</strong> Las ventas caen a <strong>$310,593K (−12.8%)</strong> respecto a enero.
+        El margen de contribución baja a <strong>40.7%</strong> y los gastos operativos de $109,059K representan el <strong>35.1%</strong> de ventas.
+        La utilidad neta se comprime drásticamente a <strong>$8,900K (2.9%)</strong>, una caída del <strong>−64.1%</strong> vs enero.
+      </div>
+    </div>
+
+    <div class="sdiv">Métricas Clave</div>
+    <div class="g2">
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Estado de Resultados</h2></div></div>
+        <div class="mrow"><span class="mk">Ventas Netas</span><span class="mv r">$310,593K</span></div>
+        <div class="mrow"><span class="mk">Costo Directo</span><span class="mv r">($184,196K)</span></div>
+        <div class="mrow"><span class="mk">Margen de Contribución</span><span class="mv go">$126,397K — 40.7%</span></div>
+        <div class="mrow"><span class="mk">Gastos Operativos</span><span class="mv r">($109,059K)</span></div>
+        <div class="mrow"><span class="mk">UAFIR</span><span class="mv r">$17,338K — 5.6%</span></div>
+        <div class="mrow"><span class="mk">Gastos Financieros + ISR</span><span class="mv r">($8,438K)</span></div>
+        <div class="mrow"><span class="mk">Utilidad Neta</span><span class="mv r">$8,900K — 2.9%</span></div>
+      </div>
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Ventas por División</h2></div></div>
+        <div class="mrow"><span class="mk">Gas LP</span><span class="mv r">$112,366K — 36.2%</span></div>
+        <div class="mrow"><span class="mk">Gasolina</span><span class="mv go">$106,685K — 34.3%</span></div>
+        <div class="mrow"><span class="mk">Alimentos MX</span><span class="mv r">$69,036K — 22.2%</span></div>
+        <div class="mrow"><span class="mk">Alimentos EU</span><span class="mv go">$13,879K — 4.5%</span></div>
+        <div class="mrow"><span class="mk">Inmobiliaria MX</span><span class="mv">$6,870K — 2.2%</span></div>
+        <div class="mrow"><span class="mk">Inmobiliaria EU</span><span class="mv">$1,756K — 0.6%</span></div>
+        <div class="mrow"><span class="mk" style="font-weight:700">Total</span><span class="mv r">$310,593K</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div id="m-cmp" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Δ Ventas</div><div class="vl">−45,576</div><div class="dl neg">▼ −12.8%</div></div>
+      <div class="kpi cr"><div class="lb">Δ UAFIR</div><div class="vl">−15,957</div><div class="dl neg">▼ −47.9%</div></div>
+      <div class="kpi cr"><div class="lb">Δ UAFIR FL</div><div class="vl">−15,849</div><div class="dl neg">▼ −39.5%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Utilidad Neta</div><div class="vl">−15,914</div><div class="dl neg">▼ −64.1%</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Ene vs Feb 2026</div><h2>Comparativo de KPIs</h2><p>Enero contra Febrero 2026</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
+        </div>
+      </div>
+      <div class="cw"><canvas id="cmpChart"></canvas></div>
+      <div class="ins">
+        <strong>Caída sistémica en febrero:</strong> Todas las métricas clave muestran deterioro. Las ventas caen <strong>−12.8%</strong>,
+        pero el impacto en rentabilidad es desproporcionado: el UAFIR cae <strong>−47.9%</strong> y la utilidad neta
+        colapsa <strong>−64.1%</strong>, evidenciando el alto apalancamiento operativo de la empresa.
+      </div>
+    </div>
+
+    <div class="sdiv">Tabla Comparativa Detallada</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead>
+          <tr>
+            <th>Métrica</th>
+            <th style="text-align:right">Enero 2026</th>
+            <th style="text-align:right">Febrero 2026</th>
+            <th style="text-align:right">Variación $</th>
+            <th style="text-align:right">Variación %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric">Ventas Netas</td><td style="text-align:right" class="ng">356,169</td><td style="text-align:right" class="nr">310,593</td><td style="text-align:right" class="nr">−45,576</td><td style="text-align:right"><span class="badge r">−12.8%</span></td></tr>
+          <tr><td class="metric">Costo Directo</td><td style="text-align:right" class="nr">207,869</td><td style="text-align:right" class="nr">184,196</td><td style="text-align:right" class="ng">−23,673</td><td style="text-align:right"><span class="badge g">−11.4%</span></td></tr>
+          <tr><td class="metric">Margen de Contribución</td><td style="text-align:right" class="ng">148,300</td><td style="text-align:right" class="nr">126,397</td><td style="text-align:right" class="nr">−21,903</td><td style="text-align:right"><span class="badge r">−14.8%</span></td></tr>
+          <tr><td class="metric">% Margen</td><td style="text-align:right">41.6%</td><td style="text-align:right">40.7%</td><td style="text-align:right">−0.9 pp</td><td style="text-align:right">—</td></tr>
+          <tr><td class="metric">Gastos Operativos</td><td style="text-align:right" class="nr">115,005</td><td style="text-align:right" class="nr">109,059</td><td style="text-align:right" class="ng">−5,946</td><td style="text-align:right"><span class="badge g">−5.2%</span></td></tr>
+          <tr><td class="metric fw7">UAFIR</td><td style="text-align:right" class="ng fw7">33,295</td><td style="text-align:right" class="nr fw7">17,338</td><td style="text-align:right" class="nr fw7">−15,957</td><td style="text-align:right"><span class="badge r">−47.9%</span></td></tr>
+          <tr><td class="metric">UAFIR FL</td><td style="text-align:right" class="ng">40,173</td><td style="text-align:right" class="nr">24,324</td><td style="text-align:right" class="nr">−15,849</td><td style="text-align:right"><span class="badge r">−39.5%</span></td></tr>
+          <tr><td class="metric fw7">Utilidad Neta</td><td style="text-align:right" class="ng fw7">24,814</td><td style="text-align:right" class="nr fw7">8,900</td><td style="text-align:right" class="nr fw7">−15,914</td><td style="text-align:right"><span class="badge r">−64.1%</span></td></tr>
+          <tr><td class="metric">Tipo de Cambio</td><td style="text-align:right">17.3310</td><td style="text-align:right">17.2193</td><td style="text-align:right" class="nr">−0.1117</td><td style="text-align:right"><span class="badge r">−0.6%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>EXELCO · 01 · Dashboard Ejecutivo · ENE–FEB 2026</span>
+    <span>CONFIDENCIAL</span>
+  </div>
+</main>
+
+<script>
+const G = {g800:'#1a3d2b',g700:'#1f5c37',g600:'#2e7d4f',gold:'#c9a84c',navy:'#1e3a5f',red:'#c0392b',gray:'#9ca3af'};
+
+// P&L waterfall helper
+function makeWaterfall(ctx, labels, vals, colors){
+  const bases=[];let run=0;
+  vals.forEach((v,i)=>{
+    if(i===0||i===vals.length-1){bases.push(0);}
+    else{bases.push(run);}
+    if(v>0)run+=v; else run+=v;
+  });
+  // recalc properly
+  const b2=[]; let cum=0;
+  vals.forEach((v,i)=>{
+    if(i===0){b2.push(0);cum=v;}
+    else if(i===vals.length-1){b2.push(0);}
+    else{
+      if(v<0){b2.push(cum+v);cum+=v;}
+      else{b2.push(cum);cum+=v;}
+    }
+  });
+  return new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {data:b2,backgroundColor:'transparent',stack:'s'},
+        {data:vals.map(v=>Math.abs(v)),backgroundColor:colors,stack:'s',borderRadius:3}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.datasetIndex===1?'$'+vals[c.dataIndex].toLocaleString()+'K':''}}},
+      scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const eneVals=[356169,-207869,148300,-115005,33295,-8481,24814];
+  const eneColors=[G.g600,G.red,G.g600,G.red,G.g600,G.red,G.g800];
+  const eneLabels=['Ventas','Costo Dir.','M. Contrib.','OpEx','UAFIR','Fin+ISR','Ut. Neta'];
+  makeWaterfall(document.getElementById('plEne'),eneLabels,eneVals,eneColors);
+
+  const febVals=[310593,-184196,126397,-109059,17338,-8438,8900];
+  const febColors=[G.red,G.red,G.red,G.red,G.red,G.red,G.red];
+  makeWaterfall(document.getElementById('plFeb'),eneLabels,febVals,febColors);
+
+  new Chart(document.getElementById('cmpChart'),{
+    type:'bar',
+    data:{
+      labels:['Ventas Netas','UAFIR','UAFIR FL','Utilidad Neta'],
+      datasets:[
+        {label:'Enero 2026',data:[356169,33295,40173,24814],backgroundColor:G.g800,borderRadius:4},
+        {label:'Febrero 2026',data:[310593,17338,24324,8900],backgroundColor:G.red,borderRadius:4}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}
+    }
+  });
+});
+</script>
+</body>
+</html>

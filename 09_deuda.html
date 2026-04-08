@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>09 · Deuda — Exelco 2026</title>
+<link rel="stylesheet" href="styles.css">
+<script src="auth.js"></script>
+<script src="chart.min.js"></script>
+</head>
+<body>
+
+<div id="lov">
+  <div class="lbox">
+    <div class="llogo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg></div>
+    <h2>Exelco Dashboard</h2><p>Reportes Financieros Consejo 2026</p>
+    <input id="lu" class="lf" type="text" placeholder="Usuario" autocomplete="username">
+    <input id="lp" class="lf" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="lbtn" onclick="doLogin()">Ingresar</button>
+    <div id="lerr" class="lerr"></div>
+  </div>
+  <div class="lbadge">EXELCO · CONFIDENCIAL · 2026</div>
+</div>
+
+<nav class="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg>
+    <span class="tb-brand">EXELCO</span>
+  </div>
+  <div class="tb-nav">
+    <a href="index.html" class="tb-link">Inicio</a>
+    <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
+    <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
+    <a href="05_energia.html" class="tb-link">05 · Energía</a>
+    <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
+    <a href="07_inmobiliaria.html" class="tb-link">07 · Inmobiliaria</a>
+    <a href="08_flujo.html" class="tb-link">08 · Flujo</a>
+    <a href="09_deuda.html" class="tb-link active">09 · Deuda</a>
+    <a href="10_operaciones.html" class="tb-link">10 · Operaciones</a>
+    <a href="11_cartera.html" class="tb-link">11 · Cartera</a>
+  </div>
+  <div class="tb-right">
+    <span class="badge-c">ENE–FEB 2026</span>
+    <button class="logoutb" onclick="doLogout()">Salir</button>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="ph">
+    <div class="ey">09 · Deuda</div>
+    <h1>Estructura de Deuda y Apalancamiento</h1>
+    <p class="sub">Deuda total, cobertura y métricas de apalancamiento — Enero y Febrero 2026</p>
+  </div>
+
+  <div class="mtabs">
+    <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
+    <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
+    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+  </div>
+
+  <!-- ENERO -->
+  <div id="m-ene" class="mpnl on">
+    <div class="kpis kpis4">
+      <div class="kpi cn"><div class="lb">Deuda Total Est.</div><div class="vl">~400,000</div><div class="dl neu">Miles MXN (est.)</div></div>
+      <div class="kpi cgo"><div class="lb">UAFIR FL</div><div class="vl">40,173</div><div class="dl pos">Cobertura de caja</div></div>
+      <div class="kpi cgo"><div class="lb">Deuda / UAFIR FL (anual)</div><div class="vl">~4.97x</div><div class="dl neu">Est. a 12 meses</div></div>
+      <div class="kpi cg"><div class="lb">Carga Fin. + ISR</div><div class="vl">8,481</div><div class="dl pos">2.4% de ventas</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Enero 2026</div><h2>Cobertura de Deuda</h2><p>UAFIR FL vs Carga Financiera · Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>UAFIR FL</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Carga Financiera + ISR</div>
+          <div class="li"><div class="ld" style="background:#2e7d4f"></div>Ut. Neta disponible</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="deudaEne"></canvas></div>
+      <div class="ins">
+        <strong>Enero 2026:</strong> Con UAFIR FL de <strong>$40,173K</strong>, la empresa cubre holgadamente su carga financiera de $8,481K
+        (cobertura de <strong>4.74x</strong>). El excedente de $31,692K fluye hacia la utilidad neta ($24,814K) y reservas.
+        El apalancamiento estimado de ~4.97x UAFIR FL anualizado es manejable en un escenario de ventas estables como enero.
+      </div>
+    </div>
+
+    <div class="sdiv">Métricas de Deuda — Enero</div>
+    <div class="g2">
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Indicadores de Cobertura</h2></div></div>
+        <div class="mrow"><span class="mk">UAFIR FL mensual</span><span class="mv p">$40,173K</span></div>
+        <div class="mrow"><span class="mk">Carga financiera + ISR</span><span class="mv go">$8,481K</span></div>
+        <div class="mrow"><span class="mk">Cobertura (UAFIR FL / Carga)</span><span class="mv p">4.74x</span></div>
+        <div class="mrow"><span class="mk">Excedente después de carga</span><span class="mv p">$31,692K</span></div>
+        <div class="mrow"><span class="mk">Carga / Ventas</span><span class="mv go">2.4%</span></div>
+        <div class="mrow"><span class="mk">Apalancamiento est. (12m)</span><span class="mv go">~4.97x UAFIR FL</span></div>
+      </div>
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Estructura de Cobertura</h2></div></div>
+        <div class="prog-row"><div class="prog-lbl">UAFIR FL</div><div class="prog-bar"><div class="prog-fill" style="width:100%;background:#1e3a5f"></div></div><div class="prog-val">$40,173K</div></div>
+        <div class="prog-row"><div class="prog-lbl">Carga Financiera</div><div class="prog-bar"><div class="prog-fill" style="width:21.1%;background:#c0392b"></div></div><div class="prog-val" style="color:#c0392b">$8,481K</div></div>
+        <div class="prog-row"><div class="prog-lbl">Ut. Neta</div><div class="prog-bar"><div class="prog-fill" style="width:61.8%;background:#2e7d4f"></div></div><div class="prog-val" style="color:#2e7d4f">$24,814K</div></div>
+        <div class="ins" style="margin-top:12px">Cobertura financiera de <strong>4.74x</strong> — nivel saludable.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEBRERO -->
+  <div id="m-feb" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cn"><div class="lb">Deuda Total Est.</div><div class="vl">~400,000</div><div class="dl neu">Sin cambio estimado</div></div>
+      <div class="kpi cr"><div class="lb">UAFIR FL</div><div class="vl">24,324</div><div class="dl neg">▼ −39.5% vs Ene</div></div>
+      <div class="kpi cr"><div class="lb">Deuda / UAFIR FL (anual)</div><div class="vl">~8.20x</div><div class="dl neg">▲ Deterioro</div></div>
+      <div class="kpi cr"><div class="lb">Carga Fin. + ISR</div><div class="vl">8,438</div><div class="dl neu">2.7% de ventas</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Febrero 2026</div><h2>Cobertura de Deuda</h2><p>UAFIR FL vs Carga Financiera · Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>UAFIR FL</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Carga Financiera + ISR</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Ut. Neta (baja)</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="deudaFeb"></canvas></div>
+      <div class="ins">
+        <strong>Febrero 2026:</strong> La cobertura financiera se deteriora a <strong>2.88x</strong> (vs 4.74x en enero).
+        La carga financiera de $8,438K absorbe el <strong>34.7% del UAFIR FL</strong> (vs 21.1% en enero).
+        Si este nivel de ventas persiste, el apalancamiento estimado sube a <strong>~8.2x UAFIR FL anualizado</strong>,
+        lo que podría presionar los covenants bancarios. Es la métrica de mayor riesgo en febrero.
+      </div>
+    </div>
+
+    <div class="sdiv">Métricas de Deuda — Febrero</div>
+    <div class="g2">
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Indicadores de Cobertura</h2></div></div>
+        <div class="mrow"><span class="mk">UAFIR FL mensual</span><span class="mv r">$24,324K</span></div>
+        <div class="mrow"><span class="mk">Carga financiera + ISR</span><span class="mv go">$8,438K</span></div>
+        <div class="mrow"><span class="mk">Cobertura (UAFIR FL / Carga)</span><span class="mv r">2.88x</span></div>
+        <div class="mrow"><span class="mk">Excedente después de carga</span><span class="mv r">$15,886K</span></div>
+        <div class="mrow"><span class="mk">Carga / Ventas</span><span class="mv r">2.7%</span></div>
+        <div class="mrow"><span class="mk">Apalancamiento est. (12m)</span><span class="mv r">~8.2x UAFIR FL</span></div>
+      </div>
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Estructura de Cobertura</h2></div></div>
+        <div class="prog-row"><div class="prog-lbl">UAFIR FL</div><div class="prog-bar"><div class="prog-fill" style="width:100%;background:#1e3a5f"></div></div><div class="prog-val">$24,324K</div></div>
+        <div class="prog-row"><div class="prog-lbl">Carga Financiera</div><div class="prog-bar"><div class="prog-fill" style="width:34.7%;background:#c0392b"></div></div><div class="prog-val" style="color:#c0392b">$8,438K</div></div>
+        <div class="prog-row"><div class="prog-lbl">Ut. Neta</div><div class="prog-bar"><div class="prog-fill" style="width:36.6%;background:#c0392b"></div></div><div class="prog-val" style="color:#c0392b">$8,900K</div></div>
+        <div class="ins" style="margin-top:12px">Cobertura de <strong>2.88x</strong> — nivel de alerta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div id="m-cmp" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Δ UAFIR FL</div><div class="vl">−15,849</div><div class="dl neg">▼ −39.5%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Cobertura</div><div class="vl">−1.86x</div><div class="dl neg">4.74x → 2.88x</div></div>
+      <div class="kpi cr"><div class="lb">Δ Apalancamiento</div><div class="vl">+3.23x</div><div class="dl neg">4.97x → 8.20x</div></div>
+      <div class="kpi cgo"><div class="lb">Δ Carga Financiera</div><div class="vl">−43</div><div class="dl pos">Práct. estable</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Ene vs Feb 2026</div><h2>Cobertura de Deuda — Comparativo</h2><p>Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="deudaCmp"></canvas></div>
+      <div class="ins">
+        <strong>La carga financiera es fija (~$8,460K/mes) pero el UAFIR FL cayó −39.5%.</strong>
+        Esto eleva la presión financiera: la carga consume el 34.7% del UAFIR FL en febrero vs 21.1% en enero.
+        Si febrero fuera el nivel normalizado, el apalancamiento sería ~8.2x, nivel que típicamente activa covenants bancarios (umbral usual: 3.5x–5.0x).
+        <strong>Recuperar las ventas de marzo es crítico para mantener la salud financiera.</strong>
+      </div>
+    </div>
+
+    <div class="sdiv">Tabla Comparativa de Deuda</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>Métrica</th><th style="text-align:right">Enero</th><th style="text-align:right">Febrero</th><th style="text-align:right">Variación</th><th>Semáforo</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">UAFIR FL mensual</td><td style="text-align:right" class="ng">$40,173K</td><td style="text-align:right" class="nr">$24,324K</td><td style="text-align:right" class="nr">−$15,849K</td><td><span class="badge r">Alerta</span></td></tr>
+          <tr><td class="metric">Carga Fin. + ISR</td><td style="text-align:right">$8,481K</td><td style="text-align:right">$8,438K</td><td style="text-align:right" class="ng">−$43K</td><td><span class="badge g">Estable</span></td></tr>
+          <tr><td class="metric">Cobertura (FL/Carga)</td><td style="text-align:right" class="ng">4.74x</td><td style="text-align:right" class="nr">2.88x</td><td style="text-align:right" class="nr">−1.86x</td><td><span class="badge r">Alerta</span></td></tr>
+          <tr><td class="metric">Carga / UAFIR FL</td><td style="text-align:right" class="ng">21.1%</td><td style="text-align:right" class="nr">34.7%</td><td style="text-align:right" class="nr">+13.6pp</td><td><span class="badge r">Alerta</span></td></tr>
+          <tr><td class="metric">Apalanc. est. (12m)</td><td style="text-align:right" class="ng">~4.97x</td><td style="text-align:right" class="nr">~8.20x</td><td style="text-align:right" class="nr">+3.23x</td><td><span class="badge r">Crítico</span></td></tr>
+          <tr><td class="metric">Carga / Ventas</td><td style="text-align:right" class="ng">2.4%</td><td style="text-align:right" class="nr">2.7%</td><td style="text-align:right" class="nr">+0.3pp</td><td><span class="badge go">Moderado</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>EXELCO · 09 · Deuda · ENE–FEB 2026</span>
+    <span>CONFIDENCIAL</span>
+  </div>
+</main>
+
+<script>
+const G={g800:'#1a3d2b',g600:'#2e7d4f',navy:'#1e3a5f',gold:'#c9a84c',red:'#c0392b'};
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const barOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}};
+
+  new Chart(document.getElementById('deudaEne'),{type:'bar',
+    data:{labels:['UAFIR FL','Carga Fin.+ISR','Ut. Neta'],
+      datasets:[{data:[40173,8481,24814],backgroundColor:[G.navy,G.red,G.g600],borderRadius:5}]},
+    options:barOpts});
+
+  new Chart(document.getElementById('deudaFeb'),{type:'bar',
+    data:{labels:['UAFIR FL','Carga Fin.+ISR','Ut. Neta'],
+      datasets:[{data:[24324,8438,8900],backgroundColor:[G.navy,G.red,G.red],borderRadius:5}]},
+    options:barOpts});
+
+  new Chart(document.getElementById('deudaCmp'),{type:'bar',
+    data:{labels:['UAFIR FL','Carga Fin.+ISR','Ut. Neta'],
+      datasets:[
+        {label:'Enero 2026',data:[40173,8481,24814],backgroundColor:G.g800,borderRadius:4},
+        {label:'Febrero 2026',data:[24324,8438,8900],backgroundColor:G.red,borderRadius:4}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}}});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>07 · División Inmobiliaria — Exelco 2026</title>
+<link rel="stylesheet" href="styles.css">
+<script src="auth.js"></script>
+<script src="chart.min.js"></script>
+</head>
+<body>
+
+<div id="lov">
+  <div class="lbox">
+    <div class="llogo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg></div>
+    <h2>Exelco Dashboard</h2><p>Reportes Financieros Consejo 2026</p>
+    <input id="lu" class="lf" type="text" placeholder="Usuario" autocomplete="username">
+    <input id="lp" class="lf" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="lbtn" onclick="doLogin()">Ingresar</button>
+    <div id="lerr" class="lerr"></div>
+  </div>
+  <div class="lbadge">EXELCO · CONFIDENCIAL · 2026</div>
+</div>
+
+<nav class="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg>
+    <span class="tb-brand">EXELCO</span>
+  </div>
+  <div class="tb-nav">
+    <a href="index.html" class="tb-link">Inicio</a>
+    <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
+    <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
+    <a href="05_energia.html" class="tb-link">05 · Energía</a>
+    <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
+    <a href="07_inmobiliaria.html" class="tb-link active">07 · Inmobiliaria</a>
+    <a href="08_flujo.html" class="tb-link">08 · Flujo</a>
+    <a href="09_deuda.html" class="tb-link">09 · Deuda</a>
+    <a href="10_operaciones.html" class="tb-link">10 · Operaciones</a>
+    <a href="11_cartera.html" class="tb-link">11 · Cartera</a>
+  </div>
+  <div class="tb-right">
+    <span class="badge-c">ENE–FEB 2026</span>
+    <button class="logoutb" onclick="doLogout()">Salir</button>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="ph">
+    <div class="ey">07 · División Inmobiliaria</div>
+    <h1>Portafolio México y Estados Unidos</h1>
+    <p class="sub">Ingresos por renta y comparativo mensual — Enero y Febrero 2026</p>
+  </div>
+
+  <div class="mtabs">
+    <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
+    <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
+    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+  </div>
+
+  <!-- ENERO -->
+  <div id="m-ene" class="mpnl on">
+    <div class="kpis kpis4">
+      <div class="kpi cn"><div class="lb">Total Inmobiliaria</div><div class="vl">8,610</div><div class="dl neu">2.4% del consolidado</div></div>
+      <div class="kpi cn"><div class="lb">Inmob MX</div><div class="vl">6,842</div><div class="dl pos">79.5% de la división</div></div>
+      <div class="kpi cn"><div class="lb">Inmob EU</div><div class="vl">1,768</div><div class="dl neu">20.5% de la división</div></div>
+      <div class="kpi cg"><div class="lb">Estabilidad</div><div class="vl">Alta</div><div class="dl pos">Ingresos recurrentes</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Enero 2026</div><h2>División Inmobiliaria — Ingresos</h2><p>México vs Estados Unidos · Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>México</div>
+          <div class="li"><div class="ld" style="background:#2b4f82"></div>Estados Unidos</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="inmobEne"></canvas></div>
+      <div class="ins">
+        <strong>Enero 2026 — Inmobiliaria:</strong> División más pequeña con <strong>$8,610K (2.4% del consolidado)</strong>.
+        Los ingresos son principalmente por renta de propiedades, lo que les otorga alta estabilidad y predictibilidad.
+        México domina con <strong>$6,842K (79.5%)</strong> y EU contribuye con <strong>$1,768K (20.5%)</strong>, equivalente a ~$102K USD.
+      </div>
+    </div>
+
+    <div class="sdiv">Detalle por Mercado — Enero</div>
+    <div class="g2">
+      <div class="divc">
+        <div class="dtitle">Inmobiliaria México</div>
+        <div class="dsub">Portafolio de renta comercial e industrial MX</div>
+        <div class="dval">$6,842K</div>
+        <span class="dmarg n">1.9% del consolidado</span>
+        <div style="margin-top:14px">
+          <div class="mrow"><span class="mk">Ingresos por renta</span><span class="mv">$6,842K</span></div>
+          <div class="mrow"><span class="mk">% División Inmob.</span><span class="mv">79.5%</span></div>
+          <div class="mrow"><span class="mk">Tipo de ingreso</span><span class="mv">Renta recurrente</span></div>
+          <div class="mrow"><span class="mk">Moneda base</span><span class="mv">MXN</span></div>
+          <div class="mrow"><span class="mk">Volatilidad</span><span class="mv p">Baja</span></div>
+        </div>
+      </div>
+      <div class="divc">
+        <div class="dtitle">Inmobiliaria EU</div>
+        <div class="dsub">Portafolio de renta comercial e industrial USA</div>
+        <div class="dval">$1,768K</div>
+        <span class="dmarg n">0.5% del consolidado</span>
+        <div style="margin-top:14px">
+          <div class="mrow"><span class="mk">Ingresos por renta (MXN)</span><span class="mv">$1,768K</span></div>
+          <div class="mrow"><span class="mk">% División Inmob.</span><span class="mv">20.5%</span></div>
+          <div class="mrow"><span class="mk">TC aplicado</span><span class="mv">17.3310</span></div>
+          <div class="mrow"><span class="mk">Aprox. USD</span><span class="mv">~$102K USD</span></div>
+          <div class="mrow"><span class="mk">Tipo de ingreso</span><span class="mv">Renta en USD</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEBRERO -->
+  <div id="m-feb" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cg"><div class="lb">Total Inmobiliaria</div><div class="vl">8,626</div><div class="dl pos">▲ +0.2% vs Ene</div></div>
+      <div class="kpi cg"><div class="lb">Inmob MX</div><div class="vl">6,870</div><div class="dl pos">▲ +0.4%</div></div>
+      <div class="kpi cr"><div class="lb">Inmob EU</div><div class="vl">1,756</div><div class="dl neg">▼ −0.7%</div></div>
+      <div class="kpi cg"><div class="lb">Única división positiva</div><div class="vl">+16K</div><div class="dl pos">vs enero</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Febrero 2026</div><h2>División Inmobiliaria — Ingresos</h2><p>México vs Estados Unidos · Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>México</div>
+          <div class="li"><div class="ld" style="background:#2b4f82"></div>Estados Unidos</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="inmobFeb"></canvas></div>
+      <div class="ins">
+        <strong>Febrero 2026 — Inmobiliaria:</strong> <strong>Única división con crecimiento neto</strong> vs enero (+$16K, +0.2%).
+        MX crece ligeramente +$28K (+0.4%) mientras EU cae −$12K (−0.7%) por el efecto del tipo de cambio
+        (TC baja de 17.3310 a 17.2193). Los ingresos por renta en pesos son estables; la variación en EU se explica
+        por la depreciación del USD vs MXN.
+      </div>
+    </div>
+
+    <div class="sdiv">Detalle por Mercado — Febrero</div>
+    <div class="g2">
+      <div class="divc">
+        <div class="dtitle">Inmobiliaria México</div>
+        <div class="dsub">Portafolio de renta comercial e industrial MX</div>
+        <div class="dval" style="color:#1e3a5f">$6,870K</div>
+        <span class="dmarg n">2.2% del consolidado</span>
+        <div style="margin-top:14px">
+          <div class="mrow"><span class="mk">Ingresos Feb</span><span class="mv p">$6,870K</span></div>
+          <div class="mrow"><span class="mk">vs Enero</span><span class="mv p">+$28K (+0.4%)</span></div>
+          <div class="mrow"><span class="mk">% División Inmob.</span><span class="mv">79.6%</span></div>
+          <div class="mrow"><span class="mk">Tendencia</span><span class="mv p">Estable / Ligero crecimiento</span></div>
+        </div>
+      </div>
+      <div class="divc">
+        <div class="dtitle">Inmobiliaria EU</div>
+        <div class="dsub">Portafolio de renta comercial e industrial USA</div>
+        <div class="dval" style="color:#2b4f82">$1,756K</div>
+        <span class="dmarg n">0.6% del consolidado</span>
+        <div style="margin-top:14px">
+          <div class="mrow"><span class="mk">Ingresos Feb (MXN)</span><span class="mv r">$1,756K</span></div>
+          <div class="mrow"><span class="mk">vs Enero</span><span class="mv r">−$12K (−0.7%)</span></div>
+          <div class="mrow"><span class="mk">TC aplicado</span><span class="mv">17.2193</span></div>
+          <div class="mrow"><span class="mk">Causa caída</span><span class="mv go">TC MXN/USD −0.6%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div id="m-cmp" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cg"><div class="lb">Δ Total Inmobiliaria</div><div class="vl">+16</div><div class="dl pos">▲ +0.2%</div></div>
+      <div class="kpi cg"><div class="lb">Δ Inmob MX</div><div class="vl">+28</div><div class="dl pos">▲ +0.4%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Inmob EU</div><div class="vl">−12</div><div class="dl neg">▼ −0.7%</div></div>
+      <div class="kpi cg"><div class="lb">Vs Empresa</div><div class="vl">+0.2%</div><div class="dl pos">Mejor división Feb</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Ene vs Feb 2026</div><h2>Inmobiliaria — Comparativo</h2><p>Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>Febrero 2026</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="inmobCmp"></canvas></div>
+      <div class="ins">
+        <strong>La División Inmobiliaria es el ancla de estabilidad de Exelco.</strong>
+        Sus ingresos por renta son recurrentes y prácticamente no se ven afectados por la caída de actividad económica general.
+        Con solo +0.2% de variación vs −12.8% del consolidado, esta división actúa como <strong>colchón ante la volatilidad operativa</strong>.
+        Aunque pequeña (2.4% del total), su valor radica en la predictibilidad.
+      </div>
+    </div>
+
+    <div class="sdiv">Tabla Comparativa Inmobiliaria</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>Mercado</th><th style="text-align:right">Enero $K</th><th style="text-align:right">Febrero $K</th><th style="text-align:right">Var $K</th><th style="text-align:right">Var %</th><th style="text-align:right">Mix Ene</th><th style="text-align:right">Mix Feb</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">Inmob MX</td><td style="text-align:right" class="ng">6,842</td><td style="text-align:right" class="ng">6,870</td><td style="text-align:right" class="ng">+28</td><td style="text-align:right"><span class="badge g">+0.4%</span></td><td style="text-align:right">79.5%</td><td style="text-align:right">79.6%</td></tr>
+          <tr><td class="metric">Inmob EU</td><td style="text-align:right">1,768</td><td style="text-align:right">1,756</td><td style="text-align:right" class="nr">−12</td><td style="text-align:right"><span class="badge r">−0.7%</span></td><td style="text-align:right">20.5%</td><td style="text-align:right">20.4%</td></tr>
+          <tr><td class="metric fw7">Total Inmob.</td><td style="text-align:right" class="ng fw7">8,610</td><td style="text-align:right" class="ng fw7">8,626</td><td style="text-align:right" class="ng fw7">+16</td><td style="text-align:right"><span class="badge g">+0.2%</span></td><td style="text-align:right fw7">2.4%</td><td style="text-align:right fw7">2.8%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>EXELCO · 07 · División Inmobiliaria · ENE–FEB 2026</span>
+    <span>CONFIDENCIAL</span>
+  </div>
+</main>
+
+<script>
+const G={navy:'#1e3a5f',navyl:'#2b4f82',g800:'#1a3d2b',red:'#c0392b'};
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const barOpts={responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}};
+
+  new Chart(document.getElementById('inmobEne'),{type:'bar',
+    data:{labels:['Inmob MX','Inmob EU','Total'],
+      datasets:[{data:[6842,1768,8610],backgroundColor:[G.navy,G.navyl,'#0d2240'],borderRadius:5}]},
+    options:barOpts});
+
+  new Chart(document.getElementById('inmobFeb'),{type:'bar',
+    data:{labels:['Inmob MX','Inmob EU','Total'],
+      datasets:[{data:[6870,1756,8626],backgroundColor:[G.navy,G.navyl,'#0d2240'],borderRadius:5}]},
+    options:barOpts});
+
+  new Chart(document.getElementById('inmobCmp'),{type:'bar',
+    data:{labels:['Inmob MX','Inmob EU','Total Inmob.'],
+      datasets:[
+        {label:'Enero 2026',data:[6842,1768,8610],backgroundColor:G.g800,borderRadius:4},
+        {label:'Febrero 2026',data:[6870,1756,8626],backgroundColor:G.navy,borderRadius:4}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}}});
+});
+</script>
+</body>
+</html>

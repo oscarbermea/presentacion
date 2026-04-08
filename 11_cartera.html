@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11 · Cartera Vencida — Exelco 2026</title>
+<link rel="stylesheet" href="styles.css">
+<script src="auth.js"></script>
+<script src="chart.min.js"></script>
+</head>
+<body>
+
+<div id="lov">
+  <div class="lbox">
+    <div class="llogo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg></div>
+    <h2>Exelco Dashboard</h2><p>Reportes Financieros Consejo 2026</p>
+    <input id="lu" class="lf" type="text" placeholder="Usuario" autocomplete="username">
+    <input id="lp" class="lf" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="lbtn" onclick="doLogin()">Ingresar</button>
+    <div id="lerr" class="lerr"></div>
+  </div>
+  <div class="lbadge">EXELCO · CONFIDENCIAL · 2026</div>
+</div>
+
+<nav class="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg>
+    <span class="tb-brand">EXELCO</span>
+  </div>
+  <div class="tb-nav">
+    <a href="index.html" class="tb-link">Inicio</a>
+    <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
+    <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
+    <a href="05_energia.html" class="tb-link">05 · Energía</a>
+    <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
+    <a href="07_inmobiliaria.html" class="tb-link">07 · Inmobiliaria</a>
+    <a href="08_flujo.html" class="tb-link">08 · Flujo</a>
+    <a href="09_deuda.html" class="tb-link">09 · Deuda</a>
+    <a href="10_operaciones.html" class="tb-link">10 · Operaciones</a>
+    <a href="11_cartera.html" class="tb-link active">11 · Cartera</a>
+  </div>
+  <div class="tb-right">
+    <span class="badge-c">ENE–FEB 2026</span>
+    <button class="logoutb" onclick="doLogout()">Salir</button>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="ph">
+    <div class="ey">11 · Cartera Vencida</div>
+    <h1>Cuentas por Cobrar Vencidas</h1>
+    <p class="sub">Análisis de cartera vencida por división al cierre de Febrero 2026</p>
+  </div>
+
+  <div class="mtabs">
+    <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
+    <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
+    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+  </div>
+
+  <!-- ENERO (estimado / referencia) -->
+  <div id="m-ene" class="mpnl on">
+    <div class="kpis kpis4">
+      <div class="kpi cgo"><div class="lb">Cartera Total Est.</div><div class="vl">~100M</div><div class="dl neu">MXN (estimado)</div></div>
+      <div class="kpi cn"><div class="lb">Inmob MX (mayor riesgo)</div><div class="vl">~36M</div><div class="dl neg">Concentración alta</div></div>
+      <div class="kpi cgo"><div class="lb">Gas LP</div><div class="vl">~50M</div><div class="dl neu">Mayor cartera total</div></div>
+      <div class="kpi cg"><div class="lb">Referencia periodo</div><div class="vl">Ene-26</div><div class="dl neu">Datos estimados</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Enero 2026 — Referencia</div><h2>Cartera Vencida por División</h2><p>MXN — datos de referencia estimados</p></div>
+      </div>
+      <div class="cw cw-md"><canvas id="carteraEne"></canvas></div>
+      <div class="ins">
+        <strong>Nota:</strong> Los datos de enero son estimados de referencia. Los datos exactos de cartera vencida disponibles
+        corresponden al <strong>cierre de Febrero 2026</strong> extraídos del archivo Excel de Cartera Vencida.
+        Consulta la pestaña "Feb 2026" para el análisis detallado con datos reales.
+      </div>
+    </div>
+
+    <div class="sdiv">Estructura Estimada de Cartera — Enero</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>División</th><th style="text-align:right">Cartera Total Est.</th><th style="text-align:right">Vencida Est.</th><th style="text-align:right">% Vencida</th><th>Riesgo</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">Gas LP</td><td style="text-align:right">~$50,000,000</td><td style="text-align:right" class="ngo">~$12,000,000</td><td style="text-align:right">~24%</td><td><span class="badge go">Moderado</span></td></tr>
+          <tr><td class="metric">Gasolina</td><td style="text-align:right">~$15,000,000</td><td style="text-align:right" class="ngo">~$13,000,000</td><td style="text-align:right">~87%</td><td><span class="badge r">Alto</span></td></tr>
+          <tr><td class="metric">Alimentos MX</td><td style="text-align:right">~$8,000,000</td><td style="text-align:right" class="ngo">~$3,500,000</td><td style="text-align:right">~44%</td><td><span class="badge r">Alto</span></td></tr>
+          <tr><td class="metric">Inmob MX</td><td style="text-align:right">~$36,000,000</td><td style="text-align:right" class="nr">~$34,000,000</td><td style="text-align:right">~94%</td><td><span class="badge r">Crítico</span></td></tr>
+          <tr><td class="metric fw7">TOTAL EST.</td><td style="text-align:right fw7">~$109,000,000</td><td style="text-align:right" class="nr fw7">~$62,500,000</td><td style="text-align:right fw7">~57%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FEBRERO — DATOS REALES -->
+  <div id="m-feb" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Total Vencida Feb-26</div><div class="vl">106,305,569</div><div class="dl neg">MXN — Dato real</div></div>
+      <div class="kpi cr"><div class="lb">Inmob MX (mayor)</div><div class="vl">36,013,135</div><div class="dl neg">33.9% del total</div></div>
+      <div class="kpi cr"><div class="lb">Gas LP Total</div><div class="vl">52,384,025</div><div class="dl neg">49.3% del total</div></div>
+      <div class="kpi cam"><div class="lb">Gasolina Vencida</div><div class="vl">13,869,819</div><div class="dl neg">13.1% del total</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Febrero 2026 — Datos Reales</div><h2>Cartera Vencida por División</h2><p>MXN — fuente: Excel Cartera Vencida</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Gas LP</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Gasolina</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Alimentos MX</div>
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>Inmob MX</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="carteraFeb"></canvas></div>
+      <div class="ins">
+        <strong>Cartera vencida total al Feb-26: $106,305,569 MXN.</strong>
+        <strong>Inmobiliaria MX</strong> concentra el mayor riesgo individual con $36,013,135 (33.9%) — casi toda su cartera parece vencida dado que sus ventas mensuales son ~$6.8M.
+        <strong>Gas LP</strong> tiene la mayor exposición absoluta: $52,384,025 (49.3%), equivalente a ~5.5 meses de ventas de la división.
+        <strong>Gasolina</strong> tiene $13,869,819 vencidos (~1.3 meses de ventas).
+      </div>
+    </div>
+
+    <div class="sdiv">Desglose Detallado — Febrero 2026</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>División</th><th style="text-align:right">Cartera Vencida (MXN)</th><th style="text-align:right">% del Total</th><th style="text-align:right">Meses de Ventas</th><th>Riesgo</th></tr></thead>
+        <tbody>
+          <tr><td class="metric fw7">Gas LP</td><td style="text-align:right" class="nr fw7">$52,384,025</td><td style="text-align:right">49.3%</td><td style="text-align:right" class="nr">~5.5 meses</td><td><span class="badge r">Crítico</span></td></tr>
+          <tr><td class="metric">Gasolina (vencida)</td><td style="text-align:right" class="nr">$13,869,819</td><td style="text-align:right">13.1%</td><td style="text-align:right" class="nr">~1.3 meses</td><td><span class="badge r">Alto</span></td></tr>
+          <tr><td class="metric">Alimentos MX (vencida)</td><td style="text-align:right" class="nr">$4,038,590</td><td style="text-align:right">3.8%</td><td style="text-align:right" class="go">~0.6 meses</td><td><span class="badge go">Moderado</span></td></tr>
+          <tr><td class="metric fw7">Inmob MX</td><td style="text-align:right" class="nr fw7">$36,013,135</td><td style="text-align:right">33.9%</td><td style="text-align:right" class="nr">~5.2 meses</td><td><span class="badge r">Crítico</span></td></tr>
+          <tr><td class="metric fw7">TOTAL</td><td style="text-align:right" class="nr fw7">$106,305,569</td><td style="text-align:right fw7">100%</td><td style="text-align:right fw7">—</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sdiv">Concentración de Riesgo</div>
+    <div class="g2">
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Feb 2026</div><h2>Composición Cartera Vencida</h2></div></div>
+        <div class="cw" style="height:220px"><canvas id="donutCartera"></canvas></div>
+      </div>
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Feb 2026</div><h2>Vencida vs Ventas Mensuales</h2></div></div>
+        <div style="padding-top:8px">
+          <div class="prog-row">
+            <div class="prog-lbl">Gas LP</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:100%;background:#c0392b"></div></div>
+            <div class="prog-val" style="color:#c0392b">5.5m</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Gasolina</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:23.6%;background:#d97706"></div></div>
+            <div class="prog-val" style="color:#d97706">1.3m</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Alimentos MX</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:10.9%;background:#c9a84c"></div></div>
+            <div class="prog-val" style="color:#a07c2a">0.6m</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Inmob MX</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:94.5%;background:#c0392b"></div></div>
+            <div class="prog-val" style="color:#c0392b">5.2m</div>
+          </div>
+        </div>
+        <div class="ins" style="margin-top:10px">
+          Gas LP e Inmob MX representan <strong>83.2% de la cartera vencida</strong> y cada una acumula más de 5 meses de ventas en cartera.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div id="m-cmp" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Cartera Feb-26 (real)</div><div class="vl">106,305,569</div><div class="dl neg">MXN total vencida</div></div>
+      <div class="kpi cr"><div class="lb">Gas LP + Inmob</div><div class="vl">88,397,160</div><div class="dl neg">83.2% concentración</div></div>
+      <div class="kpi cam"><div class="lb">Cartera / Ventas Feb</div><div class="vl">34.2%</div><div class="dl neg">Del ingreso mensual</div></div>
+      <div class="kpi cr"><div class="lb">Días de Venta Vencidos</div><div class="vl">~103 días</div><div class="dl neg">DSO estimado</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Análisis de Riesgo Feb 2026</div><h2>Cartera Vencida — Concentración</h2><p>MXN por división</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Gas LP Total</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Gasolina Vencida</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Alimentos MX Vencida</div>
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>Inmob MX Vencida</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="carteraCmp"></canvas></div>
+      <div class="ins">
+        <strong>Puntos críticos de acción:</strong>
+        (1) <strong>Inmobiliaria MX:</strong> $36M vencidos equivalen a ~5.2 meses de ventas — requiere análisis de inquilinos con adeudos históricos y posibles acciones legales.
+        (2) <strong>Gas LP:</strong> $52.4M vencidos (~5.5 meses) — revisar política de crédito y límites por cliente.
+        (3) El total de $106.3M vencidos representa el <strong>34.2% de las ventas de febrero</strong>, nivel que presiona el capital de trabajo.
+      </div>
+    </div>
+
+    <div class="sdiv">Resumen Ejecutivo de Cartera</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>División</th><th style="text-align:right">Vencida MXN</th><th style="text-align:right">% Total</th><th style="text-align:right">Ventas Feb</th><th style="text-align:right">Ratio Venc/Ventas</th><th>Prioridad</th></tr></thead>
+        <tbody>
+          <tr><td class="metric fw7">Gas LP</td><td style="text-align:right" class="nr fw7">$52,384,025</td><td style="text-align:right">49.3%</td><td style="text-align:right">$112,366K</td><td style="text-align:right" class="nr">46.6%</td><td><span class="badge r">Urgente</span></td></tr>
+          <tr><td class="metric">Gasolina</td><td style="text-align:right" class="nr">$13,869,819</td><td style="text-align:right">13.1%</td><td style="text-align:right">$106,685K</td><td style="text-align:right" class="ngo">13.0%</td><td><span class="badge go">Media</span></td></tr>
+          <tr><td class="metric">Alimentos MX</td><td style="text-align:right" class="ngo">$4,038,590</td><td style="text-align:right">3.8%</td><td style="text-align:right">$69,036K</td><td style="text-align:right" class="ng">5.8%</td><td><span class="badge g">Normal</span></td></tr>
+          <tr><td class="metric fw7">Inmob MX</td><td style="text-align:right" class="nr fw7">$36,013,135</td><td style="text-align:right">33.9%</td><td style="text-align:right">$6,870K</td><td style="text-align:right" class="nr fw7">524.2%</td><td><span class="badge r">Urgente</span></td></tr>
+          <tr><td class="metric fw7">TOTAL</td><td style="text-align:right" class="nr fw7">$106,305,569</td><td style="text-align:right fw7">100%</td><td style="text-align:right">$310,593K</td><td style="text-align:right" class="nr fw7">34.2%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>EXELCO · 11 · Cartera Vencida · Feb 2026 · Fuente: Excel Cartera Vencida</span>
+    <span>CONFIDENCIAL</span>
+  </div>
+</main>
+
+<script>
+const G={g800:'#1a3d2b',g600:'#2e7d4f',navy:'#1e3a5f',gold:'#c9a84c',goldd:'#a07c2a',red:'#c0392b',amber:'#d97706'};
+
+document.addEventListener('DOMContentLoaded',()=>{
+  // Enero (estimados)
+  new Chart(document.getElementById('carteraEne'),{type:'bar',
+    data:{labels:['Gas LP','Gasolina','Alim. MX','Inmob MX'],
+      datasets:[
+        {label:'Total est.',data:[50000000,15000000,8000000,36000000],backgroundColor:'#9ca3af',borderRadius:3},
+        {label:'Vencida est.',data:[12000000,13000000,3500000,34000000],backgroundColor:G.red,borderRadius:3}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>'$'+(v/1e6).toFixed(1)+'M'}}}}});
+
+  // Febrero (reales)
+  new Chart(document.getElementById('carteraFeb'),{type:'bar',
+    data:{labels:['Gas LP','Gasolina','Alim. MX','Inmob MX'],
+      datasets:[{data:[52384025,13869819,4038590,36013135],
+        backgroundColor:[G.g800,G.red,G.gold,G.navy],borderRadius:5}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>'$'+(v/1e6).toFixed(1)+'M'}}}}});
+
+  // Donut
+  new Chart(document.getElementById('donutCartera'),{type:'doughnut',
+    data:{labels:['Gas LP','Gasolina','Alim. MX','Inmob MX'],
+      datasets:[{data:[52384025,13869819,4038590,36013135],
+        backgroundColor:[G.g800,G.red,G.gold,G.navy],borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'right',labels:{font:{size:11},padding:10}}}}});
+
+  // Comparativo (barras horizontal-style)
+  new Chart(document.getElementById('carteraCmp'),{type:'bar',
+    data:{labels:['Gas LP','Gasolina','Alim. MX','Inmob MX'],
+      datasets:[{label:'Cartera Vencida Feb-26',data:[52384025,13869819,4038590,36013135],
+        backgroundColor:[G.g800,G.red,G.gold,G.navy],borderRadius:5}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>'$'+(v/1e6).toFixed(1)+'M'}}}}});
+});
+</script>
+</body>
+</html>

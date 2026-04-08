@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>04 · Mezcla Divisional — Exelco 2026</title>
+<link rel="stylesheet" href="styles.css">
+<script src="auth.js"></script>
+<script src="chart.min.js"></script>
+</head>
+<body>
+
+<div id="lov">
+  <div class="lbox">
+    <div class="llogo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg></div>
+    <h2>Exelco Dashboard</h2><p>Reportes Financieros Consejo 2026</p>
+    <input id="lu" class="lf" type="text" placeholder="Usuario" autocomplete="username">
+    <input id="lp" class="lf" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="lbtn" onclick="doLogin()">Ingresar</button>
+    <div id="lerr" class="lerr"></div>
+  </div>
+  <div class="lbadge">EXELCO · CONFIDENCIAL · 2026</div>
+</div>
+
+<nav class="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg>
+    <span class="tb-brand">EXELCO</span>
+  </div>
+  <div class="tb-nav">
+    <a href="index.html" class="tb-link">Inicio</a>
+    <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
+    <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="04_divisiones.html" class="tb-link active">04 · Divisiones</a>
+    <a href="05_energia.html" class="tb-link">05 · Energía</a>
+    <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
+    <a href="07_inmobiliaria.html" class="tb-link">07 · Inmobiliaria</a>
+    <a href="08_flujo.html" class="tb-link">08 · Flujo</a>
+    <a href="09_deuda.html" class="tb-link">09 · Deuda</a>
+    <a href="10_operaciones.html" class="tb-link">10 · Operaciones</a>
+    <a href="11_cartera.html" class="tb-link">11 · Cartera</a>
+  </div>
+  <div class="tb-right">
+    <span class="badge-c">ENE–FEB 2026</span>
+    <button class="logoutb" onclick="doLogout()">Salir</button>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="ph">
+    <div class="ey">04 · Mezcla Divisional</div>
+    <h1>Composición de Ventas por División</h1>
+    <p class="sub">Participación porcentual de cada división — Enero y Febrero 2026</p>
+  </div>
+
+  <div class="mtabs">
+    <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
+    <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
+    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+  </div>
+
+  <!-- ENERO -->
+  <div id="m-ene" class="mpnl on">
+    <div class="kpis kpis4">
+      <div class="kpi cg"><div class="lb">Total Ventas</div><div class="vl">356,169</div><div class="dl neu">Miles MXN</div></div>
+      <div class="kpi cg"><div class="lb">Gas LP</div><div class="vl">38.0%</div><div class="dl pos">$135,451K</div></div>
+      <div class="kpi cg"><div class="lb">Gasolina</div><div class="vl">31.6%</div><div class="dl pos">$112,601K</div></div>
+      <div class="kpi cgo"><div class="lb">Alimentos</div><div class="vl">27.9%</div><div class="dl neu">$99,508K</div></div>
+    </div>
+
+    <div class="g2">
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Mezcla de Ventas</h2></div></div>
+        <div class="cw" style="height:280px"><canvas id="donutEne"></canvas></div>
+      </div>
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Detalle Divisional</h2></div></div>
+        <div style="padding-top:10px">
+          <div class="prog-row">
+            <div class="prog-lbl">Gas LP</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:38%;background:#1a3d2b"></div></div>
+            <div class="prog-val" style="color:#1a3d2b">38.0%</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Gasolina</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:31.6%;background:#2e7d4f"></div></div>
+            <div class="prog-val" style="color:#2e7d4f">31.6%</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Alimentos MX</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:23.8%;background:#c9a84c"></div></div>
+            <div class="prog-val" style="color:#a07c2a">23.8%</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Alimentos EU</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:4.1%;background:#a07c2a"></div></div>
+            <div class="prog-val" style="color:#a07c2a">4.1%</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Inmob MX</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:1.9%;background:#1e3a5f"></div></div>
+            <div class="prog-val" style="color:#1e3a5f">1.9%</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Inmob EU</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:0.5%;background:#2b4f82"></div></div>
+            <div class="prog-val" style="color:#2b4f82">0.5%</div>
+          </div>
+        </div>
+        <div class="ins" style="margin-top:16px">
+          Energía concentra <strong>69.6%</strong> de las ventas. Alta dependencia de commodities energéticos.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEBRERO -->
+  <div id="m-feb" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Total Ventas</div><div class="vl">310,593</div><div class="dl neg">▼ −12.8%</div></div>
+      <div class="kpi cr"><div class="lb">Gas LP</div><div class="vl">36.2%</div><div class="dl neg">$112,366K</div></div>
+      <div class="kpi cgo"><div class="lb">Gasolina</div><div class="vl">34.3%</div><div class="dl pos">+2.7pp vs Ene</div></div>
+      <div class="kpi cr"><div class="lb">Alimentos</div><div class="vl">26.7%</div><div class="dl neg">$82,915K</div></div>
+    </div>
+
+    <div class="g2">
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Mezcla de Ventas</h2></div></div>
+        <div class="cw" style="height:280px"><canvas id="donutFeb"></canvas></div>
+      </div>
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Detalle Divisional</h2></div></div>
+        <div style="padding-top:10px">
+          <div class="prog-row">
+            <div class="prog-lbl">Gas LP</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:36.2%;background:#1a3d2b"></div></div>
+            <div class="prog-val" style="color:#1a3d2b">36.2%</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Gasolina</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:34.3%;background:#2e7d4f"></div></div>
+            <div class="prog-val" style="color:#2e7d4f">34.3%</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Alimentos MX</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:22.2%;background:#c9a84c"></div></div>
+            <div class="prog-val" style="color:#a07c2a">22.2%</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Alimentos EU</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:4.5%;background:#a07c2a"></div></div>
+            <div class="prog-val" style="color:#a07c2a">4.5%</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Inmob MX</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:2.2%;background:#1e3a5f"></div></div>
+            <div class="prog-val" style="color:#1e3a5f">2.2%</div>
+          </div>
+          <div class="prog-row">
+            <div class="prog-lbl">Inmob EU</div>
+            <div class="prog-bar"><div class="prog-fill" style="width:0.6%;background:#2b4f82"></div></div>
+            <div class="prog-val" style="color:#2b4f82">0.6%</div>
+          </div>
+        </div>
+        <div class="ins" style="margin-top:16px">
+          Gasolina gana participación relativa (+2.7pp) al ser la división más resistente a la baja.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div id="m-cmp" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Δ Gas LP (pp)</div><div class="vl">−1.8pp</div><div class="dl neg">38.0% → 36.2%</div></div>
+      <div class="kpi cg"><div class="lb">Δ Gasolina (pp)</div><div class="vl">+2.7pp</div><div class="dl pos">31.6% → 34.3%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Alimentos (pp)</div><div class="vl">−1.2pp</div><div class="dl neg">27.9% → 26.7%</div></div>
+      <div class="kpi cg"><div class="lb">Δ Inmob (pp)</div><div class="vl">+0.3pp</div><div class="dl pos">2.4% → 2.8%</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Ene vs Feb 2026</div><h2>Mezcla Divisional Comparativa</h2><p>% de ventas totales</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="cmpMix"></canvas></div>
+      <div class="ins">
+        <strong>Cambio en mezcla:</strong> Gas LP pierde 1.8pp de participación (la mayor caída absoluta en $).
+        Gasolina gana 2.7pp al ser más resiliente. Alimentos MX pierde 1.6pp por la caída de −18.7%.
+        Inmobiliaria gana pequeña participación por su estabilidad. <strong>La dependencia energética se mantiene en ~70%.</strong>
+      </div>
+    </div>
+
+    <div class="sdiv">Tabla de Mezcla</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>División</th><th style="text-align:right">Ene $K</th><th style="text-align:right">Feb $K</th><th style="text-align:right">Ene %</th><th style="text-align:right">Feb %</th><th style="text-align:right">Δ pp</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">Gas LP</td><td style="text-align:right" class="ng">135,451</td><td style="text-align:right" class="nr">112,366</td><td style="text-align:right">38.0%</td><td style="text-align:right">36.2%</td><td style="text-align:right" class="nr">−1.8pp</td></tr>
+          <tr><td class="metric">Gasolina</td><td style="text-align:right" class="ng">112,601</td><td style="text-align:right" class="ngo">106,685</td><td style="text-align:right">31.6%</td><td style="text-align:right">34.3%</td><td style="text-align:right" class="ng">+2.7pp</td></tr>
+          <tr><td class="metric">Alimentos MX</td><td style="text-align:right" class="ng">84,967</td><td style="text-align:right" class="nr">69,036</td><td style="text-align:right">23.8%</td><td style="text-align:right">22.2%</td><td style="text-align:right" class="nr">−1.6pp</td></tr>
+          <tr><td class="metric">Alimentos EU</td><td style="text-align:right">14,541</td><td style="text-align:right">13,879</td><td style="text-align:right">4.1%</td><td style="text-align:right">4.5%</td><td style="text-align:right" class="ng">+0.4pp</td></tr>
+          <tr><td class="metric">Inmob MX</td><td style="text-align:right">6,842</td><td style="text-align:right">6,870</td><td style="text-align:right">1.9%</td><td style="text-align:right">2.2%</td><td style="text-align:right" class="ng">+0.3pp</td></tr>
+          <tr><td class="metric">Inmob EU</td><td style="text-align:right">1,768</td><td style="text-align:right">1,756</td><td style="text-align:right">0.5%</td><td style="text-align:right">0.6%</td><td style="text-align:right" class="ng">+0.1pp</td></tr>
+          <tr><td class="metric fw7">TOTAL</td><td style="text-align:right" class="ng fw7">356,169</td><td style="text-align:right" class="nr fw7">310,593</td><td style="text-align:right fw7">100%</td><td style="text-align:right fw7">100%</td><td style="text-align:right">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>EXELCO · 04 · Mezcla Divisional · ENE–FEB 2026</span>
+    <span>CONFIDENCIAL</span>
+  </div>
+</main>
+
+<script>
+const LABELS=['Gas LP','Gasolina','Alim. MX','Alim. EU','Inmob MX','Inmob EU'];
+const COLORS=['#1a3d2b','#2e7d4f','#c9a84c','#a07c2a','#1e3a5f','#2b4f82'];
+const ENE=[135451,112601,84967,14541,6842,1768];
+const FEB=[112366,106685,69036,13879,6870,1756];
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const donutOpts={responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'right',labels:{font:{size:11},padding:12}}}};
+
+  new Chart(document.getElementById('donutEne'),{type:'doughnut',
+    data:{labels:LABELS,datasets:[{data:ENE,backgroundColor:COLORS,borderWidth:2,borderColor:'#fff'}]},
+    options:donutOpts});
+
+  new Chart(document.getElementById('donutFeb'),{type:'doughnut',
+    data:{labels:LABELS,datasets:[{data:FEB,backgroundColor:COLORS,borderWidth:2,borderColor:'#fff'}]},
+    options:donutOpts});
+
+  const pcts_ene=ENE.map(v=>(v/356169*100).toFixed(1));
+  const pcts_feb=FEB.map(v=>(v/310593*100).toFixed(1));
+  new Chart(document.getElementById('cmpMix'),{
+    type:'bar',
+    data:{labels:LABELS,datasets:[
+      {label:'Enero %',data:pcts_ene,backgroundColor:'#1a3d2b',borderRadius:4},
+      {label:'Febrero %',data:pcts_feb,backgroundColor:'#c0392b',borderRadius:4}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v+'%'}}}}
+  });
+});
+</script>
+</body>
+</html>

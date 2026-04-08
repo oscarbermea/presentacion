@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10 · Operaciones — Exelco 2026</title>
+<link rel="stylesheet" href="styles.css">
+<script src="auth.js"></script>
+<script src="chart.min.js"></script>
+</head>
+<body>
+
+<div id="lov">
+  <div class="lbox">
+    <div class="llogo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg></div>
+    <h2>Exelco Dashboard</h2><p>Reportes Financieros Consejo 2026</p>
+    <input id="lu" class="lf" type="text" placeholder="Usuario" autocomplete="username">
+    <input id="lp" class="lf" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="lbtn" onclick="doLogin()">Ingresar</button>
+    <div id="lerr" class="lerr"></div>
+  </div>
+  <div class="lbadge">EXELCO · CONFIDENCIAL · 2026</div>
+</div>
+
+<nav class="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg>
+    <span class="tb-brand">EXELCO</span>
+  </div>
+  <div class="tb-nav">
+    <a href="index.html" class="tb-link">Inicio</a>
+    <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
+    <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
+    <a href="05_energia.html" class="tb-link">05 · Energía</a>
+    <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
+    <a href="07_inmobiliaria.html" class="tb-link">07 · Inmobiliaria</a>
+    <a href="08_flujo.html" class="tb-link">08 · Flujo</a>
+    <a href="09_deuda.html" class="tb-link">09 · Deuda</a>
+    <a href="10_operaciones.html" class="tb-link active">10 · Operaciones</a>
+    <a href="11_cartera.html" class="tb-link">11 · Cartera</a>
+  </div>
+  <div class="tb-right">
+    <span class="badge-c">ENE–FEB 2026</span>
+    <button class="logoutb" onclick="doLogout()">Salir</button>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="ph">
+    <div class="ey">10 · Operaciones &amp; Personal</div>
+    <h1>Métricas Operativas y Productividad</h1>
+    <p class="sub">Gastos operativos, estructura de costos y eficiencia — Enero y Febrero 2026</p>
+  </div>
+
+  <div class="mtabs">
+    <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
+    <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
+    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+  </div>
+
+  <!-- ENERO -->
+  <div id="m-ene" class="mpnl on">
+    <div class="kpis kpis4">
+      <div class="kpi cgr"><div class="lb">Gastos Operativos</div><div class="vl">115,005</div><div class="dl neu">32.3% de ventas</div></div>
+      <div class="kpi cg"><div class="lb">Ventas / OpEx</div><div class="vl">3.10x</div><div class="dl pos">Eficiencia operativa</div></div>
+      <div class="kpi cg"><div class="lb">Margen de Contribución</div><div class="vl">148,300</div><div class="dl pos">41.6% de ventas</div></div>
+      <div class="kpi cgo"><div class="lb">M.Contrib. / OpEx</div><div class="vl">1.29x</div><div class="dl pos">Cobertura OpEx</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Enero 2026</div><h2>Estructura de Costos Operativos</h2><p>Distribución de gastos · Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Costo Directo</div>
+          <div class="li"><div class="ld" style="background:#9b9ea0"></div>Gastos Operativos</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Carga Fin.+ISR</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="opexEne"></canvas></div>
+      <div class="ins">
+        <strong>Enero 2026 — Estructura de costos:</strong> De cada $100 de ventas, $58.4 son costo directo,
+        $32.3 son gastos operativos y $2.4 son carga financiera/impuestos.
+        Solo <strong>$7.0 generan utilidad neta</strong>. Los gastos operativos de $115,005K son relativamente
+        fijos, representando el principal riesgo ante caídas de ingresos.
+      </div>
+    </div>
+
+    <div class="sdiv">Análisis de Gastos Operativos — Enero</div>
+    <div class="g2">
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Métricas Operativas</h2></div></div>
+        <div class="mrow"><span class="mk">Ventas Netas</span><span class="mv p">$356,169K</span></div>
+        <div class="mrow"><span class="mk">Costo Directo</span><span class="mv go">$207,869K (58.4%)</span></div>
+        <div class="mrow"><span class="mk">Margen de Contribución</span><span class="mv p">$148,300K (41.6%)</span></div>
+        <div class="mrow"><span class="mk">Gastos Operativos</span><span class="mv go">$115,005K (32.3%)</span></div>
+        <div class="mrow"><span class="mk">UAFIR</span><span class="mv p">$33,295K (9.3%)</span></div>
+        <div class="mrow"><span class="mk">Cobertura M.Contrib./OpEx</span><span class="mv p">1.29x</span></div>
+        <div class="mrow"><span class="mk">OpEx / Empleado est.</span><span class="mv">~$33K/empleado</span></div>
+      </div>
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Composición de Costos</h2></div></div>
+        <div class="prog-row"><div class="prog-lbl">Costo Directo</div><div class="prog-bar"><div class="prog-fill" style="width:58.4%;background:#1a3d2b"></div></div><div class="prog-val">58.4%</div></div>
+        <div class="prog-row"><div class="prog-lbl">Gastos Operativos</div><div class="prog-bar"><div class="prog-fill" style="width:32.3%;background:#9b9ea0"></div></div><div class="prog-val">32.3%</div></div>
+        <div class="prog-row"><div class="prog-lbl">Carga Fin. + ISR</div><div class="prog-bar"><div class="prog-fill" style="width:2.4%;background:#c0392b"></div></div><div class="prog-val">2.4%</div></div>
+        <div class="prog-row"><div class="prog-lbl">Utilidad Neta</div><div class="prog-bar"><div class="prog-fill" style="width:7%;background:#2e7d4f"></div></div><div class="prog-val" style="color:#2e7d4f">7.0%</div></div>
+      </div>
+    </div>
+
+    <div class="sdiv">OpEx por División Estimado — Enero</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>División</th><th style="text-align:right">Ventas $K</th><th style="text-align:right">OpEx Est. $K</th><th style="text-align:right">OpEx / Ventas</th><th>Eficiencia</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">Gas LP</td><td style="text-align:right" class="ng">135,451</td><td style="text-align:right">43,700</td><td style="text-align:right">32.3%</td><td><span class="badge g">Normal</span></td></tr>
+          <tr><td class="metric">Gasolina</td><td style="text-align:right" class="ng">112,601</td><td style="text-align:right">36,340</td><td style="text-align:right">32.3%</td><td><span class="badge g">Normal</span></td></tr>
+          <tr><td class="metric">Alimentos MX</td><td style="text-align:right" class="ng">84,967</td><td style="text-align:right">27,440</td><td style="text-align:right">32.3%</td><td><span class="badge g">Normal</span></td></tr>
+          <tr><td class="metric">Alimentos EU</td><td style="text-align:right">14,541</td><td style="text-align:right">4,696</td><td style="text-align:right">32.3%</td><td><span class="badge g">Normal</span></td></tr>
+          <tr><td class="metric">Inmob. MX</td><td style="text-align:right">6,842</td><td style="text-align:right">2,210</td><td style="text-align:right">32.3%</td><td><span class="badge g">Normal</span></td></tr>
+          <tr><td class="metric">Inmob. EU</td><td style="text-align:right">1,768</td><td style="text-align:right">619</td><td style="text-align:right">32.3%</td><td><span class="badge g">Normal</span></td></tr>
+          <tr><td class="metric fw7">TOTAL</td><td style="text-align:right" class="ng fw7">356,169</td><td style="text-align:right fw7">115,005</td><td style="text-align:right fw7">32.3%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FEBRERO -->
+  <div id="m-feb" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Gastos Operativos</div><div class="vl">109,059</div><div class="dl neg">35.1% de ventas</div></div>
+      <div class="kpi cr"><div class="lb">Ventas / OpEx</div><div class="vl">2.85x</div><div class="dl neg">▼ vs 3.10x Ene</div></div>
+      <div class="kpi cr"><div class="lb">Margen de Contribución</div><div class="vl">126,397</div><div class="dl neg">40.7% de ventas</div></div>
+      <div class="kpi cr"><div class="lb">M.Contrib. / OpEx</div><div class="vl">1.16x</div><div class="dl neg">▼ vs 1.29x Ene</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Febrero 2026</div><h2>Estructura de Costos Operativos</h2><p>Distribución de gastos · Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Costo Directo</div>
+          <div class="li"><div class="ld" style="background:#9b9ea0"></div>Gastos Operativos</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Carga Fin.+ISR</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="opexFeb"></canvas></div>
+      <div class="ins">
+        <strong>Febrero 2026:</strong> Los gastos operativos caen solo −5.2% ($109,059K vs $115,005K),
+        pero representan ahora el <strong>35.1% de ventas</strong> (vs 32.3% en enero).
+        De cada $100 de ventas, $59.3 son costo directo, $35.1 son OpEx y $2.7 son carga financiera.
+        Solo <strong>$2.9 generan utilidad neta</strong>. El "efecto tijera" es evidente.
+      </div>
+    </div>
+
+    <div class="sdiv">Análisis de Gastos Operativos — Febrero</div>
+    <div class="g2">
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Métricas Operativas</h2></div></div>
+        <div class="mrow"><span class="mk">Ventas Netas</span><span class="mv r">$310,593K</span></div>
+        <div class="mrow"><span class="mk">Costo Directo</span><span class="mv r">$184,196K (59.3%)</span></div>
+        <div class="mrow"><span class="mk">Margen de Contribución</span><span class="mv r">$126,397K (40.7%)</span></div>
+        <div class="mrow"><span class="mk">Gastos Operativos</span><span class="mv r">$109,059K (35.1%)</span></div>
+        <div class="mrow"><span class="mk">UAFIR</span><span class="mv r">$17,338K (5.6%)</span></div>
+        <div class="mrow"><span class="mk">Cobertura M.Contrib./OpEx</span><span class="mv r">1.16x</span></div>
+        <div class="mrow"><span class="mk">Ahorro OpEx vs Ene</span><span class="mv go">−$5,946K (−5.2%)</span></div>
+      </div>
+      <div class="cc" style="margin-bottom:0">
+        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Composición de Costos</h2></div></div>
+        <div class="prog-row"><div class="prog-lbl">Costo Directo</div><div class="prog-bar"><div class="prog-fill" style="width:59.3%;background:#1a3d2b"></div></div><div class="prog-val">59.3%</div></div>
+        <div class="prog-row"><div class="prog-lbl">Gastos Operativos</div><div class="prog-bar"><div class="prog-fill" style="width:35.1%;background:#9b9ea0"></div></div><div class="prog-val" style="color:#c0392b">35.1%</div></div>
+        <div class="prog-row"><div class="prog-lbl">Carga Fin. + ISR</div><div class="prog-bar"><div class="prog-fill" style="width:2.7%;background:#c0392b"></div></div><div class="prog-val" style="color:#c0392b">2.7%</div></div>
+        <div class="prog-row"><div class="prog-lbl">Utilidad Neta</div><div class="prog-bar"><div class="prog-fill" style="width:2.9%;background:#c0392b"></div></div><div class="prog-val" style="color:#c0392b">2.9%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div id="m-cmp" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Δ Gastos Operativos</div><div class="vl">−5,946</div><div class="dl neg">▼ −5.2%</div></div>
+      <div class="kpi cr"><div class="lb">Δ OpEx/Ventas</div><div class="vl">+2.8pp</div><div class="dl neg">32.3% → 35.1%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Eficiencia (V/OpEx)</div><div class="vl">−0.25x</div><div class="dl neg">3.10x → 2.85x</div></div>
+      <div class="kpi cr"><div class="lb">Δ Cobertura M/OpEx</div><div class="vl">−0.13x</div><div class="dl neg">1.29x → 1.16x</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Ene vs Feb 2026</div><h2>Gastos Operativos — Comparativo</h2><p>Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="opexCmp"></canvas></div>
+      <div class="ins">
+        <strong>Los gastos operativos tienen alta rigidez:</strong> Las ventas caen −12.8% pero los OpEx solo −5.2%.
+        Esto implica que aproximadamente el <strong>59% de los gastos operativos son fijos</strong> (no responden a la baja de volumen).
+        Para proteger márgenes, se requiere o bien recuperar ingresos o implementar medidas de reducción de
+        estructura en las divisiones con mayor exposición (Gas LP y Alimentos MX).
+      </div>
+    </div>
+
+    <div class="sdiv">Tabla Comparativa Operativa</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>Métrica</th><th style="text-align:right">Enero</th><th style="text-align:right">Febrero</th><th style="text-align:right">Var $K / pp</th><th style="text-align:right">Var %</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">Ventas Netas</td><td style="text-align:right" class="ng">$356,169K</td><td style="text-align:right" class="nr">$310,593K</td><td style="text-align:right" class="nr">−$45,576K</td><td style="text-align:right"><span class="badge r">−12.8%</span></td></tr>
+          <tr><td class="metric">Costo Directo</td><td style="text-align:right">$207,869K</td><td style="text-align:right">$184,196K</td><td style="text-align:right" class="ng">−$23,673K</td><td style="text-align:right"><span class="badge g">−11.4%</span></td></tr>
+          <tr><td class="metric">M. Contribución</td><td style="text-align:right" class="ng">$148,300K</td><td style="text-align:right" class="nr">$126,397K</td><td style="text-align:right" class="nr">−$21,903K</td><td style="text-align:right"><span class="badge r">−14.8%</span></td></tr>
+          <tr><td class="metric fw7">Gastos Operativos</td><td style="text-align:right fw7">$115,005K</td><td style="text-align:right fw7">$109,059K</td><td style="text-align:right" class="ng fw7">−$5,946K</td><td style="text-align:right"><span class="badge go">−5.2%</span></td></tr>
+          <tr><td class="metric">OpEx / Ventas</td><td style="text-align:right" class="ng">32.3%</td><td style="text-align:right" class="nr">35.1%</td><td style="text-align:right" class="nr">+2.8pp</td><td style="text-align:right">—</td></tr>
+          <tr><td class="metric">Ventas / OpEx</td><td style="text-align:right" class="ng">3.10x</td><td style="text-align:right" class="nr">2.85x</td><td style="text-align:right" class="nr">−0.25x</td><td style="text-align:right">—</td></tr>
+          <tr><td class="metric">M.Contrib. / OpEx</td><td style="text-align:right" class="ng">1.29x</td><td style="text-align:right" class="nr">1.16x</td><td style="text-align:right" class="nr">−0.13x</td><td style="text-align:right">—</td></tr>
+          <tr><td class="metric fw7">UAFIR</td><td style="text-align:right" class="ng fw7">$33,295K</td><td style="text-align:right" class="nr fw7">$17,338K</td><td style="text-align:right" class="nr fw7">−$15,957K</td><td style="text-align:right"><span class="badge r">−47.9%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>EXELCO · 10 · Operaciones &amp; Personal · ENE–FEB 2026</span>
+    <span>CONFIDENCIAL</span>
+  </div>
+</main>
+
+<script>
+const G={g800:'#1a3d2b',g600:'#2e7d4f',gray:'#9b9ea0',red:'#c0392b',gold:'#c9a84c'};
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const mkStacked=(id, cd, opex, fin, ut)=>{
+    new Chart(document.getElementById(id),{type:'bar',
+      data:{labels:['Costo Directo','Gastos Op.','Carga Fin.+ISR','Ut. Neta'],
+        datasets:[{data:[cd,opex,fin,ut],backgroundColor:[G.g800,G.gray,G.red,G.g600],borderRadius:5}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}}});
+  };
+  mkStacked('opexEne',207869,115005,8481,24814);
+  mkStacked('opexFeb',184196,109059,8438,8900);
+
+  new Chart(document.getElementById('opexCmp'),{type:'bar',
+    data:{labels:['M. Contribución','Gastos Operativos','UAFIR'],
+      datasets:[
+        {label:'Enero 2026',data:[148300,115005,33295],backgroundColor:G.g800,borderRadius:4},
+        {label:'Febrero 2026',data:[126397,109059,17338],backgroundColor:G.red,borderRadius:4}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}}});
+});
+</script>
+</body>
+</html>

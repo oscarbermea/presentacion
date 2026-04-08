@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>02 · Ventas — Exelco 2026</title>
+<link rel="stylesheet" href="styles.css">
+<script src="auth.js"></script>
+<script src="chart.min.js"></script>
+</head>
+<body>
+
+<div id="lov">
+  <div class="lbox">
+    <div class="llogo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg></div>
+    <h2>Exelco Dashboard</h2><p>Reportes Financieros Consejo 2026</p>
+    <input id="lu" class="lf" type="text" placeholder="Usuario" autocomplete="username">
+    <input id="lp" class="lf" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="lbtn" onclick="doLogin()">Ingresar</button>
+    <div id="lerr" class="lerr"></div>
+  </div>
+  <div class="lbadge">EXELCO · CONFIDENCIAL · 2026</div>
+</div>
+
+<nav class="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg>
+    <span class="tb-brand">EXELCO</span>
+  </div>
+  <div class="tb-nav">
+    <a href="index.html" class="tb-link">Inicio</a>
+    <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
+    <a href="02_ventas.html" class="tb-link active">02 · Ventas</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
+    <a href="05_energia.html" class="tb-link">05 · Energía</a>
+    <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
+    <a href="07_inmobiliaria.html" class="tb-link">07 · Inmobiliaria</a>
+    <a href="08_flujo.html" class="tb-link">08 · Flujo</a>
+    <a href="09_deuda.html" class="tb-link">09 · Deuda</a>
+    <a href="10_operaciones.html" class="tb-link">10 · Operaciones</a>
+    <a href="11_cartera.html" class="tb-link">11 · Cartera</a>
+  </div>
+  <div class="tb-right">
+    <span class="badge-c">ENE–FEB 2026</span>
+    <button class="logoutb" onclick="doLogout()">Salir</button>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="ph">
+    <div class="ey">02 · Desaceleración de Ingresos</div>
+    <h1>Análisis de Ventas por División</h1>
+    <p class="sub">Desglose mensual de ingresos — Enero y Febrero 2026</p>
+  </div>
+
+  <div class="mtabs">
+    <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
+    <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
+    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+  </div>
+
+  <!-- ENERO -->
+  <div id="m-ene" class="mpnl on">
+    <div class="kpis kpis4">
+      <div class="kpi cg"><div class="lb">Total Ventas</div><div class="vl">356,169</div><div class="dl neu">Miles MXN</div></div>
+      <div class="kpi cg"><div class="lb">Energía (Gas+Gas.)</div><div class="vl">248,052</div><div class="dl pos">69.6% del total</div></div>
+      <div class="kpi cgo"><div class="lb">Alimentos</div><div class="vl">99,508</div><div class="dl pos">27.9% del total</div></div>
+      <div class="kpi cn"><div class="lb">Inmobiliaria</div><div class="vl">8,610</div><div class="dl neu">2.4% del total</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Enero 2026</div><h2>Ventas por División</h2><p>Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Gas LP</div>
+          <div class="li"><div class="ld" style="background:#2e7d4f"></div>Gasolina</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Alimentos MX</div>
+          <div class="li"><div class="ld" style="background:#a07c2a"></div>Alimentos EU</div>
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>Inmob MX</div>
+          <div class="li"><div class="ld" style="background:#2b4f82"></div>Inmob EU</div>
+        </div>
+      </div>
+      <div class="cw"><canvas id="ventasEne"></canvas></div>
+      <div class="ins">
+        <strong>Enero 2026:</strong> Las divisiones de <strong>Energía representan el 69.6%</strong> de las ventas totales ($248,052K).
+        Gas LP lidera con $135,451K (38.0%) seguido de Gasolina con $112,601K (31.6%).
+        Alimentos contribuye $99,508K (27.9%) y la División Inmobiliaria $8,610K (2.4%).
+      </div>
+    </div>
+
+    <div class="sdiv">Detalle por División</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead>
+          <tr><th>División</th><th style="text-align:right">Ventas (K MXN)</th><th style="text-align:right">% del Total</th><th style="text-align:right">Participación</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric">Gas LP</td><td style="text-align:right" class="ng fw7">135,451</td><td style="text-align:right">38.0%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:38%;background:#1a3d2b;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric">Gasolina</td><td style="text-align:right" class="ng fw7">112,601</td><td style="text-align:right">31.6%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:31.6%;background:#2e7d4f;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric">Alimentos MX</td><td style="text-align:right" class="ngo fw7">84,967</td><td style="text-align:right">23.8%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:23.8%;background:#c9a84c;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric">Alimentos EU</td><td style="text-align:right" class="ngo">14,541</td><td style="text-align:right">4.1%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:4.1%;background:#a07c2a;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric">Inmobiliaria MX</td><td style="text-align:right">6,842</td><td style="text-align:right">1.9%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:1.9%;background:#1e3a5f;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric">Inmobiliaria EU</td><td style="text-align:right">1,768</td><td style="text-align:right">0.5%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:0.5%;background:#2b4f82;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric fw7">TOTAL</td><td style="text-align:right" class="ng fw7">356,169</td><td style="text-align:right" class="fw7">100%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FEBRERO -->
+  <div id="m-feb" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Total Ventas</div><div class="vl">310,593</div><div class="dl neg">▼ −12.8% vs Ene</div></div>
+      <div class="kpi cr"><div class="lb">Energía (Gas+Gas.)</div><div class="vl">219,051</div><div class="dl neg">70.5% del total</div></div>
+      <div class="kpi cgo"><div class="lb">Alimentos</div><div class="vl">82,915</div><div class="dl neg">▼ −16.7% vs Ene</div></div>
+      <div class="kpi cn"><div class="lb">Inmobiliaria</div><div class="vl">8,626</div><div class="dl pos">+0.2% vs Ene</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Febrero 2026</div><h2>Ventas por División</h2><p>Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Gas LP</div>
+          <div class="li"><div class="ld" style="background:#2e7d4f"></div>Gasolina</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Alimentos MX</div>
+          <div class="li"><div class="ld" style="background:#a07c2a"></div>Alimentos EU</div>
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>Inmob MX</div>
+          <div class="li"><div class="ld" style="background:#2b4f82"></div>Inmob EU</div>
+        </div>
+      </div>
+      <div class="cw"><canvas id="ventasFeb"></canvas></div>
+      <div class="ins">
+        <strong>Febrero 2026:</strong> Caída generalizada. Gas LP baja a $112,366K (−17.0%), Gasolina cae menos a $106,685K (−5.2%).
+        <strong>Alimentos MX</strong> sufre la mayor caída proporcional: −18.7% ($69,036K).
+        Inmobiliaria es la única división que muestra estabilidad (+0.2%).
+      </div>
+    </div>
+
+    <div class="sdiv">Detalle por División</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead>
+          <tr><th>División</th><th style="text-align:right">Ventas (K MXN)</th><th style="text-align:right">% del Total</th><th style="text-align:right">Participación</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric">Gas LP</td><td style="text-align:right" class="nr fw7">112,366</td><td style="text-align:right">36.2%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:36.2%;background:#1a3d2b;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric">Gasolina</td><td style="text-align:right" class="ngo fw7">106,685</td><td style="text-align:right">34.3%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:34.3%;background:#2e7d4f;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric">Alimentos MX</td><td style="text-align:right" class="nr fw7">69,036</td><td style="text-align:right">22.2%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:22.2%;background:#c9a84c;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric">Alimentos EU</td><td style="text-align:right" class="ngo">13,879</td><td style="text-align:right">4.5%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:4.5%;background:#a07c2a;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric">Inmobiliaria MX</td><td style="text-align:right">6,870</td><td style="text-align:right">2.2%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:2.2%;background:#1e3a5f;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric">Inmobiliaria EU</td><td style="text-align:right">1,756</td><td style="text-align:right">0.6%</td><td><div class="prog-bar" style="display:inline-block;width:120px;vertical-align:middle"><div class="prog-fill" style="width:0.6%;background:#2b4f82;height:7px;border-radius:4px"></div></div></td></tr>
+          <tr><td class="metric fw7">TOTAL</td><td style="text-align:right" class="nr fw7">310,593</td><td style="text-align:right" class="fw7">100%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div id="m-cmp" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Δ Gas LP</div><div class="vl">−23,085</div><div class="dl neg">▼ −17.0%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Gasolina</div><div class="vl">−5,916</div><div class="dl neg">▼ −5.3%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Alimentos MX</div><div class="vl">−15,931</div><div class="dl neg">▼ −18.7%</div></div>
+      <div class="kpi cg"><div class="lb">Δ Inmobiliaria</div><div class="vl">+16</div><div class="dl pos">▲ +0.2%</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Ene vs Feb 2026</div><h2>Ventas por División — Comparativo</h2><p>Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
+        </div>
+      </div>
+      <div class="cw"><canvas id="ventasCmp"></canvas></div>
+      <div class="ins">
+        <strong>Gas LP es el principal responsable de la caída:</strong> pierde $23,085K (−17.0%).
+        Alimentos MX es el segundo más afectado con −$15,931K (−18.7%).
+        Gasolina muestra mayor resiliencia con solo −5.3%.
+        <strong>Inmobiliaria es la única división estable</strong> con variación de +$16K (+0.2%).
+      </div>
+    </div>
+
+    <div class="sdiv">Tabla Comparativa</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead>
+          <tr><th>División</th><th style="text-align:right">Enero 2026</th><th style="text-align:right">Febrero 2026</th><th style="text-align:right">Var. $K</th><th style="text-align:right">Var. %</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric">Gas LP</td><td style="text-align:right" class="ng">135,451</td><td style="text-align:right" class="nr">112,366</td><td style="text-align:right" class="nr">−23,085</td><td style="text-align:right"><span class="badge r">−17.0%</span></td></tr>
+          <tr><td class="metric">Gasolina</td><td style="text-align:right" class="ng">112,601</td><td style="text-align:right" class="ngo">106,685</td><td style="text-align:right" class="nr">−5,916</td><td style="text-align:right"><span class="badge r">−5.3%</span></td></tr>
+          <tr><td class="metric">Alimentos MX</td><td style="text-align:right" class="ng">84,967</td><td style="text-align:right" class="nr">69,036</td><td style="text-align:right" class="nr">−15,931</td><td style="text-align:right"><span class="badge r">−18.7%</span></td></tr>
+          <tr><td class="metric">Alimentos EU</td><td style="text-align:right" class="ng">14,541</td><td style="text-align:right" class="ngo">13,879</td><td style="text-align:right" class="nr">−662</td><td style="text-align:right"><span class="badge r">−4.6%</span></td></tr>
+          <tr><td class="metric">Inmobiliaria MX</td><td style="text-align:right">6,842</td><td style="text-align:right">6,870</td><td style="text-align:right" class="ng">+28</td><td style="text-align:right"><span class="badge g">+0.4%</span></td></tr>
+          <tr><td class="metric">Inmobiliaria EU</td><td style="text-align:right">1,768</td><td style="text-align:right">1,756</td><td style="text-align:right" class="nr">−12</td><td style="text-align:right"><span class="badge r">−0.7%</span></td></tr>
+          <tr><td class="metric fw7">TOTAL</td><td style="text-align:right" class="ng fw7">356,169</td><td style="text-align:right" class="nr fw7">310,593</td><td style="text-align:right" class="nr fw7">−45,576</td><td style="text-align:right"><span class="badge r">−12.8%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>EXELCO · 02 · Desaceleración de Ingresos · ENE–FEB 2026</span>
+    <span>CONFIDENCIAL</span>
+  </div>
+</main>
+
+<script>
+const G={g800:'#1a3d2b',g700:'#1f5c37',g600:'#2e7d4f',gold:'#c9a84c',goldd:'#a07c2a',navy:'#1e3a5f',navyl:'#2b4f82',red:'#c0392b'};
+const DIVS=['Gas LP','Gasolina','Alim. MX','Alim. EU','Inmob MX','Inmob EU'];
+const COLS=[G.g800,G.g600,G.gold,G.goldd,G.navy,G.navyl];
+const ENE=[135451,112601,84967,14541,6842,1768];
+const FEB=[112366,106685,69036,13879,6870,1756];
+
+document.addEventListener('DOMContentLoaded',()=>{
+  new Chart(document.getElementById('ventasEne'),{
+    type:'bar',data:{labels:DIVS,datasets:[{data:ENE,backgroundColor:COLS,borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}}
+  });
+  new Chart(document.getElementById('ventasFeb'),{
+    type:'bar',data:{labels:DIVS,datasets:[{data:FEB,backgroundColor:COLS,borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}}
+  });
+  new Chart(document.getElementById('ventasCmp'),{
+    type:'bar',
+    data:{labels:DIVS,datasets:[
+      {label:'Enero 2026',data:ENE,backgroundColor:G.g800,borderRadius:4},
+      {label:'Febrero 2026',data:FEB,backgroundColor:G.red,borderRadius:4}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}}
+  });
+});
+</script>
+</body>
+</html>

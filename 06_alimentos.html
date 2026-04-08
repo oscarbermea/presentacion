@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>06 · División Alimentos — Exelco 2026</title>
+<link rel="stylesheet" href="styles.css">
+<script src="auth.js"></script>
+<script src="chart.min.js"></script>
+</head>
+<body>
+
+<div id="lov">
+  <div class="lbox">
+    <div class="llogo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg></div>
+    <h2>Exelco Dashboard</h2><p>Reportes Financieros Consejo 2026</p>
+    <input id="lu" class="lf" type="text" placeholder="Usuario" autocomplete="username">
+    <input id="lp" class="lf" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="lbtn" onclick="doLogin()">Ingresar</button>
+    <div id="lerr" class="lerr"></div>
+  </div>
+  <div class="lbadge">EXELCO · CONFIDENCIAL · 2026</div>
+</div>
+
+<nav class="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c9a84c" stroke-width="1.8" fill="none"/><path d="M12 22V12M2 7l10 5 10-5" stroke="#c9a84c" stroke-width="1.5"/></svg>
+    <span class="tb-brand">EXELCO</span>
+  </div>
+  <div class="tb-nav">
+    <a href="index.html" class="tb-link">Inicio</a>
+    <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
+    <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
+    <a href="05_energia.html" class="tb-link">05 · Energía</a>
+    <a href="06_alimentos.html" class="tb-link active">06 · Alimentos</a>
+    <a href="07_inmobiliaria.html" class="tb-link">07 · Inmobiliaria</a>
+    <a href="08_flujo.html" class="tb-link">08 · Flujo</a>
+    <a href="09_deuda.html" class="tb-link">09 · Deuda</a>
+    <a href="10_operaciones.html" class="tb-link">10 · Operaciones</a>
+    <a href="11_cartera.html" class="tb-link">11 · Cartera</a>
+  </div>
+  <div class="tb-right">
+    <span class="badge-c">ENE–FEB 2026</span>
+    <button class="logoutb" onclick="doLogout()">Salir</button>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="ph">
+    <div class="ey">06 · División Alimentos</div>
+    <h1>Operaciones México y Estados Unidos</h1>
+    <p class="sub">Ventas y métricas de la División Alimentos — Enero y Febrero 2026</p>
+  </div>
+
+  <div class="mtabs">
+    <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
+    <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
+    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+  </div>
+
+  <!-- ENERO -->
+  <div id="m-ene" class="mpnl on">
+    <div class="kpis kpis4">
+      <div class="kpi cgo"><div class="lb">Total Alimentos</div><div class="vl">99,508</div><div class="dl pos">27.9% del consolidado</div></div>
+      <div class="kpi cgo"><div class="lb">Alimentos MX</div><div class="vl">84,967</div><div class="dl pos">85.4% de la división</div></div>
+      <div class="kpi cn"><div class="lb">Alimentos EU</div><div class="vl">14,541</div><div class="dl neu">14.6% de la división</div></div>
+      <div class="kpi cgo"><div class="lb">MX / EU ratio</div><div class="vl">5.84x</div><div class="dl neu">Domina mercado MX</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Enero 2026</div><h2>División Alimentos — Ventas</h2><p>México vs Estados Unidos · Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>México</div>
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>Estados Unidos</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="alimentosEne"></canvas></div>
+      <div class="ins">
+        <strong>Enero 2026 — Alimentos:</strong> Total de <strong>$99,508K</strong> (27.9% del consolidado).
+        México domina con <strong>$84,967K (85.4%)</strong>.
+        La operación en EU aporta <strong>$14,541K (14.6%)</strong>.
+        Alimentos es la segunda división más grande, concentrando la mayoría de operaciones en México.
+      </div>
+    </div>
+
+    <div class="sdiv">Detalle por Mercado — Enero</div>
+    <div class="g2">
+      <div class="divc">
+        <div class="dtitle">Alimentos México</div>
+        <div class="dsub">Operaciones de distribución alimentaria MX</div>
+        <div class="dval">$84,967K</div>
+        <span class="dmarg go">23.8% del consolidado</span>
+        <div style="margin-top:14px">
+          <div class="mrow"><span class="mk">Ventas</span><span class="mv go">$84,967K</span></div>
+          <div class="mrow"><span class="mk">% División Alimentos</span><span class="mv">85.4%</span></div>
+          <div class="mrow"><span class="mk">% Consolidado</span><span class="mv">23.8%</span></div>
+          <div class="mrow"><span class="mk">Mercado</span><span class="mv">México</span></div>
+          <div class="mrow"><span class="mk">Moneda base</span><span class="mv">MXN</span></div>
+        </div>
+      </div>
+      <div class="divc">
+        <div class="dtitle">Alimentos EU</div>
+        <div class="dsub">Operaciones de distribución alimentaria USA</div>
+        <div class="dval">$14,541K</div>
+        <span class="dmarg n">4.1% del consolidado</span>
+        <div style="margin-top:14px">
+          <div class="mrow"><span class="mk">Ventas (MXN equiv.)</span><span class="mv">$14,541K</span></div>
+          <div class="mrow"><span class="mk">% División Alimentos</span><span class="mv">14.6%</span></div>
+          <div class="mrow"><span class="mk">% Consolidado</span><span class="mv">4.1%</span></div>
+          <div class="mrow"><span class="mk">TC aplicado</span><span class="mv">17.3310</span></div>
+          <div class="mrow"><span class="mk">Ventas aprox. USD</span><span class="mv">~$839K USD</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEBRERO -->
+  <div id="m-feb" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Total Alimentos</div><div class="vl">82,915</div><div class="dl neg">▼ −16.7% vs Ene</div></div>
+      <div class="kpi cr"><div class="lb">Alimentos MX</div><div class="vl">69,036</div><div class="dl neg">▼ −18.7%</div></div>
+      <div class="kpi cn"><div class="lb">Alimentos EU</div><div class="vl">13,879</div><div class="dl neg">▼ −4.6%</div></div>
+      <div class="kpi cgo"><div class="lb">MX / EU ratio</div><div class="vl">4.97x</div><div class="dl neg">▼ Convergencia</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Febrero 2026</div><h2>División Alimentos — Ventas</h2><p>México vs Estados Unidos · Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>México</div>
+          <div class="li"><div class="ld" style="background:#1e3a5f"></div>Estados Unidos</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="alimentosFeb"></canvas></div>
+      <div class="ins">
+        <strong>Febrero 2026 — Alimentos:</strong> Caída total de <strong>−$16,593K (−16.7%)</strong>.
+        Alimentos MX sufre la mayor caída: <strong>−$15,931K (−18.7%)</strong>, siendo la peor división en términos porcentuales.
+        Alimentos EU muestra mejor resistencia con solo <strong>−$662K (−4.6%)</strong>.
+        El ratio MX/EU se comprime de 5.84x a 4.97x.
+      </div>
+    </div>
+
+    <div class="sdiv">Detalle por Mercado — Febrero</div>
+    <div class="g2">
+      <div class="divc">
+        <div class="dtitle">Alimentos México</div>
+        <div class="dsub">Operaciones de distribución alimentaria MX</div>
+        <div class="dval" style="color:#c0392b">$69,036K</div>
+        <span class="dmarg go">22.2% del consolidado</span>
+        <div style="margin-top:14px">
+          <div class="mrow"><span class="mk">Ventas Feb</span><span class="mv r">$69,036K</span></div>
+          <div class="mrow"><span class="mk">vs Enero</span><span class="mv r">−$15,931K (−18.7%)</span></div>
+          <div class="mrow"><span class="mk">% División Alimentos</span><span class="mv">83.3%</span></div>
+          <div class="mrow"><span class="mk">% Consolidado</span><span class="mv">22.2%</span></div>
+        </div>
+      </div>
+      <div class="divc">
+        <div class="dtitle">Alimentos EU</div>
+        <div class="dsub">Operaciones de distribución alimentaria USA</div>
+        <div class="dval" style="color:#d97706">$13,879K</div>
+        <span class="dmarg n">4.5% del consolidado</span>
+        <div style="margin-top:14px">
+          <div class="mrow"><span class="mk">Ventas Feb (MXN equiv.)</span><span class="mv go">$13,879K</span></div>
+          <div class="mrow"><span class="mk">vs Enero</span><span class="mv r">−$662K (−4.6%)</span></div>
+          <div class="mrow"><span class="mk">% División Alimentos</span><span class="mv">16.7%</span></div>
+          <div class="mrow"><span class="mk">TC aplicado</span><span class="mv">17.2193</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div id="m-cmp" class="mpnl">
+    <div class="kpis kpis4">
+      <div class="kpi cr"><div class="lb">Δ Total Alimentos</div><div class="vl">−16,593</div><div class="dl neg">▼ −16.7%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Alimentos MX</div><div class="vl">−15,931</div><div class="dl neg">▼ −18.7%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Alimentos EU</div><div class="vl">−662</div><div class="dl neg">▼ −4.6%</div></div>
+      <div class="kpi cg"><div class="lb">Resiliencia EU</div><div class="vl">4.1x</div><div class="dl pos">Mejor que MX</div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Ene vs Feb 2026</div><h2>Alimentos — Comparativo</h2><p>Miles MXN</p></div>
+        <div class="leg">
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
+        </div>
+      </div>
+      <div class="cw cw-md"><canvas id="alimentosCmp"></canvas></div>
+      <div class="ins">
+        <strong>Alimentos MX es la división más golpeada de la empresa (−18.7%).</strong>
+        La operación en EU demuestra 4.1x mayor resiliencia (−4.6%), posiblemente por contratos de suministro más estables en el mercado americano.
+        La caída de MX puede estar relacionada con estacionalidad post-temporada navideña y menor demanda institucional en febrero.
+      </div>
+    </div>
+
+    <div class="sdiv">Tabla Comparativa Alimentos</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>Mercado</th><th style="text-align:right">Enero $K</th><th style="text-align:right">Febrero $K</th><th style="text-align:right">Var $K</th><th style="text-align:right">Var %</th><th style="text-align:right">Mix Ene</th><th style="text-align:right">Mix Feb</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">Alimentos MX</td><td style="text-align:right" class="ng fw7">84,967</td><td style="text-align:right" class="nr fw7">69,036</td><td style="text-align:right" class="nr">−15,931</td><td style="text-align:right"><span class="badge r">−18.7%</span></td><td style="text-align:right">85.4%</td><td style="text-align:right">83.3%</td></tr>
+          <tr><td class="metric">Alimentos EU</td><td style="text-align:right" class="ng">14,541</td><td style="text-align:right" class="ngo">13,879</td><td style="text-align:right" class="nr">−662</td><td style="text-align:right"><span class="badge r">−4.6%</span></td><td style="text-align:right">14.6%</td><td style="text-align:right">16.7%</td></tr>
+          <tr><td class="metric fw7">Total Alimentos</td><td style="text-align:right" class="ng fw7">99,508</td><td style="text-align:right" class="nr fw7">82,915</td><td style="text-align:right" class="nr fw7">−16,593</td><td style="text-align:right"><span class="badge r">−16.7%</span></td><td style="text-align:right fw7">27.9%</td><td style="text-align:right fw7">26.7%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>EXELCO · 06 · División Alimentos · ENE–FEB 2026</span>
+    <span>CONFIDENCIAL</span>
+  </div>
+</main>
+
+<script>
+const G={g800:'#1a3d2b',gold:'#c9a84c',goldd:'#a07c2a',navy:'#1e3a5f',red:'#c0392b'};
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const barOpts={responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}};
+
+  new Chart(document.getElementById('alimentosEne'),{type:'bar',
+    data:{labels:['Alim. MX','Alim. EU','Total Alimentos'],
+      datasets:[{data:[84967,14541,99508],backgroundColor:[G.gold,G.navy,'#856a20'],borderRadius:5}]},
+    options:barOpts});
+
+  new Chart(document.getElementById('alimentosFeb'),{type:'bar',
+    data:{labels:['Alim. MX','Alim. EU','Total Alimentos'],
+      datasets:[{data:[69036,13879,82915],backgroundColor:[G.red,'#2b4f82','#8b1a1a'],borderRadius:5}]},
+    options:barOpts});
+
+  new Chart(document.getElementById('alimentosCmp'),{type:'bar',
+    data:{labels:['Alim. MX','Alim. EU','Total Alimentos'],
+      datasets:[
+        {label:'Enero 2026',data:[84967,14541,99508],backgroundColor:G.g800,borderRadius:4},
+        {label:'Febrero 2026',data:[69036,13879,82915],backgroundColor:G.red,borderRadius:4}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}}});
+});
+</script>
+</body>
+</html>
