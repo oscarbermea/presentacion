@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="exelco.ico" type="image/x-icon">
+<title>02b · Tendencias — Exelco 2026</title>
+<link rel="stylesheet" href="styles.css">
+<script src="auth.js"></script>
+<script src="chart.min.js"></script>
+<style>
+.td-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px}
+.cw-trend{height:295px}
+.td-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;
+  padding:3px 9px;border-radius:20px;margin-bottom:12px}
+.td-badge.real{background:rgba(26,61,43,.1);color:var(--g800)}
+.td-badge.ppto{background:rgba(201,168,76,.12);color:#916d00}
+.td-badge.aa{background:#f2f2f2;color:#666}
+.td-sep{width:20px;height:2px;display:inline-block;vertical-align:middle;margin-right:4px;border-radius:1px}
+.td-sep.solid{background:var(--g800)}
+.td-sep.dash-g{background:repeating-linear-gradient(to right,#c9a84c 0,#c9a84c 5px,transparent 5px,transparent 9px)}
+.td-sep.dash-gray{background:repeating-linear-gradient(to right,#9b9ea0 0,#9b9ea0 4px,transparent 4px,transparent 8px)}
+.td-kpi-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.td-kpi{flex:1;min-width:140px;background:var(--card);border-radius:10px;padding:12px 14px;
+  box-shadow:var(--sh);border-left:4px solid var(--brd)}
+.td-kpi.g{border-left-color:var(--g600)}.td-kpi.r{border-left-color:var(--red)}.td-kpi.o{border-left-color:#c9a84c}
+.td-kpi .lb{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--tx3);margin-bottom:4px}
+.td-kpi .vl{font-size:20px;font-weight:800;color:var(--tx1);line-height:1}
+.td-kpi .dl{font-size:11px;margin-top:3px;color:var(--tx2)}
+.td-kpi .dl.pos{color:var(--g600)}.td-kpi .dl.neg{color:var(--red)}
+</style>
+</head>
+<body>
+
+<div id="lov">
+  <div class="lbox">
+    <div class="llogo"><img src="exelco.ico" class="lico-img" alt="Exelco"></div>
+    <h2>Exelco Dashboard</h2><p>Reportes Financieros Consejo 2026</p>
+    <input id="lu" class="lf" type="text" placeholder="Usuario" autocomplete="username">
+    <input id="lp" class="lf" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="lbtn" onclick="doLogin()">Ingresar</button>
+    <div id="lerr" class="lerr"></div>
+  </div>
+  <div class="lbadge">EXELCO · CONFIDENCIAL · 2026</div>
+</div>
+
+<nav class="topbar">
+  <div class="tb-logo">
+    <img src="exelco.ico" class="tb-ico" alt="Exelco">
+    <span class="tb-brand">EXELCO</span>
+  </div>
+  <div class="tb-nav">
+    <a href="index.html" class="tb-link">Inicio</a>
+    <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
+    <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
+    <a href="02b_tendencias.html" class="tb-link active">02b · Tendencias</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
+    <a href="05_energia.html" class="tb-link">05 · Energía</a>
+    <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
+    <a href="07_inmobiliaria.html" class="tb-link">07 · Inmobiliaria</a>
+    <a href="08_flujo.html" class="tb-link">08 · Flujo</a>
+    <a href="08b_flujo_corp.html" class="tb-link">08b · F.Corp</a>
+    <a href="09_deuda.html" class="tb-link">09 · Deuda</a>
+    <a href="10_operaciones.html" class="tb-link">10 · Operaciones</a>
+    <a href="11_cartera.html" class="tb-link">11 · Cartera</a>
+  </div>
+  <div class="tb-right">
+    <span class="badge-c">ENE–FEB 2026</span>
+    <button class="logoutb" onclick="doLogout()">Salir</button>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="ph">
+    <div class="ey">02b · Tendencias de Ventas</div>
+    <h1>Tendencias</h1>
+    <p class="sub">Fuente: Hoja "Tendencias" · Ventas 2026 Real vs Presupuesto 2026 vs Ventas 2025 · Miles MXN</p>
+  </div>
+
+  <div class="mtabs">
+    <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
+    <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
+    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+  </div>
+
+  <!-- ══════════ ENERO ══════════ -->
+  <div id="m-ene" class="mpnl on">
+
+    <div class="td-kpi-row">
+      <div class="td-kpi g">
+        <div class="lb">Grupo Exelco · Ene Real</div>
+        <div class="vl">356,169</div>
+        <div class="dl">Miles MXN</div>
+      </div>
+      <div class="td-kpi r">
+        <div class="lb">vs Presupuesto</div>
+        <div class="vl">−34,837</div>
+        <div class="dl neg">−8.9% bajo ppto ($391,006K)</div>
+      </div>
+      <div class="td-kpi r">
+        <div class="lb">vs Ventas 2025</div>
+        <div class="vl">−20,685</div>
+        <div class="dl neg">−5.5% vs ene 2025 ($376,854K)</div>
+      </div>
+      <div class="td-kpi o">
+        <div class="lb">Ppto Anual 2026</div>
+        <div class="vl">4,690M</div>
+        <div class="dl">Total presupuesto año</div>
+      </div>
+    </div>
+
+    <div class="td-grid">
+      <!-- Grupo Exelco -->
+      <div class="cc">
+        <div class="cc-head">
+          <div>
+            <div class="ey">Enero 2026 · Miles MXN</div>
+            <h2>Grupo Exelco</h2>
+          </div>
+          <div class="leg">
+            <div class="li"><span class="td-sep solid"></span>Vtas 26</div>
+            <div class="li"><span class="td-sep dash-g"></span>Ppto 26</div>
+            <div class="li"><span class="td-sep dash-gray"></span>Vtas 25</div>
+          </div>
+        </div>
+        <div class="cw cw-trend"><canvas id="eEX"></canvas></div>
+      </div>
+      <!-- Sin Pozos -->
+      <div class="cc">
+        <div class="cc-head">
+          <div>
+            <div class="ey">Enero 2026 · Miles MXN</div>
+            <h2>Grupo Exelco — Sin Pozos</h2>
+          </div>
+          <div class="leg">
+            <div class="li"><span class="td-sep solid"></span>Vtas 26</div>
+            <div class="li"><span class="td-sep dash-g"></span>Ppto 26</div>
+            <div class="li"><span class="td-sep dash-gray"></span>Vtas 25</div>
+          </div>
+        </div>
+        <div class="cw cw-trend"><canvas id="eSP"></canvas></div>
+      </div>
+    </div>
+
+    <div class="ins">
+      <strong>Enero 2026:</strong>
+      Grupo Exelco cierra con ventas de <strong>$356,169K</strong>, por debajo del presupuesto en <strong>−8.9%</strong> (−$34,837K).
+      Respecto al mismo mes del año anterior también hay retroceso de <strong>−5.5%</strong> (−$20,685K vs $376,854K en Ene 2025).
+      Sin Pozos: <strong>$348,541K</strong>, −9.1% vs Ppto (−$34,687K) y −5.8% vs 2025 (−$21,425K).
+      El presupuesto anual del Grupo Exelco asciende a <strong>$4,690M</strong>; la meta mensual promedio es ~$390.8M.
+    </div>
+  </div>
+
+  <!-- ══════════ FEBRERO ══════════ -->
+  <div id="m-feb" class="mpnl">
+
+    <div class="td-kpi-row">
+      <div class="td-kpi r">
+        <div class="lb">Grupo Exelco · Feb Real</div>
+        <div class="vl">310,593</div>
+        <div class="dl neg">▼ −12.8% vs Ene 2026</div>
+      </div>
+      <div class="td-kpi r">
+        <div class="lb">vs Presupuesto</div>
+        <div class="vl">−47,726</div>
+        <div class="dl neg">−13.3% bajo ppto ($358,319K)</div>
+      </div>
+      <div class="td-kpi r">
+        <div class="lb">vs Ventas 2025</div>
+        <div class="vl">−56,894</div>
+        <div class="dl neg">−15.5% vs feb 2025 ($367,487K)</div>
+      </div>
+      <div class="td-kpi r">
+        <div class="lb">Acum Ene+Feb vs Ppto</div>
+        <div class="vl">−82,564</div>
+        <div class="dl neg">−11.0% vs Ppto acum $749,432K</div>
+      </div>
+    </div>
+
+    <div class="td-grid">
+      <div class="cc">
+        <div class="cc-head">
+          <div>
+            <div class="ey">Febrero 2026 · Miles MXN</div>
+            <h2>Grupo Exelco</h2>
+          </div>
+          <div class="leg">
+            <div class="li"><span class="td-sep solid"></span>Vtas 26</div>
+            <div class="li"><span class="td-sep dash-g"></span>Ppto 26</div>
+            <div class="li"><span class="td-sep dash-gray"></span>Vtas 25</div>
+          </div>
+        </div>
+        <div class="cw cw-trend"><canvas id="fEX"></canvas></div>
+      </div>
+      <div class="cc">
+        <div class="cc-head">
+          <div>
+            <div class="ey">Febrero 2026 · Miles MXN</div>
+            <h2>Grupo Exelco — Sin Pozos</h2>
+          </div>
+          <div class="leg">
+            <div class="li"><span class="td-sep solid"></span>Vtas 26</div>
+            <div class="li"><span class="td-sep dash-g"></span>Ppto 26</div>
+            <div class="li"><span class="td-sep dash-gray"></span>Vtas 25</div>
+          </div>
+        </div>
+        <div class="cw cw-trend"><canvas id="fSP"></canvas></div>
+      </div>
+    </div>
+
+    <div class="ins">
+      <strong>Febrero 2026:</strong>
+      La desaceleración se profundiza: Grupo Exelco cae a <strong>$310,593K</strong>, <strong>−12.8% vs enero</strong> y
+      <strong>−13.3% vs Presupuesto</strong> (brecha de −$47,726K).
+      La brecha vs 2025 se amplía a <strong>−15.5%</strong> (−$56,894K).
+      Sin Pozos registra <strong>$302,490K</strong>, −13.2% vs enero, −13.9% vs Ppto y −16.0% vs 2025.
+      Acumulado Ene+Feb: Grupo Exelco <strong>$666,868K</strong> vs Ppto <strong>$749,432K</strong> (−$82,564K, −11.0%).
+    </div>
+  </div>
+
+  <!-- ══════════ COMPARATIVO ══════════ -->
+  <div id="m-cmp" class="mpnl">
+
+    <div class="td-kpi-row">
+      <div class="td-kpi r">
+        <div class="lb">Δ Grupo Exelco Ene→Feb</div>
+        <div class="vl">−45,682</div>
+        <div class="dl neg">−12.8%</div>
+      </div>
+      <div class="td-kpi r">
+        <div class="lb">Δ Sin Pozos Ene→Feb</div>
+        <div class="vl">−46,157</div>
+        <div class="dl neg">−13.2%</div>
+      </div>
+      <div class="td-kpi r">
+        <div class="lb">Acum vs Ppto 2026</div>
+        <div class="vl">−82,564</div>
+        <div class="dl neg">666,868 vs 749,432K Ppto</div>
+      </div>
+      <div class="td-kpi r">
+        <div class="lb">Acum vs 2025</div>
+        <div class="vl">−77,579</div>
+        <div class="dl neg">666,868 vs 744,447K año ant.</div>
+      </div>
+    </div>
+
+    <div class="td-grid">
+      <div class="cc">
+        <div class="cc-head">
+          <div>
+            <div class="ey">Ene + Feb 2026 · Miles MXN</div>
+            <h2>Grupo Exelco</h2>
+          </div>
+          <div class="leg">
+            <div class="li"><span class="td-sep solid"></span>Vtas 26</div>
+            <div class="li"><span class="td-sep dash-g"></span>Ppto 26</div>
+            <div class="li"><span class="td-sep dash-gray"></span>Vtas 25</div>
+          </div>
+        </div>
+        <div class="cw cw-trend"><canvas id="cEX"></canvas></div>
+      </div>
+      <div class="cc">
+        <div class="cc-head">
+          <div>
+            <div class="ey">Ene + Feb 2026 · Miles MXN</div>
+            <h2>Grupo Exelco — Sin Pozos</h2>
+          </div>
+          <div class="leg">
+            <div class="li"><span class="td-sep solid"></span>Vtas 26</div>
+            <div class="li"><span class="td-sep dash-g"></span>Ppto 26</div>
+            <div class="li"><span class="td-sep dash-gray"></span>Vtas 25</div>
+          </div>
+        </div>
+        <div class="cw cw-trend"><canvas id="cSP"></canvas></div>
+      </div>
+    </div>
+
+    <div class="sdiv">Tabla Comparativa de Tendencias</div>
+    <div class="cc">
+      <table class="dtbl">
+        <thead>
+          <tr>
+            <th>Concepto</th>
+            <th style="text-align:right">Ene Real</th>
+            <th style="text-align:right">Ene Ppto</th>
+            <th style="text-align:right">Ene vs P</th>
+            <th style="text-align:right">Ene vs 25</th>
+            <th style="text-align:right">Feb Real</th>
+            <th style="text-align:right">Feb Ppto</th>
+            <th style="text-align:right">Feb vs P</th>
+            <th style="text-align:right">Feb vs 25</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric fw7">Grupo Exelco</td>
+            <td style="text-align:right">356,169</td>
+            <td style="text-align:right">391,006</td>
+            <td style="text-align:right"><span class="badge r">−8.9%</span></td>
+            <td style="text-align:right"><span class="badge r">−5.5%</span></td>
+            <td style="text-align:right" class="nr">310,593</td>
+            <td style="text-align:right">358,319</td>
+            <td style="text-align:right"><span class="badge r">−13.3%</span></td>
+            <td style="text-align:right"><span class="badge r">−15.5%</span></td>
+          </tr>
+          <tr>
+            <td class="metric fw7">Sin Pozos</td>
+            <td style="text-align:right">348,541</td>
+            <td style="text-align:right">383,228</td>
+            <td style="text-align:right"><span class="badge r">−9.1%</span></td>
+            <td style="text-align:right"><span class="badge r">−5.8%</span></td>
+            <td style="text-align:right" class="nr">302,490</td>
+            <td style="text-align:right">351,156</td>
+            <td style="text-align:right"><span class="badge r">−13.9%</span></td>
+            <td style="text-align:right"><span class="badge r">−16.0%</span></td>
+          </tr>
+          <tr style="border-top:2px solid #eee">
+            <td class="metric">Δ Ene→Feb (Exelco)</td>
+            <td colspan="4" style="text-align:center;color:var(--tx3)">—</td>
+            <td style="text-align:right" class="nr fw7">−45,682</td>
+            <td style="text-align:right" class="nr">−32,687</td>
+            <td colspan="2" style="text-align:center"><span class="badge r">−12.8%</span></td>
+          </tr>
+          <tr>
+            <td class="metric">Δ Ene→Feb (Sin Pozos)</td>
+            <td colspan="4" style="text-align:center;color:var(--tx3)">—</td>
+            <td style="text-align:right" class="nr fw7">−46,157</td>
+            <td style="text-align:right" class="nr">−32,072</td>
+            <td colspan="2" style="text-align:center"><span class="badge r">−13.2%</span></td>
+          </tr>
+          <tr style="border-top:2px solid #eee">
+            <td class="metric fw7">Acum Ene+Feb (Exelco)</td>
+            <td colspan="2" style="text-align:right fw7">666,868</td>
+            <td colspan="2" style="text-align:right">Ppto: 749,432</td>
+            <td style="text-align:right"><span class="badge r">−11.0%</span></td>
+            <td colspan="2" style="text-align:right">AA: 744,441</td>
+            <td style="text-align:right"><span class="badge r">−10.4%</span></td>
+          </tr>
+          <tr>
+            <td class="metric fw7">Acum Ene+Feb (Sin Pozos)</td>
+            <td colspan="2" style="text-align:right fw7">651,137</td>
+            <td colspan="2" style="text-align:right">Ppto: 734,490</td>
+            <td style="text-align:right"><span class="badge r">−11.4%</span></td>
+            <td colspan="2" style="text-align:right">AA: 729,780</td>
+            <td style="text-align:right"><span class="badge r">−10.8%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ins">
+      <strong>Tendencia Ene–Feb 2026:</strong>
+      La caída mensual se acelera: de <strong>−8.9% vs Ppto en enero</strong> a <strong>−13.3% en febrero</strong> para el Grupo Exelco.
+      La brecha respecto al año anterior también se amplía: de −5.5% (enero) a <strong>−15.5% (febrero)</strong>.
+      El grupo Sin Pozos sigue un patrón idéntico: −9.1% → <strong>−13.9%</strong> vs Ppto.
+      Si la tendencia continúa, el cierre de año estaría significativamente por debajo del presupuesto anual de <strong>$4,690M</strong>.
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>EXELCO · 02b · Tendencias · ENE–FEB 2026 · Fuente: Hoja Tendencias</span>
+    <span>CONFIDENCIAL</span>
+  </div>
+</main>
+
+<script>
+const MONTHS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+const N = null;
+
+// ── Dataset definitions ──────────────────────────────────────────────────────
+// Grupo Exelco — Enero file
+const eEX_R = [356169,N,N,N,N,N,N,N,N,N,N,N];
+const eEX_P = [391006,358770,394576,393478,405312,385069,400788,388407,377461,385438,388306,421579];
+const eEX_A = [376854,367487,376267,377280,388712,359919,375302,366531,360377,347351,359438,397049];
+
+// Grupo Exelco Sin Pozos — Enero file
+const eSP_R = [348541,N,N,N,N,N,N,N,N,N,N,N];
+const eSP_P = [383228,351607,386797,385699,397534,377495,393009,380628,369888,377660,380732,413801];
+const eSP_A = [369966,359714,367312,370217,378731,350237,368298,359116,353224,340108,352549,391084];
+
+// Grupo Exelco — Febrero file
+const fEX_R = [356275,310593,N,N,N,N,N,N,N,N,N,N];
+const fEX_P = [391113,358319,394305,393205,405036,384814,400558,388167,377285,385271,388192,421492];
+const fEX_A = [376954,367487,376267,377280,388712,359919,375302,366531,360377,347351,359438,397049];
+
+// Grupo Exelco Sin Pozos — Febrero file
+const fSP_R = [348647,302490,N,N,N,N,N,N,N,N,N,N];
+const fSP_P = [383334,351156,386526,385426,397258,377240,392780,380388,369711,377492,380619,413713];
+const fSP_A = [370067,359714,367312,370217,378731,350237,368298,359116,353224,340108,352549,391084];
+
+// ── Chart builder ─────────────────────────────────────────────────────────────
+function mkTrend(id, realD, pptoD, aaD, lastRealIdx) {
+  const nowLine = {
+    id: 'nowLine',
+    afterDatasetsDraw(chart) {
+      const meta = chart.getDatasetMeta(0);
+      const pt = meta.data[lastRealIdx];
+      if (!pt) return;
+      const {ctx, chartArea} = chart;
+      ctx.save();
+      ctx.strokeStyle = 'rgba(26,61,43,0.22)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([5,4]);
+      ctx.beginPath();
+      ctx.moveTo(pt.x, chartArea.top);
+      ctx.lineTo(pt.x, chartArea.bottom);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(26,61,43,0.5)';
+      ctx.font = '10px Inter,-apple-system,sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('◀ Real', pt.x, chartArea.top - 2);
+      ctx.restore();
+    }
+  };
+
+  return new Chart(document.getElementById(id), {
+    type: 'line',
+    data: {
+      labels: MONTHS,
+      datasets: [
+        {
+          label: 'Vtas 26',
+          data: realD,
+          borderColor: '#1a3d2b',
+          borderWidth: 3,
+          pointRadius: realD.map(v => v != null ? 6 : 0),
+          pointHoverRadius: 8,
+          pointBackgroundColor: '#1a3d2b',
+          pointBorderColor: 'white',
+          pointBorderWidth: 2,
+          fill: false,
+          tension: 0.35,
+          spanGaps: false,
+          order: 1
+        },
+        {
+          label: 'Ppto 26',
+          data: pptoD,
+          borderColor: '#c9a84c',
+          borderWidth: 2,
+          borderDash: [7, 4],
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          pointHoverBackgroundColor: '#c9a84c',
+          fill: false,
+          tension: 0.35,
+          order: 2
+        },
+        {
+          label: 'Vtas 25',
+          data: aaD,
+          borderColor: '#b0b4b8',
+          borderWidth: 1.5,
+          borderDash: [4, 4],
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          pointHoverBackgroundColor: '#9b9ea0',
+          fill: false,
+          tension: 0.35,
+          order: 3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label(ctx) {
+              const v = ctx.parsed.y;
+              if (v == null) return null;
+              const labels = { 'Vtas 26': '■', 'Ppto 26': '▪', 'Vtas 25': '·' };
+              return (labels[ctx.dataset.label]||'') + ' ' +
+                ctx.dataset.label + ': $' +
+                v.toLocaleString('es-MX', {maximumFractionDigits: 0}) + 'K';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { font: { size: 11 }, color: '#555' }
+        },
+        y: {
+          grid: { color: '#f3f3f3', lineWidth: 1 },
+          ticks: {
+            callback: v => '$' + Math.round(v / 1000) + 'M',
+            font: { size: 10 },
+            color: '#888',
+            maxTicksLimit: 6
+          },
+          min: 275000,
+          suggestedMax: 435000
+        }
+      }
+    },
+    plugins: [nowLine]
+  });
+}
+
+// ── Tab switching ─────────────────────────────────────────────────────────────
+function goM(m, el) {
+  document.querySelectorAll('.mpnl').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.mtab').forEach(b => b.classList.remove('on'));
+  document.getElementById('m-' + m).classList.add('on');
+  el.classList.add('on');
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Enero tab (last real = index 0)
+  mkTrend('eEX', eEX_R, eEX_P, eEX_A, 0);
+  mkTrend('eSP', eSP_R, eSP_P, eSP_A, 0);
+
+  // Febrero tab (last real = index 1)
+  mkTrend('fEX', fEX_R, fEX_P, fEX_A, 1);
+  mkTrend('fSP', fSP_R, fSP_P, fSP_A, 1);
+
+  // Comparativo tab — same data as Febrero (shows both months filled)
+  mkTrend('cEX', fEX_R, fEX_P, fEX_A, 1);
+  mkTrend('cSP', fSP_R, fSP_P, fSP_A, 1);
+});
+</script>
+</body>
+</html>
