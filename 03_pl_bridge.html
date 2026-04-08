@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="exelco.ico" type="image/x-icon">
-<title>03 · Puente P&L — Exelco 2026</title>
+<title>03 · E.R. — Exelco 2026</title>
 <link rel="stylesheet" href="styles.css">
 <script src="auth.js"></script>
 <script src="chart.min.js"></script>
@@ -32,7 +32,7 @@
     <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
     <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
     <a href="02b_tendencias.html" class="tb-link">02b · Tendencias</a>
-    <a href="03_pl_bridge.html" class="tb-link active">03 · P&L</a>
+    <a href="03_pl_bridge.html" class="tb-link active">03 · E.R.</a>
     <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
     <a href="05_energia.html" class="tb-link">05 · Energía</a>
     <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
@@ -65,41 +65,41 @@
   <!-- ENERO -->
   <div id="m-ene" class="mpnl on">
     <div class="kpis">
-      <div class="kpi cg"><div class="lb">Margen Contribución</div><div class="vl">41.6%</div><div class="dl pos">$148,300K</div></div>
+      <div class="kpi cg"><div class="lb">Margen Contribución</div><div class="vl">41.6%</div><div class="dl pos">$148,263K</div></div>
       <div class="kpi cgo"><div class="lb">Margen UAFIR</div><div class="vl">9.3%</div><div class="dl pos">$33,295K</div></div>
-      <div class="kpi cg"><div class="lb">Margen Neto</div><div class="vl">7.0%</div><div class="dl pos">$24,814K</div></div>
+      <div class="kpi cg"><div class="lb">Margen Neto</div><div class="vl">6.8%</div><div class="dl pos">$24,210K</div></div>
     </div>
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Enero 2026</div><h2>Estado Resultado</h2><p>Ventas → Utilidad Neta · Miles MXN</p></div>
+        <div><div class="ey">Enero 2026</div><h2>Estado de Resultado</h2><p>Ventas → Utilidad Neta · Miles MXN</p></div>
         <div class="leg">
           <div class="li"><div class="ld" style="background:#2e7d4f"></div>Positivo</div>
           <div class="li"><div class="ld" style="background:#c0392b"></div>Negativo</div>
-          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Total</div>
+          <div class="li"><div class="ld" style="background:#111111"></div>Ut. Neta</div>
         </div>
       </div>
       <div class="cw cw-lg"><canvas id="wfEne"></canvas></div>
       <div class="ins">
         <strong>Enero 2026:</strong> Ventas de <strong>$356,169K</strong>.
-        El costo directo ($207,869K — 58.4%) deja un margen de contribución de <strong>$148,300K (41.6%)</strong>.
-        Los gastos operativos de $115,005K llevan el UAFIR a <strong>$33,295K (9.3%)</strong>.
-        Gastos financieros e impuestos de $8,481K dejan una <strong>utilidad neta de $24,814K (7.0%)</strong>.
+        El costo directo ($207,906K — 58.4%) deja un margen de contribución de <strong>$148,263K (41.6%)</strong>.
+        Los gastos operativos de $114,968K llevan el UAFIR a <strong>$33,295K (9.3%)</strong>.
+        Gastos financieros e impuestos de $9,085K dejan una <strong>utilidad neta de $24,210K (6.8%)</strong>.
       </div>
     </div>
 
-    <div class="sdiv">Desglose del P&L</div>
+    <div class="sdiv">Desglose del E.R.</div>
     <div class="cc">
       <table class="dtbl">
         <thead><tr><th>Concepto</th><th style="text-align:right">Monto (K MXN)</th><th style="text-align:right">% Ventas</th><th>Nota</th></tr></thead>
         <tbody>
           <tr><td class="metric fw7">Ventas Netas</td><td style="text-align:right" class="ng fw7">356,169</td><td style="text-align:right">100.0%</td><td>Ingreso consolidado</td></tr>
-          <tr><td class="metric">(−) Costo Directo</td><td style="text-align:right" class="nr">(207,869)</td><td style="text-align:right">58.4%</td><td>Compras + logística</td></tr>
-          <tr><td class="metric fw7">= Margen de Contribución</td><td style="text-align:right" class="ng fw7">148,300</td><td style="text-align:right fw7">41.6%</td><td>Resultado bruto</td></tr>
-          <tr><td class="metric">(−) Gastos Operativos</td><td style="text-align:right" class="nr">(115,005)</td><td style="text-align:right">32.3%</td><td>SG&A + D&A</td></tr>
+          <tr><td class="metric">(−) Costo Directo</td><td style="text-align:right" class="nr">(207,906)</td><td style="text-align:right">58.4%</td><td>Compras + logística</td></tr>
+          <tr><td class="metric fw7">= Margen de Contribución</td><td style="text-align:right" class="ng fw7">148,263</td><td style="text-align:right fw7">41.6%</td><td>Resultado bruto</td></tr>
+          <tr><td class="metric">(−) Gastos Operativos</td><td style="text-align:right" class="nr">(114,968)</td><td style="text-align:right">32.3%</td><td>SG&A + D&A</td></tr>
           <tr><td class="metric fw7">= UAFIR</td><td style="text-align:right" class="ng fw7">33,295</td><td style="text-align:right fw7">9.3%</td><td>EBITDA</td></tr>
-          <tr><td class="metric">(−) Gtos. Financieros + ISR</td><td style="text-align:right" class="nr">(8,481)</td><td style="text-align:right">2.4%</td><td>Intereses + impuestos</td></tr>
-          <tr><td class="metric fw7">= Utilidad Neta</td><td style="text-align:right" class="ng fw7">24,814</td><td style="text-align:right fw7">7.0%</td><td>Resultado final</td></tr>
+          <tr><td class="metric">(−) Gtos. Financieros + ISR</td><td style="text-align:right" class="nr">(9,085)</td><td style="text-align:right">2.6%</td><td>Intereses + impuestos</td></tr>
+          <tr><td class="metric fw7">= Utilidad Neta</td><td style="text-align:right" class="ng fw7">24,210</td><td style="text-align:right fw7">6.8%</td><td>Resultado final</td></tr>
         </tbody>
       </table>
     </div>
@@ -110,7 +110,7 @@
     <div class="kpis">
       <div class="kpi cr"><div class="lb">Margen Contribución</div><div class="vl">40.7%</div><div class="dl neg">$126,397K</div></div>
       <div class="kpi cr"><div class="lb">Margen UAFIR</div><div class="vl">5.6%</div><div class="dl neg">$17,338K</div></div>
-      <div class="kpi cr"><div class="lb">Margen Neto</div><div class="vl">2.9%</div><div class="dl neg">$8,900K</div></div>
+      <div class="kpi cr"><div class="lb">Margen Neto</div><div class="vl">2.7%</div><div class="dl neg">$8,310K</div></div>
     </div>
 
     <div class="cc">
@@ -119,19 +119,19 @@
         <div class="leg">
           <div class="li"><div class="ld" style="background:#2e7d4f"></div>Positivo</div>
           <div class="li"><div class="ld" style="background:#c0392b"></div>Negativo</div>
-          <div class="li"><div class="ld" style="background:#c0392b"></div>Total (negativo)</div>
+          <div class="li"><div class="ld" style="background:#111111"></div>Ut. Neta</div>
         </div>
       </div>
       <div class="cw cw-lg"><canvas id="wfFeb"></canvas></div>
       <div class="ins">
         <strong>Febrero 2026:</strong> Las ventas caen a <strong>$310,593K (−12.8%)</strong>.
         El margen de contribución baja a <strong>40.7%</strong> ($126,397K, −14.8% vs enero).
-        Los gastos operativos solo bajan 5.2% ($109,059K), generando un efecto tijera que comprime el UAFIR a
-        <strong>$17,338K (5.6%)</strong>. La utilidad neta colapsa a <strong>$8,900K (2.9%)</strong>.
+        Los gastos operativos solo bajan 5.1% ($109,058K), generando un efecto tijera que comprime el UAFIR a
+        <strong>$17,338K (5.6%)</strong>. La utilidad neta colapsa a <strong>$8,310K (2.7%)</strong>.
       </div>
     </div>
 
-    <div class="sdiv">Desglose del P&L</div>
+    <div class="sdiv">Desglose del E.R.</div>
     <div class="cc">
       <table class="dtbl">
         <thead><tr><th>Concepto</th><th style="text-align:right">Monto (K MXN)</th><th style="text-align:right">% Ventas</th><th>Nota</th></tr></thead>
@@ -139,10 +139,10 @@
           <tr><td class="metric fw7">Ventas Netas</td><td style="text-align:right" class="nr fw7">310,593</td><td style="text-align:right">100.0%</td><td>Ingreso consolidado</td></tr>
           <tr><td class="metric">(−) Costo Directo</td><td style="text-align:right" class="nr">(184,196)</td><td style="text-align:right">59.3%</td><td>+0.9pp vs enero</td></tr>
           <tr><td class="metric fw7">= Margen de Contribución</td><td style="text-align:right" class="nr fw7">126,397</td><td style="text-align:right fw7">40.7%</td><td>−0.9pp vs enero</td></tr>
-          <tr><td class="metric">(−) Gastos Operativos</td><td style="text-align:right" class="nr">(109,059)</td><td style="text-align:right">35.1%</td><td>+2.8pp vs enero</td></tr>
+          <tr><td class="metric">(−) Gastos Operativos</td><td style="text-align:right" class="nr">(109,058)</td><td style="text-align:right">35.1%</td><td>+2.8pp vs enero</td></tr>
           <tr><td class="metric fw7">= UAFIR</td><td style="text-align:right" class="nr fw7">17,338</td><td style="text-align:right fw7">5.6%</td><td>−3.7pp vs enero</td></tr>
-          <tr><td class="metric">(−) Gtos. Financieros + ISR</td><td style="text-align:right" class="nr">(8,438)</td><td style="text-align:right">2.7%</td><td>Intereses + impuestos</td></tr>
-          <tr><td class="metric fw7">= Utilidad Neta</td><td style="text-align:right" class="nr fw7">8,900</td><td style="text-align:right fw7">2.9%</td><td>−4.1pp vs enero</td></tr>
+          <tr><td class="metric">(−) Gtos. Financieros + ISR</td><td style="text-align:right" class="nr">(9,028)</td><td style="text-align:right">2.9%</td><td>Intereses + impuestos</td></tr>
+          <tr><td class="metric fw7">= Utilidad Neta</td><td style="text-align:right" class="nr fw7">8,310</td><td style="text-align:right fw7">2.7%</td><td>−4.1pp vs enero</td></tr>
         </tbody>
       </table>
     </div>
@@ -152,14 +152,14 @@
   <div id="m-cmp" class="mpnl">
     <div class="kpis kpis4">
       <div class="kpi cr"><div class="lb">Δ Ventas</div><div class="vl">−45,576</div><div class="dl neg">▼ −12.8%</div></div>
-      <div class="kpi cr"><div class="lb">Δ M. Contribución</div><div class="vl">−21,903</div><div class="dl neg">▼ −14.8%</div></div>
+      <div class="kpi cr"><div class="lb">Δ M. Contribución</div><div class="vl">−21,866</div><div class="dl neg">▼ −14.7%</div></div>
       <div class="kpi cr"><div class="lb">Δ UAFIR</div><div class="vl">−15,957</div><div class="dl neg">▼ −47.9%</div></div>
-      <div class="kpi cr"><div class="lb">Δ Ut. Neta</div><div class="vl">−15,914</div><div class="dl neg">▼ −64.1%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Ut. Neta</div><div class="vl">−15,900</div><div class="dl neg">▼ −65.7%</div></div>
     </div>
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Ene vs Feb 2026</div><h2>Comparativo P&L por Línea</h2><p>Miles MXN</p></div>
+        <div><div class="ey">Ene vs Feb 2026</div><h2>Comparativo E.R. por Línea</h2><p>Miles MXN</p></div>
         <div class="leg">
           <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
           <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
@@ -168,7 +168,7 @@
       <div class="cw cw-lg"><canvas id="cmpChart"></canvas></div>
       <div class="ins">
         <strong>Efecto tijera en febrero:</strong> Los ingresos caen −12.8% pero los gastos operativos solo ceden −5.2%.
-        Esto genera una <strong>compresión de márgenes severa</strong>: el UAFIR cae −47.9% y la utilidad neta −64.1%.
+        Esto genera una <strong>compresión de márgenes severa</strong>: el UAFIR cae −47.9% y la utilidad neta −65.7%.
         Los gastos operativos fijos representan el mayor riesgo ante caídas de ventas.
       </div>
     </div>
@@ -176,22 +176,22 @@
     <div class="sdiv">Comparativo de Márgenes</div>
     <div class="cc">
       <table class="dtbl">
-        <thead><tr><th>Línea P&L</th><th style="text-align:right">Enero $K</th><th style="text-align:right">Feb $K</th><th style="text-align:right">Var $K</th><th style="text-align:right">Ene %V</th><th style="text-align:right">Feb %V</th><th style="text-align:right">Δ pp</th></tr></thead>
+        <thead><tr><th>Línea E.R.</th><th style="text-align:right">Enero $K</th><th style="text-align:right">Feb $K</th><th style="text-align:right">Var $K</th><th style="text-align:right">Ene %V</th><th style="text-align:right">Feb %V</th><th style="text-align:right">Δ pp</th></tr></thead>
         <tbody>
           <tr><td class="metric">Ventas Netas</td><td style="text-align:right" class="ng">356,169</td><td style="text-align:right" class="nr">310,593</td><td style="text-align:right" class="nr">−45,576</td><td style="text-align:right">100%</td><td style="text-align:right">100%</td><td style="text-align:right">—</td></tr>
-          <tr><td class="metric">Costo Directo</td><td style="text-align:right">207,869</td><td style="text-align:right">184,196</td><td style="text-align:right" class="ng">−23,673</td><td style="text-align:right">58.4%</td><td style="text-align:right">59.3%</td><td style="text-align:right" class="nr">+0.9pp</td></tr>
-          <tr><td class="metric fw7">M. Contribución</td><td style="text-align:right" class="ng fw7">148,300</td><td style="text-align:right" class="nr fw7">126,397</td><td style="text-align:right" class="nr fw7">−21,903</td><td style="text-align:right fw7">41.6%</td><td style="text-align:right fw7">40.7%</td><td style="text-align:right" class="nr fw7">−0.9pp</td></tr>
-          <tr><td class="metric">Gastos Operativos</td><td style="text-align:right">115,005</td><td style="text-align:right">109,059</td><td style="text-align:right" class="ng">−5,946</td><td style="text-align:right">32.3%</td><td style="text-align:right">35.1%</td><td style="text-align:right" class="nr">+2.8pp</td></tr>
+          <tr><td class="metric">Costo Directo</td><td style="text-align:right">207,906</td><td style="text-align:right">184,196</td><td style="text-align:right" class="ng">−23,710</td><td style="text-align:right">58.4%</td><td style="text-align:right">59.3%</td><td style="text-align:right" class="nr">+0.9pp</td></tr>
+          <tr><td class="metric fw7">M. Contribución</td><td style="text-align:right" class="ng fw7">148,263</td><td style="text-align:right" class="nr fw7">126,397</td><td style="text-align:right" class="nr fw7">−21,866</td><td style="text-align:right fw7">41.6%</td><td style="text-align:right fw7">40.7%</td><td style="text-align:right" class="nr fw7">−0.9pp</td></tr>
+          <tr><td class="metric">Gastos Operativos</td><td style="text-align:right">114,968</td><td style="text-align:right">109,058</td><td style="text-align:right" class="ng">−5,910</td><td style="text-align:right">32.3%</td><td style="text-align:right">35.1%</td><td style="text-align:right" class="nr">+2.8pp</td></tr>
           <tr><td class="metric fw7">UAFIR</td><td style="text-align:right" class="ng fw7">33,295</td><td style="text-align:right" class="nr fw7">17,338</td><td style="text-align:right" class="nr fw7">−15,957</td><td style="text-align:right fw7">9.3%</td><td style="text-align:right fw7">5.6%</td><td style="text-align:right" class="nr fw7">−3.7pp</td></tr>
-          <tr><td class="metric">Fin. + ISR</td><td style="text-align:right">8,481</td><td style="text-align:right">8,438</td><td style="text-align:right" class="ng">−43</td><td style="text-align:right">2.4%</td><td style="text-align:right">2.7%</td><td style="text-align:right" class="nr">+0.3pp</td></tr>
-          <tr><td class="metric fw7">Utilidad Neta</td><td style="text-align:right" class="ng fw7">24,814</td><td style="text-align:right" class="nr fw7">8,900</td><td style="text-align:right" class="nr fw7">−15,914</td><td style="text-align:right fw7">7.0%</td><td style="text-align:right fw7">2.9%</td><td style="text-align:right" class="nr fw7">−4.1pp</td></tr>
+          <tr><td class="metric">Fin. + ISR</td><td style="text-align:right">9,085</td><td style="text-align:right">9,028</td><td style="text-align:right" class="ng">−57</td><td style="text-align:right">2.6%</td><td style="text-align:right">2.9%</td><td style="text-align:right" class="nr">+0.3pp</td></tr>
+          <tr><td class="metric fw7">Utilidad Neta</td><td style="text-align:right" class="ng fw7">24,210</td><td style="text-align:right" class="nr fw7">8,310</td><td style="text-align:right" class="nr fw7">−15,900</td><td style="text-align:right fw7">6.8%</td><td style="text-align:right fw7">2.7%</td><td style="text-align:right" class="nr fw7">−4.1pp</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <div class="foot">
-    <span>EXELCO · 03 · Puente P&L · ENE–FEB 2026</span>
+    <span>EXELCO · 03 · E.R. · ENE–FEB 2026</span>
     <span>CONFIDENCIAL</span>
   </div>
 </main>
@@ -212,7 +212,7 @@ function buildWaterfall(canvasId, vals, isFeb){
   const absVals=vals.map(v=>Math.abs(v));
   const colors=vals.map((v,i)=>{
     if(i===0) return G.g600;
-    if(i===vals.length-1) return isFeb?G.red:G.g800;
+    if(i===vals.length-1) return '#111111';
     return v>0?G.g600:G.red;
   });
   new Chart(document.getElementById(canvasId),{
@@ -230,16 +230,16 @@ function buildWaterfall(canvasId, vals, isFeb){
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-  buildWaterfall('wfEne',[356169,-207869,148300,-115005,33295,-8481,24814],false);
-  buildWaterfall('wfFeb',[310593,-184196,126397,-109059,17338,-8438,8900],true);
+  buildWaterfall('wfEne',[356169,-207906,148263,-114968,33295,-9085,24210],false);
+  buildWaterfall('wfFeb',[310593,-184196,126397,-109058,17338,-9028,8310],true);
 
   new Chart(document.getElementById('cmpChart'),{
     type:'bar',
     data:{
       labels:['Ventas','C. Directo','M. Contrib.','Gastos Op.','UAFIR','Ut. Neta'],
       datasets:[
-        {label:'Enero 2026',data:[356169,207869,148300,115005,33295,24814],backgroundColor:G.g800,borderRadius:4},
-        {label:'Febrero 2026',data:[310593,184196,126397,109059,17338,8900],backgroundColor:G.red,borderRadius:4}
+        {label:'Enero 2026',data:[356169,207906,148263,114968,33295,24210],backgroundColor:G.g800,borderRadius:4},
+        {label:'Febrero 2026',data:[310593,184196,126397,109058,17338,8310],backgroundColor:G.red,borderRadius:4}
       ]
     },
     options:{

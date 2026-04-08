@@ -32,7 +32,7 @@
     <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
     <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
     <a href="02b_tendencias.html" class="tb-link">02b · Tendencias</a>
-    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · E.R.</a>
     <a href="04_divisiones.html" class="tb-link active">04 · Divisiones</a>
     <a href="05_energia.html" class="tb-link">05 · Energía</a>
     <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
@@ -66,53 +66,61 @@
   <div id="m-ene" class="mpnl on">
     <div class="kpis kpis4">
       <div class="kpi cg"><div class="lb">Total Ventas</div><div class="vl">356,169</div><div class="dl neu">Miles MXN</div></div>
-      <div class="kpi cg"><div class="lb">Gas LP</div><div class="vl">38.0%</div><div class="dl pos">$135,451K</div></div>
-      <div class="kpi cg"><div class="lb">Gasolina</div><div class="vl">31.6%</div><div class="dl pos">$112,601K</div></div>
+      <div class="kpi cg"><div class="lb">Energía Total</div><div class="vl">69.6%</div><div class="dl pos">$248,051K</div></div>
       <div class="kpi cgo"><div class="lb">Alimentos</div><div class="vl">27.9%</div><div class="dl neu">$99,508K</div></div>
+      <div class="kpi cn"><div class="lb">Inmobiliaria</div><div class="vl">2.4%</div><div class="dl neu">$8,610K</div></div>
     </div>
 
-    <div class="g2">
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Mezcla de Ventas</h2></div></div>
-        <div class="cw" style="height:280px"><canvas id="donutEne"></canvas></div>
+    <!-- GRÁFICA LÍNEA COMPLETA -->
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Enero 2026</div><h2>Mezcla de Ventas por División</h2><p>Participación % · Miles MXN</p></div>
       </div>
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Detalle Divisional</h2></div></div>
-        <div style="padding-top:10px">
-          <div class="prog-row">
-            <div class="prog-lbl">Gas LP</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:38%;background:#1a3d2b"></div></div>
-            <div class="prog-val" style="color:#1a3d2b">38.0%</div>
-          </div>
-          <div class="prog-row">
-            <div class="prog-lbl">Gasolina</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:31.6%;background:#2e7d4f"></div></div>
-            <div class="prog-val" style="color:#2e7d4f">31.6%</div>
-          </div>
-          <div class="prog-row">
-            <div class="prog-lbl">Alimentos MX</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:23.8%;background:#c9a84c"></div></div>
-            <div class="prog-val" style="color:#a07c2a">23.8%</div>
-          </div>
-          <div class="prog-row">
-            <div class="prog-lbl">Alimentos EU</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:4.1%;background:#a07c2a"></div></div>
-            <div class="prog-val" style="color:#a07c2a">4.1%</div>
-          </div>
-          <div class="prog-row">
-            <div class="prog-lbl">Inmob MX</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:1.9%;background:#1e3a5f"></div></div>
-            <div class="prog-val" style="color:#1e3a5f">1.9%</div>
-          </div>
-          <div class="prog-row">
-            <div class="prog-lbl">Inmob EU</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:0.5%;background:#2b4f82"></div></div>
-            <div class="prog-val" style="color:#2b4f82">0.5%</div>
-          </div>
+      <div class="cw" style="height:340px"><canvas id="donutEne"></canvas></div>
+    </div>
+
+    <!-- DETALLE ABAJO -->
+    <div class="cc">
+      <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Detalle Divisional</h2></div></div>
+      <div style="padding:8px 0">
+        <div class="prog-row">
+          <div class="prog-lbl">Gas LP</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:35.9%;background:#15803d"></div></div>
+          <div class="prog-val" style="color:#15803d">35.9% · $127,825K</div>
         </div>
-        <div class="ins" style="margin-top:16px">
-          Energía concentra <strong>69.6%</strong> de las ventas. Alta dependencia de commodities energéticos.
+        <div class="prog-row">
+          <div class="prog-lbl">Gas Pozos</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:2.1%;background:#4ade80"></div></div>
+          <div class="prog-val" style="color:#22a060">2.1% · $7,626K</div>
         </div>
+        <div class="prog-row">
+          <div class="prog-lbl">Gasolina</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:31.6%;background:#dc2626"></div></div>
+          <div class="prog-val" style="color:#dc2626">31.6% · $112,601K</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-lbl">Alimentos MX</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:23.8%;background:#d97706"></div></div>
+          <div class="prog-val" style="color:#d97706">23.8% · $84,967K</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-lbl">Alimentos EU</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:4.1%;background:#d35400"></div></div>
+          <div class="prog-val" style="color:#d35400">4.1% · $14,541K</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-lbl">Inmob MX</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:1.9%;background:#1d4ed8"></div></div>
+          <div class="prog-val" style="color:#1d4ed8">1.9% · $6,842K</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-lbl">Inmob EU</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:0.5%;background:#7c3aed"></div></div>
+          <div class="prog-val" style="color:#7c3aed">0.5% · $1,768K</div>
+        </div>
+      </div>
+      <div class="ins">
+        Energía concentra <strong>69.6%</strong> de las ventas (Gas LP 35.9% + Gas Pozos 2.1% + Gasolina 31.6%). Alta dependencia de commodities energéticos.
       </div>
     </div>
   </div>
@@ -121,53 +129,61 @@
   <div id="m-feb" class="mpnl">
     <div class="kpis kpis4">
       <div class="kpi cr"><div class="lb">Total Ventas</div><div class="vl">310,593</div><div class="dl neg">▼ −12.8%</div></div>
-      <div class="kpi cr"><div class="lb">Gas LP</div><div class="vl">36.2%</div><div class="dl neg">$112,366K</div></div>
-      <div class="kpi cgo"><div class="lb">Gasolina</div><div class="vl">34.3%</div><div class="dl pos">+2.7pp vs Ene</div></div>
+      <div class="kpi cr"><div class="lb">Energía Total</div><div class="vl">70.5%</div><div class="dl pos">+0.9pp vs Ene</div></div>
       <div class="kpi cr"><div class="lb">Alimentos</div><div class="vl">26.7%</div><div class="dl neg">$82,915K</div></div>
+      <div class="kpi cn"><div class="lb">Inmobiliaria</div><div class="vl">2.7%</div><div class="dl pos">+0.3pp vs Ene</div></div>
     </div>
 
-    <div class="g2">
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Mezcla de Ventas</h2></div></div>
-        <div class="cw" style="height:280px"><canvas id="donutFeb"></canvas></div>
+    <!-- GRÁFICA LÍNEA COMPLETA -->
+    <div class="cc">
+      <div class="cc-head">
+        <div><div class="ey">Febrero 2026</div><h2>Mezcla de Ventas por División</h2><p>Participación % · Miles MXN</p></div>
       </div>
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Detalle Divisional</h2></div></div>
-        <div style="padding-top:10px">
-          <div class="prog-row">
-            <div class="prog-lbl">Gas LP</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:36.2%;background:#1a3d2b"></div></div>
-            <div class="prog-val" style="color:#1a3d2b">36.2%</div>
-          </div>
-          <div class="prog-row">
-            <div class="prog-lbl">Gasolina</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:34.3%;background:#2e7d4f"></div></div>
-            <div class="prog-val" style="color:#2e7d4f">34.3%</div>
-          </div>
-          <div class="prog-row">
-            <div class="prog-lbl">Alimentos MX</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:22.2%;background:#c9a84c"></div></div>
-            <div class="prog-val" style="color:#a07c2a">22.2%</div>
-          </div>
-          <div class="prog-row">
-            <div class="prog-lbl">Alimentos EU</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:4.5%;background:#a07c2a"></div></div>
-            <div class="prog-val" style="color:#a07c2a">4.5%</div>
-          </div>
-          <div class="prog-row">
-            <div class="prog-lbl">Inmob MX</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:2.2%;background:#1e3a5f"></div></div>
-            <div class="prog-val" style="color:#1e3a5f">2.2%</div>
-          </div>
-          <div class="prog-row">
-            <div class="prog-lbl">Inmob EU</div>
-            <div class="prog-bar"><div class="prog-fill" style="width:0.6%;background:#2b4f82"></div></div>
-            <div class="prog-val" style="color:#2b4f82">0.6%</div>
-          </div>
+      <div class="cw" style="height:340px"><canvas id="donutFeb"></canvas></div>
+    </div>
+
+    <!-- DETALLE ABAJO -->
+    <div class="cc">
+      <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Detalle Divisional</h2></div></div>
+      <div style="padding:8px 0">
+        <div class="prog-row">
+          <div class="prog-lbl">Gas LP</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:34%;background:#15803d"></div></div>
+          <div class="prog-val" style="color:#15803d">34.0% · $105,620K</div>
         </div>
-        <div class="ins" style="margin-top:16px">
-          Gasolina gana participación relativa (+2.7pp) al ser la división más resistente a la baja.
+        <div class="prog-row">
+          <div class="prog-lbl">Gas Pozos</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:2.2%;background:#4ade80"></div></div>
+          <div class="prog-val" style="color:#22a060">2.2% · $6,746K</div>
         </div>
+        <div class="prog-row">
+          <div class="prog-lbl">Gasolina</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:34.4%;background:#dc2626"></div></div>
+          <div class="prog-val" style="color:#dc2626">34.4% · $106,685K</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-lbl">Alimentos MX</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:22.2%;background:#d97706"></div></div>
+          <div class="prog-val" style="color:#d97706">22.2% · $69,036K</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-lbl">Alimentos EU</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:4.5%;background:#d35400"></div></div>
+          <div class="prog-val" style="color:#d35400">4.5% · $13,879K</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-lbl">Inmob MX</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:2.2%;background:#1d4ed8"></div></div>
+          <div class="prog-val" style="color:#1d4ed8">2.2% · $6,870K</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-lbl">Inmob EU</div>
+          <div class="prog-bar"><div class="prog-fill" style="width:0.6%;background:#7c3aed"></div></div>
+          <div class="prog-val" style="color:#7c3aed">0.6% · $1,756K</div>
+        </div>
+      </div>
+      <div class="ins">
+        Gasolina gana participación relativa (+2.8pp) al ser la división más resistente a la baja. Energía consolida 70.5% del total.
       </div>
     </div>
   </div>
@@ -175,25 +191,26 @@
   <!-- COMPARATIVO -->
   <div id="m-cmp" class="mpnl">
     <div class="kpis kpis4">
-      <div class="kpi cr"><div class="lb">Δ Gas LP (pp)</div><div class="vl">−1.8pp</div><div class="dl neg">38.0% → 36.2%</div></div>
-      <div class="kpi cg"><div class="lb">Δ Gasolina (pp)</div><div class="vl">+2.7pp</div><div class="dl pos">31.6% → 34.3%</div></div>
+      <div class="kpi cr"><div class="lb">Δ Gas LP (pp)</div><div class="vl">−1.9pp</div><div class="dl neg">35.9% → 34.0%</div></div>
+      <div class="kpi cg"><div class="lb">Δ Gasolina (pp)</div><div class="vl">+2.8pp</div><div class="dl pos">31.6% → 34.4%</div></div>
       <div class="kpi cr"><div class="lb">Δ Alimentos (pp)</div><div class="vl">−1.2pp</div><div class="dl neg">27.9% → 26.7%</div></div>
-      <div class="kpi cg"><div class="lb">Δ Inmob (pp)</div><div class="vl">+0.3pp</div><div class="dl pos">2.4% → 2.8%</div></div>
+      <div class="kpi cg"><div class="lb">Δ Inmob (pp)</div><div class="vl">+0.3pp</div><div class="dl pos">2.4% → 2.7%</div></div>
     </div>
 
+    <!-- GRÁFICA COMPARATIVA LÍNEA COMPLETA -->
     <div class="cc">
       <div class="cc-head">
         <div><div class="ey">Ene vs Feb 2026</div><h2>Mezcla Divisional Comparativa</h2><p>% de ventas totales</p></div>
         <div class="leg">
           <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
-          <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
+          <div class="li"><div class="ld" style="background:#dc2626"></div>Febrero 2026</div>
         </div>
       </div>
-      <div class="cw cw-md"><canvas id="cmpMix"></canvas></div>
+      <div class="cw" style="height:340px"><canvas id="cmpMix"></canvas></div>
       <div class="ins">
-        <strong>Cambio en mezcla:</strong> Gas LP pierde 1.8pp de participación (la mayor caída absoluta en $).
-        Gasolina gana 2.7pp al ser más resiliente. Alimentos MX pierde 1.6pp por la caída de −18.7%.
-        Inmobiliaria gana pequeña participación por su estabilidad. <strong>La dependencia energética se mantiene en ~70%.</strong>
+        <strong>Cambio en mezcla:</strong> Gas LP pierde 1.9pp de participación. Gas Pozos estable en +0.1pp.
+        Gasolina gana 2.8pp al ser más resiliente. Alimentos MX pierde 1.6pp por la caída de −18.7%.
+        <strong>La dependencia energética se mantiene en ~70%.</strong>
       </div>
     </div>
 
@@ -202,8 +219,9 @@
       <table class="dtbl">
         <thead><tr><th>División</th><th style="text-align:right">Ene $K</th><th style="text-align:right">Feb $K</th><th style="text-align:right">Ene %</th><th style="text-align:right">Feb %</th><th style="text-align:right">Δ pp</th></tr></thead>
         <tbody>
-          <tr><td class="metric">Gas LP</td><td style="text-align:right" class="ng">135,451</td><td style="text-align:right" class="nr">112,366</td><td style="text-align:right">38.0%</td><td style="text-align:right">36.2%</td><td style="text-align:right" class="nr">−1.8pp</td></tr>
-          <tr><td class="metric">Gasolina</td><td style="text-align:right" class="ng">112,601</td><td style="text-align:right" class="ngo">106,685</td><td style="text-align:right">31.6%</td><td style="text-align:right">34.3%</td><td style="text-align:right" class="ng">+2.7pp</td></tr>
+          <tr><td class="metric">Gas LP</td><td style="text-align:right" class="ng">127,825</td><td style="text-align:right" class="nr">105,620</td><td style="text-align:right">35.9%</td><td style="text-align:right">34.0%</td><td style="text-align:right" class="nr">−1.9pp</td></tr>
+          <tr><td class="metric">Gas Pozos</td><td style="text-align:right" class="ng">7,626</td><td style="text-align:right" class="nr">6,746</td><td style="text-align:right">2.1%</td><td style="text-align:right">2.2%</td><td style="text-align:right" class="ng">+0.1pp</td></tr>
+          <tr><td class="metric">Gasolina</td><td style="text-align:right" class="ng">112,601</td><td style="text-align:right" class="ngo">106,685</td><td style="text-align:right">31.6%</td><td style="text-align:right">34.4%</td><td style="text-align:right" class="ng">+2.8pp</td></tr>
           <tr><td class="metric">Alimentos MX</td><td style="text-align:right" class="ng">84,967</td><td style="text-align:right" class="nr">69,036</td><td style="text-align:right">23.8%</td><td style="text-align:right">22.2%</td><td style="text-align:right" class="nr">−1.6pp</td></tr>
           <tr><td class="metric">Alimentos EU</td><td style="text-align:right">14,541</td><td style="text-align:right">13,879</td><td style="text-align:right">4.1%</td><td style="text-align:right">4.5%</td><td style="text-align:right" class="ng">+0.4pp</td></tr>
           <tr><td class="metric">Inmob MX</td><td style="text-align:right">6,842</td><td style="text-align:right">6,870</td><td style="text-align:right">1.9%</td><td style="text-align:right">2.2%</td><td style="text-align:right" class="ng">+0.3pp</td></tr>
@@ -221,14 +239,26 @@
 </main>
 
 <script>
-const LABELS=['Gas LP','Gasolina','Alim. MX','Alim. EU','Inmob MX','Inmob EU'];
-const COLORS=['#1a3d2b','#2e7d4f','#c9a84c','#a07c2a','#1e3a5f','#2b4f82'];
-const ENE=[135451,112601,84967,14541,6842,1768];
-const FEB=[112366,106685,69036,13879,6870,1756];
+const LABELS=['Gas LP','Gas Pozos','Gasolina','Alim. MX','Alim. EU','Inmob MX','Inmob EU'];
+const COLORS=['#15803d','#4ade80','#dc2626','#d97706','#d35400','#1d4ed8','#7c3aed'];
+const ENE=[127825,7626,112601,84967,14541,6842,1768];
+const FEB=[105620,6746,106685,69036,13879,6870,1756];
+const TOT_ENE=356169, TOT_FEB=310593;
 
 document.addEventListener('DOMContentLoaded',()=>{
-  const donutOpts={responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{position:'right',labels:{font:{size:11},padding:12}}}};
+  const donutOpts={
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'right',labels:{font:{size:12},padding:14,
+      generateLabels:(chart)=>{
+        const ds=chart.data.datasets[0];
+        return chart.data.labels.map((lbl,i)=>{
+          const val=ds.data[i];
+          const tot=ds.data.reduce((a,b)=>a+b,0);
+          return {text:`${lbl}  ${(val/tot*100).toFixed(1)}%`,fillStyle:ds.backgroundColor[i],strokeStyle:'#fff',lineWidth:2,index:i};
+        });
+      }
+    }}}
+  };
 
   new Chart(document.getElementById('donutEne'),{type:'doughnut',
     data:{labels:LABELS,datasets:[{data:ENE,backgroundColor:COLORS,borderWidth:2,borderColor:'#fff'}]},
@@ -238,13 +268,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     data:{labels:LABELS,datasets:[{data:FEB,backgroundColor:COLORS,borderWidth:2,borderColor:'#fff'}]},
     options:donutOpts});
 
-  const pcts_ene=ENE.map(v=>(v/356169*100).toFixed(1));
-  const pcts_feb=FEB.map(v=>(v/310593*100).toFixed(1));
+  const pcts_ene=ENE.map(v=>(v/TOT_ENE*100).toFixed(1));
+  const pcts_feb=FEB.map(v=>(v/TOT_FEB*100).toFixed(1));
   new Chart(document.getElementById('cmpMix'),{
     type:'bar',
     data:{labels:LABELS,datasets:[
       {label:'Enero %',data:pcts_ene,backgroundColor:'#1a3d2b',borderRadius:4},
-      {label:'Febrero %',data:pcts_feb,backgroundColor:'#c0392b',borderRadius:4}
+      {label:'Febrero %',data:pcts_feb,backgroundColor:'#dc2626',borderRadius:4}
     ]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},

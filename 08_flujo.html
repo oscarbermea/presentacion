@@ -32,7 +32,7 @@
     <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
     <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
     <a href="02b_tendencias.html" class="tb-link">02b · Tendencias</a>
-    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · E.R.</a>
     <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
     <a href="05_energia.html" class="tb-link">05 · Energía</a>
     <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
@@ -73,11 +73,11 @@
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Enero 2026 · Miles MXN</div><h2>Flujo Operativo — Waterfall</h2><p>FC en MXN · Mes Enero</p></div>
+        <div><div class="ey">Enero 2026 · Miles MXN</div><h2>Flujo Operativo</h2><p>FC en MXN · Mes Enero</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#9b9ea0"></div>Saldo Inicial / Final</div>
-          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Positivo</div>
-          <div class="li"><div class="ld" style="background:#c9a84c"></div>Negativo</div>
+          <div class="li"><div class="ld" style="background:#111111"></div>Saldo</div>
+          <div class="li"><div class="ld" style="background:#1d4ed8"></div>Positivo</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Negativo</div>
         </div>
       </div>
       <div class="cw cw-lg" style="position:relative"><canvas id="wfEne"></canvas></div>
@@ -138,11 +138,11 @@
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Febrero 2026 · Miles MXN</div><h2>Flujo Operativo — Waterfall</h2><p>FC en MXN · Mes Febrero</p></div>
+        <div><div class="ey">Febrero 2026 · Miles MXN</div><h2>Flujo Operativo</h2><p>FC en MXN · Mes Febrero</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#9b9ea0"></div>Saldo Inicial / Final</div>
-          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Positivo</div>
-          <div class="li"><div class="ld" style="background:#c9a84c"></div>Negativo</div>
+          <div class="li"><div class="ld" style="background:#111111"></div>Saldo</div>
+          <div class="li"><div class="ld" style="background:#1d4ed8"></div>Positivo</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Negativo</div>
         </div>
       </div>
       <div class="cw cw-lg"><canvas id="wfFeb"></canvas></div>
@@ -244,7 +244,7 @@
 </main>
 
 <script>
-const G={g800:'#1a3d2b',g600:'#2e7d4f',gold:'#c9a84c',gray:'#9b9ea0',red:'#c0392b',navy:'#1e3a5f'};
+const G={g800:'#1a3d2b',g600:'#2e7d4f',gold:'#c9a84c',gray:'#9b9ea0',red:'#c0392b',navy:'#1e3a5f',black:'#111111',blue:'#1d4ed8'};
 
 // Waterfall builder: returns [bases, absVals, colors]
 function waterfallData(vals, colors){
@@ -264,11 +264,11 @@ const LABELS=['Saldo\nInicial','Gen.\nBruta','Var.\nC de T','Total\nPartidas','T
 
 // ── ENERO ──
 const ENE_VALS=[70505, 31267, -26248, 14569, -9568, -13436, 67090];
-const ENE_COLS=[G.gray, G.g800, G.gold, G.g600, G.gold, G.gold, G.g800];
+const ENE_COLS=[G.black, G.blue, G.red, G.blue, G.red, G.red, G.black];
 
 // ── FEBRERO ──
 const FEB_VALS=[67044, 18787, 13879, -28777, 3278, -9671, 64547];
-const FEB_COLS=[G.gray, G.g800, G.g600, G.gold, G.g600, G.gold, G.gray];
+const FEB_COLS=[G.black, G.blue, G.blue, G.red, G.blue, G.red, G.black];
 
 function buildWF(id, vals, cols, labelAnnotation){
   const {bases,abs} = waterfallData(vals, cols);
@@ -341,7 +341,7 @@ function buildWF(id, vals, cols, labelAnnotation){
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-  buildWF('wfEne', ENE_VALS, ENE_COLS, true);
+  buildWF('wfEne', ENE_VALS, ENE_COLS, false);
   buildWF('wfFeb', FEB_VALS, FEB_COLS, false);
 
   // Comparativo grouped bars (components only, no totals)

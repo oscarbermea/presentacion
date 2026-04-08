@@ -7,6 +7,22 @@
 <link rel="stylesheet" href="styles.css">
 <script src="auth.js"></script>
 <script src="chart.min.js"></script>
+<style>
+/* ── Debt Structure Cards ── */
+.dbt-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
+.dbt-card{background:var(--card);border-radius:14px;padding:22px 20px 18px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.dbt-icon{position:absolute;right:14px;top:8px;font-size:52px;font-weight:900;opacity:.1;line-height:1;font-family:'Inter Tight',Inter,sans-serif;pointer-events:none;user-select:none}
+.dbt-card .ey{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--tx3)}
+.dbt-card h2{margin:2px 0 14px;font-size:16px}
+.dbt-section{border-top:2px solid;padding-top:10px;margin-bottom:12px}
+.dbt-section:last-child{margin-bottom:0}
+.dbt-sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.dbt-monthly{font-size:13px;color:var(--tx2);margin-bottom:8px;font-variant-numeric:tabular-nums}
+.dbt-monthly strong{color:var(--tx1)}
+.dbt-item{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:13px;color:var(--tx1)}
+.dbt-dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0}
+@media(max-width:900px){.dbt-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
@@ -32,7 +48,7 @@
     <a href="01_resumen.html" class="tb-link">01 · Resumen</a>
     <a href="02b_tendencias.html" class="tb-link">02b · Tendencias</a>
     <a href="02_ventas.html" class="tb-link">02 · Ventas</a>
-    <a href="03_pl_bridge.html" class="tb-link">03 · P&L</a>
+    <a href="03_pl_bridge.html" class="tb-link">03 · E.R.</a>
     <a href="04_divisiones.html" class="tb-link">04 · Divisiones</a>
     <a href="05_energia.html" class="tb-link">05 · Energía</a>
     <a href="06_alimentos.html" class="tb-link">06 · Alimentos</a>
@@ -64,136 +80,166 @@
 
   <!-- ENERO -->
   <div id="m-ene" class="mpnl on">
-    <div class="kpis kpis4">
-      <div class="kpi cn"><div class="lb">Deuda Total Est.</div><div class="vl">~400,000</div><div class="dl neu">Miles MXN (est.)</div></div>
-      <div class="kpi cgo"><div class="lb">UAFIR FL</div><div class="vl">40,173</div><div class="dl pos">Cobertura de caja</div></div>
-      <div class="kpi cgo"><div class="lb">Deuda / UAFIR FL (anual)</div><div class="vl">~4.97x</div><div class="dl neu">Est. a 12 meses</div></div>
-      <div class="kpi cg"><div class="lb">Carga Fin. + ISR</div><div class="vl">8,481</div><div class="dl pos">2.4% de ventas</div></div>
-    </div>
-
-    <div class="cc">
-      <div class="cc-head">
-        <div><div class="ey">Enero 2026</div><h2>Cobertura de Deuda</h2><p>UAFIR FL vs Carga Financiera · Miles MXN</p></div>
-        <div class="leg">
-          <div class="li"><div class="ld" style="background:#1e3a5f"></div>UAFIR FL</div>
-          <div class="li"><div class="ld" style="background:#c0392b"></div>Carga Financiera + ISR</div>
-          <div class="li"><div class="ld" style="background:#2e7d4f"></div>Ut. Neta disponible</div>
+    <div class="sdiv">Estructura de Deuda — Pasivos MX · Enero 2026</div>
+    <div class="dbt-grid">
+      <div class="dbt-card">
+        <div class="dbt-icon" style="color:#1a3d2b">$</div>
+        <div class="ey">Pasivos MX · Corporativo</div>
+        <h2>Deuda Corporativa</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px">
+          <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
+            <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
+            <div class="dbt-monthly">Total Mensual: <strong>~$670,503 MXN</strong></div>
+            <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(10.3M Balance)</strong></div>
+            <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Ford &nbsp;<strong>(1.2M Balance)</strong></div>
+          </div>
+          <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
+            <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
+            <div class="dbt-monthly">Total Mensual: <strong>~$27,159 USD</strong></div>
+            <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>IBC Line of Credit &nbsp;<strong>($3.8M Balance)</strong></div>
+          </div>
         </div>
       </div>
-      <div class="cw cw-md"><canvas id="deudaEne"></canvas></div>
-      <div class="ins">
-        <strong>Enero 2026:</strong> Con UAFIR FL de <strong>$40,173K</strong>, la empresa cubre holgadamente su carga financiera de $8,481K
-        (cobertura de <strong>4.74x</strong>). El excedente de $31,692K fluye hacia la utilidad neta ($24,814K) y reservas.
-        El apalancamiento estimado de ~4.97x UAFIR FL anualizado es manejable en un escenario de ventas estables como enero.
+      <div class="dbt-card">
+        <div class="dbt-icon" style="color:#1a3d2b">$</div>
+        <div class="ey">Pasivos MX · Energéticos</div>
+        <h2>Exelco Carburante</h2>
+        <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
+          <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
+          <div class="dbt-monthly">Total Mensual: <strong>~$1,377,826 MXN</strong></div>
+          <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(13.4M Balance)</strong></div>
+        </div>
+      </div>
+      <div class="dbt-card">
+        <div class="dbt-icon" style="color:#c9a84c">$</div>
+        <div class="ey">Pasivos MX · Alimentos MX</div>
+        <h2>Pasivos Dólares</h2>
+        <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
+          <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
+          <div class="dbt-monthly">Total Mensual: <strong>~$363,490 MXN</strong></div>
+          <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>RYSF-Santander &nbsp;<strong>(20.0M Balance)</strong></div>
+          <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>ESM-Santander &nbsp;<strong>(19.0M Balance)</strong></div>
+        </div>
       </div>
     </div>
 
-    <div class="sdiv">Métricas de Deuda — Enero</div>
-    <div class="g2">
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Indicadores de Cobertura</h2></div></div>
-        <div class="mrow"><span class="mk">UAFIR FL mensual</span><span class="mv p">$40,173K</span></div>
-        <div class="mrow"><span class="mk">Carga financiera + ISR</span><span class="mv go">$8,481K</span></div>
-        <div class="mrow"><span class="mk">Cobertura (UAFIR FL / Carga)</span><span class="mv p">4.74x</span></div>
-        <div class="mrow"><span class="mk">Excedente después de carga</span><span class="mv p">$31,692K</span></div>
-        <div class="mrow"><span class="mk">Carga / Ventas</span><span class="mv go">2.4%</span></div>
-        <div class="mrow"><span class="mk">Apalancamiento est. (12m)</span><span class="mv go">~4.97x UAFIR FL</span></div>
-      </div>
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Estructura de Cobertura</h2></div></div>
-        <div class="prog-row"><div class="prog-lbl">UAFIR FL</div><div class="prog-bar"><div class="prog-fill" style="width:100%;background:#1e3a5f"></div></div><div class="prog-val">$40,173K</div></div>
-        <div class="prog-row"><div class="prog-lbl">Carga Financiera</div><div class="prog-bar"><div class="prog-fill" style="width:21.1%;background:#c0392b"></div></div><div class="prog-val" style="color:#c0392b">$8,481K</div></div>
-        <div class="prog-row"><div class="prog-lbl">Ut. Neta</div><div class="prog-bar"><div class="prog-fill" style="width:61.8%;background:#2e7d4f"></div></div><div class="prog-val" style="color:#2e7d4f">$24,814K</div></div>
-        <div class="ins" style="margin-top:12px">Cobertura financiera de <strong>4.74x</strong> — nivel saludable.</div>
-      </div>
-    </div>
   </div>
 
   <!-- FEBRERO -->
   <div id="m-feb" class="mpnl">
-    <div class="kpis kpis4">
-      <div class="kpi cn"><div class="lb">Deuda Total Est.</div><div class="vl">~400,000</div><div class="dl neu">Sin cambio estimado</div></div>
-      <div class="kpi cr"><div class="lb">UAFIR FL</div><div class="vl">24,324</div><div class="dl neg">▼ −39.5% vs Ene</div></div>
-      <div class="kpi cr"><div class="lb">Deuda / UAFIR FL (anual)</div><div class="vl">~8.20x</div><div class="dl neg">▲ Deterioro</div></div>
-      <div class="kpi cr"><div class="lb">Carga Fin. + ISR</div><div class="vl">8,438</div><div class="dl neu">2.7% de ventas</div></div>
-    </div>
-
-    <div class="cc">
-      <div class="cc-head">
-        <div><div class="ey">Febrero 2026</div><h2>Cobertura de Deuda</h2><p>UAFIR FL vs Carga Financiera · Miles MXN</p></div>
-        <div class="leg">
-          <div class="li"><div class="ld" style="background:#1e3a5f"></div>UAFIR FL</div>
-          <div class="li"><div class="ld" style="background:#c0392b"></div>Carga Financiera + ISR</div>
-          <div class="li"><div class="ld" style="background:#c0392b"></div>Ut. Neta (baja)</div>
+    <div class="sdiv">Estructura de Deuda — Pasivos MX · Febrero 2026</div>
+    <div class="dbt-grid">
+      <div class="dbt-card">
+        <div class="dbt-icon" style="color:#1a3d2b">$</div>
+        <div class="ey">Pasivos MX · Corporativo</div>
+        <h2>Deuda Corporativa</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px">
+          <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
+            <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
+            <div class="dbt-monthly">Total Mensual: <strong>~$644,079 MXN</strong></div>
+            <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(9.8M Balance)</strong></div>
+            <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Ford &nbsp;<strong>(1.2M Balance)</strong></div>
+          </div>
+          <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
+            <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
+            <div class="dbt-monthly">Total Mensual: <strong>~$28,022 USD</strong></div>
+            <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>IBC Line of Credit &nbsp;<strong>($3.8M Balance)</strong></div>
+          </div>
         </div>
       </div>
-      <div class="cw cw-md"><canvas id="deudaFeb"></canvas></div>
-      <div class="ins">
-        <strong>Febrero 2026:</strong> La cobertura financiera se deteriora a <strong>2.88x</strong> (vs 4.74x en enero).
-        La carga financiera de $8,438K absorbe el <strong>34.7% del UAFIR FL</strong> (vs 21.1% en enero).
-        Si este nivel de ventas persiste, el apalancamiento estimado sube a <strong>~8.2x UAFIR FL anualizado</strong>,
-        lo que podría presionar los covenants bancarios. Es la métrica de mayor riesgo en febrero.
+      <div class="dbt-card">
+        <div class="dbt-icon" style="color:#1a3d2b">$</div>
+        <div class="ey">Pasivos MX · Energéticos</div>
+        <h2>Exelco Carburante</h2>
+        <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
+          <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
+          <div class="dbt-monthly">Total Mensual: <strong>~$1,359,452 MXN</strong></div>
+          <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(12.2M Balance)</strong></div>
+        </div>
+      </div>
+      <div class="dbt-card">
+        <div class="dbt-icon" style="color:#c9a84c">$</div>
+        <div class="ey">Pasivos MX · Alimentos MX</div>
+        <h2>Pasivos Dólares</h2>
+        <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
+          <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
+          <div class="dbt-monthly">Total Mensual: <strong>~$369,246 MXN</strong></div>
+          <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>RYSF-Santander &nbsp;<strong>(20.0M Balance)</strong></div>
+          <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>ESM-Santander &nbsp;<strong>(19.0M Balance)</strong></div>
+        </div>
       </div>
     </div>
 
-    <div class="sdiv">Métricas de Deuda — Febrero</div>
-    <div class="g2">
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Indicadores de Cobertura</h2></div></div>
-        <div class="mrow"><span class="mk">UAFIR FL mensual</span><span class="mv r">$24,324K</span></div>
-        <div class="mrow"><span class="mk">Carga financiera + ISR</span><span class="mv go">$8,438K</span></div>
-        <div class="mrow"><span class="mk">Cobertura (UAFIR FL / Carga)</span><span class="mv r">2.88x</span></div>
-        <div class="mrow"><span class="mk">Excedente después de carga</span><span class="mv r">$15,886K</span></div>
-        <div class="mrow"><span class="mk">Carga / Ventas</span><span class="mv r">2.7%</span></div>
-        <div class="mrow"><span class="mk">Apalancamiento est. (12m)</span><span class="mv r">~8.2x UAFIR FL</span></div>
-      </div>
-      <div class="cc" style="margin-bottom:0">
-        <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Estructura de Cobertura</h2></div></div>
-        <div class="prog-row"><div class="prog-lbl">UAFIR FL</div><div class="prog-bar"><div class="prog-fill" style="width:100%;background:#1e3a5f"></div></div><div class="prog-val">$24,324K</div></div>
-        <div class="prog-row"><div class="prog-lbl">Carga Financiera</div><div class="prog-bar"><div class="prog-fill" style="width:34.7%;background:#c0392b"></div></div><div class="prog-val" style="color:#c0392b">$8,438K</div></div>
-        <div class="prog-row"><div class="prog-lbl">Ut. Neta</div><div class="prog-bar"><div class="prog-fill" style="width:36.6%;background:#c0392b"></div></div><div class="prog-val" style="color:#c0392b">$8,900K</div></div>
-        <div class="ins" style="margin-top:12px">Cobertura de <strong>2.88x</strong> — nivel de alerta.</div>
-      </div>
-    </div>
   </div>
 
   <!-- COMPARATIVO -->
   <div id="m-cmp" class="mpnl">
-    <div class="kpis kpis4">
-      <div class="kpi cr"><div class="lb">Δ UAFIR FL</div><div class="vl">−15,849</div><div class="dl neg">▼ −39.5%</div></div>
-      <div class="kpi cr"><div class="lb">Δ Cobertura</div><div class="vl">−1.86x</div><div class="dl neg">4.74x → 2.88x</div></div>
-      <div class="kpi cr"><div class="lb">Δ Apalancamiento</div><div class="vl">+3.23x</div><div class="dl neg">4.97x → 8.20x</div></div>
-      <div class="kpi cgo"><div class="lb">Δ Carga Financiera</div><div class="vl">−43</div><div class="dl pos">Práct. estable</div></div>
-    </div>
-
-    <div class="cc">
-      <div class="cc-head">
-        <div><div class="ey">Ene vs Feb 2026</div><h2>Cobertura de Deuda — Comparativo</h2><p>Miles MXN</p></div>
-        <div class="leg">
-          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
-          <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
-        </div>
-      </div>
-      <div class="cw cw-md"><canvas id="deudaCmp"></canvas></div>
-      <div class="ins">
-        <strong>La carga financiera es fija (~$8,460K/mes) pero el UAFIR FL cayó −39.5%.</strong>
-        Esto eleva la presión financiera: la carga consume el 34.7% del UAFIR FL en febrero vs 21.1% en enero.
-        Si febrero fuera el nivel normalizado, el apalancamiento sería ~8.2x, nivel que típicamente activa covenants bancarios (umbral usual: 3.5x–5.0x).
-        <strong>Recuperar las ventas de marzo es crítico para mantener la salud financiera.</strong>
-      </div>
-    </div>
-
-    <div class="sdiv">Tabla Comparativa de Deuda</div>
+    <div class="sdiv">Evolución de Saldos de Deuda — Enero vs Febrero 2026</div>
     <div class="cc">
       <table class="dtbl">
-        <thead><tr><th>Métrica</th><th style="text-align:right">Enero</th><th style="text-align:right">Febrero</th><th style="text-align:right">Variación</th><th>Semáforo</th></tr></thead>
+        <thead>
+          <tr><th>Crédito</th><th>Moneda</th><th style="text-align:right">Saldo Enero</th><th style="text-align:right">Saldo Febrero</th><th style="text-align:right">Variación</th><th style="text-align:right">%</th></tr>
+        </thead>
         <tbody>
-          <tr><td class="metric">UAFIR FL mensual</td><td style="text-align:right" class="ng">$40,173K</td><td style="text-align:right" class="nr">$24,324K</td><td style="text-align:right" class="nr">−$15,849K</td><td><span class="badge r">Alerta</span></td></tr>
-          <tr><td class="metric">Carga Fin. + ISR</td><td style="text-align:right">$8,481K</td><td style="text-align:right">$8,438K</td><td style="text-align:right" class="ng">−$43K</td><td><span class="badge g">Estable</span></td></tr>
-          <tr><td class="metric">Cobertura (FL/Carga)</td><td style="text-align:right" class="ng">4.74x</td><td style="text-align:right" class="nr">2.88x</td><td style="text-align:right" class="nr">−1.86x</td><td><span class="badge r">Alerta</span></td></tr>
-          <tr><td class="metric">Carga / UAFIR FL</td><td style="text-align:right" class="ng">21.1%</td><td style="text-align:right" class="nr">34.7%</td><td style="text-align:right" class="nr">+13.6pp</td><td><span class="badge r">Alerta</span></td></tr>
-          <tr><td class="metric">Apalanc. est. (12m)</td><td style="text-align:right" class="ng">~4.97x</td><td style="text-align:right" class="nr">~8.20x</td><td style="text-align:right" class="nr">+3.23x</td><td><span class="badge r">Crítico</span></td></tr>
-          <tr><td class="metric">Carga / Ventas</td><td style="text-align:right" class="ng">2.4%</td><td style="text-align:right" class="nr">2.7%</td><td style="text-align:right" class="nr">+0.3pp</td><td><span class="badge go">Moderado</span></td></tr>
+          <tr><td colspan="6" class="metric fw7" style="background:var(--g800);color:white;padding:6px 10px">DEUDA CORPORATIVA</td></tr>
+          <tr>
+            <td class="metric">Santander</td><td style="color:var(--tx3);font-size:12px">MXN</td>
+            <td style="text-align:right">$10,291,441</td>
+            <td style="text-align:right">$9,791,441</td>
+            <td style="text-align:right" class="ng">−$500,000</td>
+            <td style="text-align:right"><span class="badge g">−4.9%</span></td>
+          </tr>
+          <tr>
+            <td class="metric">Ford</td><td style="color:var(--tx3);font-size:12px">MXN</td>
+            <td style="text-align:right">$1,191,593</td>
+            <td style="text-align:right">$1,174,497</td>
+            <td style="text-align:right" class="ng">−$17,096</td>
+            <td style="text-align:right"><span class="badge g">−1.4%</span></td>
+          </tr>
+          <tr>
+            <td class="metric">IBC Line of Credit</td><td style="color:var(--tx3);font-size:12px">USD</td>
+            <td style="text-align:right">$3,828,500</td>
+            <td style="text-align:right">$3,828,500</td>
+            <td style="text-align:right">—</td>
+            <td style="text-align:right"><span class="badge">0.0%</span></td>
+          </tr>
+          <tr style="border-top:2px solid var(--g800)">
+            <td class="metric fw7">Total Corporativo (MXN)</td><td></td>
+            <td style="text-align:right fw7">$11,483,034</td>
+            <td style="text-align:right fw7">$10,965,938</td>
+            <td style="text-align:right" class="ng fw7">−$517,096</td>
+            <td style="text-align:right"><span class="badge g">−4.5%</span></td>
+          </tr>
+
+          <tr><td colspan="6" class="metric fw7" style="background:#b08b28;color:white;padding:6px 10px">DEUDA EN PESOS (MXN)</td></tr>
+          <tr>
+            <td class="metric">Carburante — Santander</td><td style="color:var(--tx3);font-size:12px">MXN</td>
+            <td style="text-align:right">$13,433,486</td>
+            <td style="text-align:right">$12,193,486</td>
+            <td style="text-align:right" class="ng">−$1,240,000</td>
+            <td style="text-align:right"><span class="badge g">−9.2%</span></td>
+          </tr>
+          <tr>
+            <td class="metric">RYSF — Santander</td><td style="color:var(--tx3);font-size:12px">MXN</td>
+            <td style="text-align:right">$20,000,000</td>
+            <td style="text-align:right">$20,000,000</td>
+            <td style="text-align:right">—</td>
+            <td style="text-align:right"><span class="badge">0.0%</span></td>
+          </tr>
+          <tr>
+            <td class="metric">ESM — Santander</td><td style="color:var(--tx3);font-size:12px">MXN</td>
+            <td style="text-align:right">$19,000,000</td>
+            <td style="text-align:right">$19,000,000</td>
+            <td style="text-align:right">—</td>
+            <td style="text-align:right"><span class="badge">0.0%</span></td>
+          </tr>
+          <tr style="border-top:2px solid #c9a84c">
+            <td class="metric fw7">Total Pesos (MXN)</td><td></td>
+            <td style="text-align:right fw7">$56,261,986</td>
+            <td style="text-align:right fw7">$55,021,986</td>
+            <td style="text-align:right" class="ng fw7">−$1,240,000</td>
+            <td style="text-align:right"><span class="badge g">−2.2%</span></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -206,31 +252,12 @@
 </main>
 
 <script>
-const G={g800:'#1a3d2b',g600:'#2e7d4f',navy:'#1e3a5f',gold:'#c9a84c',red:'#c0392b'};
-
-document.addEventListener('DOMContentLoaded',()=>{
-  const barOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-    scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}};
-
-  new Chart(document.getElementById('deudaEne'),{type:'bar',
-    data:{labels:['UAFIR FL','Carga Fin.+ISR','Ut. Neta'],
-      datasets:[{data:[40173,8481,24814],backgroundColor:[G.navy,G.red,G.g600],borderRadius:5}]},
-    options:barOpts});
-
-  new Chart(document.getElementById('deudaFeb'),{type:'bar',
-    data:{labels:['UAFIR FL','Carga Fin.+ISR','Ut. Neta'],
-      datasets:[{data:[24324,8438,8900],backgroundColor:[G.navy,G.red,G.red],borderRadius:5}]},
-    options:barOpts});
-
-  new Chart(document.getElementById('deudaCmp'),{type:'bar',
-    data:{labels:['UAFIR FL','Carga Fin.+ISR','Ut. Neta'],
-      datasets:[
-        {label:'Enero 2026',data:[40173,8481,24814],backgroundColor:G.g800,borderRadius:4},
-        {label:'Febrero 2026',data:[24324,8438,8900],backgroundColor:G.red,borderRadius:4}
-      ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString()}}}}});
-});
+function goM(m,el){
+  document.querySelectorAll('.mpnl').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('m-'+m).classList.add('on');
+  el.classList.add('on');
+}
 </script>
 </body>
 </html>
