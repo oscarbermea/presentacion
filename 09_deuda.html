@@ -11,7 +11,8 @@
 /* ── Debt Structure Cards ── */
 .dbt-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
 .dbt-card{background:var(--card);border-radius:14px;padding:22px 20px 18px;box-shadow:var(--sh);position:relative;overflow:hidden}
-.dbt-icon{position:absolute;right:14px;top:8px;font-size:52px;font-weight:900;opacity:.1;line-height:1;font-family:'Inter Tight',Inter,sans-serif;pointer-events:none;user-select:none}
+.dbt-icon{position:absolute;right:12px;top:8px;opacity:.3;line-height:1;pointer-events:none;user-select:none}
+.dbt-icon img{width:56px;border-radius:4px;display:block}
 .dbt-card .ey{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--tx3)}
 .dbt-card h2{margin:2px 0 14px;font-size:16px}
 .dbt-section{border-top:2px solid;padding-top:10px;margin-bottom:12px}
@@ -69,7 +70,7 @@
   <div class="ph">
     <div class="ey">09 · Deuda</div>
     <h1>Estructura de Deuda y Apalancamiento</h1>
-    <p class="sub">Deuda total, cobertura y métricas de apalancamiento — Enero y Febrero 2026</p>
+    <p class="sub">Deuda total, cobertura y métricas de apalancamiento — Enero y Febrero 2026 (En Miles MXN)</p>
   </div>
 
   <div class="mtabs">
@@ -81,46 +82,83 @@
   <!-- ENERO -->
   <div id="m-ene" class="mpnl on">
     <div class="sdiv">Estructura de Deuda — Pasivos MX · Enero 2026</div>
-    <div class="dbt-grid">
-      <div class="dbt-card">
-        <div class="dbt-icon" style="color:#1a3d2b">$</div>
-        <div class="ey">Pasivos MX · Corporativo</div>
-        <h2>Deuda Corporativa</h2>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px">
-          <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
-            <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
-            <div class="dbt-monthly">Total Mensual: <strong>~$670,503 MXN</strong></div>
-            <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(10.3M Balance)</strong></div>
-            <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Ford &nbsp;<strong>(1.2M Balance)</strong></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+
+      <!-- Columna Izquierda: Pesos -->
+      <div>
+        <div class="sdiv" style="margin-bottom:12px">Deuda en Pesos (MXN)</div>
+        <div class="dbt-grid">
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#1a3d2b"><img src="https://flagcdn.com/w80/mx.png" alt="MX"></div>
+            <div class="ey">Pasivos MX · Corporativo</div>
+            <h2>Deuda Corporativa</h2>
+            <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$670,503 MXN</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(10.3MM Balance)</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Ford &nbsp;<strong>(1.2MM Balance)</strong></div>
+            </div>
           </div>
-          <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
-            <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
-            <div class="dbt-monthly">Total Mensual: <strong>~$27,159 USD</strong></div>
-            <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>IBC Line of Credit &nbsp;<strong>($3.8M Balance)</strong></div>
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#1a3d2b"><img src="https://flagcdn.com/w80/mx.png" alt="MX"></div>
+            <div class="ey">Pasivos MX · Energéticos</div>
+            <h2>Exelco Carburante</h2>
+            <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$1,377,826 MXN</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(13.4MM Balance)</strong></div>
+            </div>
+          </div>
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#c9a84c"><img src="https://flagcdn.com/w80/mx.png" alt="MX"></div>
+            <div class="ey">Pasivos MX · Alimentos MX</div>
+            <h2>RYSF-Santander</h2>
+            <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$187,928 MXN</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>RYSF-Santander &nbsp;<strong>($20.0MM Balance)</strong></div>
+            </div>
+          </div>
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#c9a84c"><img src="https://flagcdn.com/w80/mx.png" alt="MX"></div>
+            <div class="ey">Pasivos MX · Alimentos MX</div>
+            <h2>ESM-Santander</h2>
+            <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$175,562 MXN</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>ESM-Santander &nbsp;<strong>($19.0MM Balance)</strong></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="dbt-card">
-        <div class="dbt-icon" style="color:#1a3d2b">$</div>
-        <div class="ey">Pasivos MX · Energéticos</div>
-        <h2>Exelco Carburante</h2>
-        <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
-          <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
-          <div class="dbt-monthly">Total Mensual: <strong>~$1,377,826 MXN</strong></div>
-          <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(13.4M Balance)</strong></div>
+
+      <!-- Columna Derecha: Dólares -->
+      <div>
+        <div class="sdiv" style="margin-bottom:12px">Deuda en Dólares (USD)</div>
+        <div class="dbt-grid">
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#c9a84c"><img src="https://flagcdn.com/w80/us.png" alt="US"></div>
+            <div class="ey">Pasivos MX · Corporativo</div>
+            <h2>IBC Line of Credit</h2>
+            <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Dólares (USD)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$27,159 USD</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>IBC Line of Credit &nbsp;<strong>($3.8MM Balance)</strong></div>
+            </div>
+          </div>
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#2a5caa"><img src="https://flagcdn.com/w80/us.png" alt="US"></div>
+            <div class="ey">Relacion Pasivos EU</div>
+            <h2>Tesoro Realty</h2>
+            <div class="dbt-section" style="border-color:#2a5caa;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#2a5caa">Deuda en Dólares (USD)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$85,521 USD</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#2a5caa"></span>Tesoro Realty &nbsp;<strong>($4.6MM Balance)</strong></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="dbt-card">
-        <div class="dbt-icon" style="color:#c9a84c">$</div>
-        <div class="ey">Pasivos MX · Alimentos MX</div>
-        <h2>Pasivos Dólares</h2>
-        <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
-          <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
-          <div class="dbt-monthly">Total Mensual: <strong>~$363,490 MXN</strong></div>
-          <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>RYSF-Santander &nbsp;<strong>(20.0M Balance)</strong></div>
-          <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>ESM-Santander &nbsp;<strong>(19.0M Balance)</strong></div>
-        </div>
-      </div>
+
     </div>
 
   </div>
@@ -128,46 +166,83 @@
   <!-- FEBRERO -->
   <div id="m-feb" class="mpnl">
     <div class="sdiv">Estructura de Deuda — Pasivos MX · Febrero 2026</div>
-    <div class="dbt-grid">
-      <div class="dbt-card">
-        <div class="dbt-icon" style="color:#1a3d2b">$</div>
-        <div class="ey">Pasivos MX · Corporativo</div>
-        <h2>Deuda Corporativa</h2>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px">
-          <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
-            <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
-            <div class="dbt-monthly">Total Mensual: <strong>~$644,079 MXN</strong></div>
-            <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(9.8M Balance)</strong></div>
-            <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Ford &nbsp;<strong>(1.2M Balance)</strong></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+
+      <!-- Columna Izquierda: Pesos -->
+      <div>
+        <div class="sdiv" style="margin-bottom:12px">Deuda en Pesos (MXN)</div>
+        <div class="dbt-grid">
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#1a3d2b"><img src="https://flagcdn.com/w80/mx.png" alt="MX"></div>
+            <div class="ey">Pasivos MX · Corporativo</div>
+            <h2>Deuda Corporativa</h2>
+            <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$644,079 MXN</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(9.8MM Balance)</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Ford &nbsp;<strong>(1.2MM Balance)</strong></div>
+            </div>
           </div>
-          <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
-            <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
-            <div class="dbt-monthly">Total Mensual: <strong>~$28,022 USD</strong></div>
-            <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>IBC Line of Credit &nbsp;<strong>($3.8M Balance)</strong></div>
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#1a3d2b"><img src="https://flagcdn.com/w80/mx.png" alt="MX"></div>
+            <div class="ey">Pasivos MX · Energéticos</div>
+            <h2>Exelco Carburante</h2>
+            <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$1,359,452 MXN</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(12.2MM Balance)</strong></div>
+            </div>
+          </div>
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#c9a84c"><img src="https://flagcdn.com/w80/mx.png" alt="MX"></div>
+            <div class="ey">Pasivos MX · Alimentos MX</div>
+            <h2>RYSF-Santander</h2>
+            <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$188,684 MXN</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>RYSF-Santander &nbsp;<strong>($20.0MM Balance)</strong></div>
+            </div>
+          </div>
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#c9a84c"><img src="https://flagcdn.com/w80/mx.png" alt="MX"></div>
+            <div class="ey">Pasivos MX · Alimentos MX</div>
+            <h2>ESM-Santander</h2>
+            <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$180,562 MXN</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>ESM-Santander &nbsp;<strong>($19.0MM Balance)</strong></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="dbt-card">
-        <div class="dbt-icon" style="color:#1a3d2b">$</div>
-        <div class="ey">Pasivos MX · Energéticos</div>
-        <h2>Exelco Carburante</h2>
-        <div class="dbt-section" style="border-color:#1a3d2b;margin-bottom:0">
-          <div class="dbt-sec-lbl" style="color:#1a3d2b">Deuda en Pesos (MXN)</div>
-          <div class="dbt-monthly">Total Mensual: <strong>~$1,359,452 MXN</strong></div>
-          <div class="dbt-item"><span class="dbt-dot" style="background:#1a3d2b"></span>Santander &nbsp;<strong>(12.2M Balance)</strong></div>
+
+      <!-- Columna Derecha: Dólares -->
+      <div>
+        <div class="sdiv" style="margin-bottom:12px">Deuda en Dólares (USD)</div>
+        <div class="dbt-grid">
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#c9a84c"><img src="https://flagcdn.com/w80/us.png" alt="US"></div>
+            <div class="ey">Pasivos MX · Corporativo</div>
+            <h2>IBC Line of Credit</h2>
+            <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Dólares (USD)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$28,022 USD</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>IBC Line of Credit &nbsp;<strong>($3.8MM Balance)</strong></div>
+            </div>
+          </div>
+          <div class="dbt-card">
+            <div class="dbt-icon" style="color:#2a5caa"><img src="https://flagcdn.com/w80/us.png" alt="US"></div>
+            <div class="ey">Relacion Pasivos EU</div>
+            <h2>Tesoro Realty</h2>
+            <div class="dbt-section" style="border-color:#2a5caa;margin-bottom:0">
+              <div class="dbt-sec-lbl" style="color:#2a5caa">Deuda en Dólares (USD)</div>
+              <div class="dbt-monthly">Total Mensual: <strong>~$1,555,328 USD</strong></div>
+              <div class="dbt-item"><span class="dbt-dot" style="background:#2a5caa"></span>Tesoro Realty &nbsp;<strong>($3.0MM Balance)</strong></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="dbt-card">
-        <div class="dbt-icon" style="color:#c9a84c">$</div>
-        <div class="ey">Pasivos MX · Alimentos MX</div>
-        <h2>Pasivos Dólares</h2>
-        <div class="dbt-section" style="border-color:#c9a84c;margin-bottom:0">
-          <div class="dbt-sec-lbl" style="color:#b08b28">Deuda en Pesos (MXN)</div>
-          <div class="dbt-monthly">Total Mensual: <strong>~$369,246 MXN</strong></div>
-          <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>RYSF-Santander &nbsp;<strong>(20.0M Balance)</strong></div>
-          <div class="dbt-item"><span class="dbt-dot" style="background:#c9a84c"></span>ESM-Santander &nbsp;<strong>(19.0M Balance)</strong></div>
-        </div>
-      </div>
+
     </div>
 
   </div>
@@ -175,73 +250,110 @@
   <!-- COMPARATIVO -->
   <div id="m-cmp" class="mpnl">
     <div class="sdiv">Evolución de Saldos de Deuda — Enero vs Febrero 2026</div>
-    <div class="cc">
-      <table class="dtbl">
-        <thead>
-          <tr><th>Crédito</th><th>Moneda</th><th style="text-align:right">Saldo Enero</th><th style="text-align:right">Saldo Febrero</th><th style="text-align:right">Variación</th><th style="text-align:right">%</th></tr>
-        </thead>
-        <tbody>
-          <tr><td colspan="6" class="metric fw7" style="background:var(--g800);color:white;padding:6px 10px">DEUDA CORPORATIVA</td></tr>
-          <tr>
-            <td class="metric">Santander</td><td style="color:var(--tx3);font-size:12px">MXN</td>
-            <td style="text-align:right">$10,291,441</td>
-            <td style="text-align:right">$9,791,441</td>
-            <td style="text-align:right" class="ng">−$500,000</td>
-            <td style="text-align:right"><span class="badge g">−4.9%</span></td>
-          </tr>
-          <tr>
-            <td class="metric">Ford</td><td style="color:var(--tx3);font-size:12px">MXN</td>
-            <td style="text-align:right">$1,191,593</td>
-            <td style="text-align:right">$1,174,497</td>
-            <td style="text-align:right" class="ng">−$17,096</td>
-            <td style="text-align:right"><span class="badge g">−1.4%</span></td>
-          </tr>
-          <tr>
-            <td class="metric">IBC Line of Credit</td><td style="color:var(--tx3);font-size:12px">USD</td>
-            <td style="text-align:right">$3,828,500</td>
-            <td style="text-align:right">$3,828,500</td>
-            <td style="text-align:right">—</td>
-            <td style="text-align:right"><span class="badge">0.0%</span></td>
-          </tr>
-          <tr style="border-top:2px solid var(--g800)">
-            <td class="metric fw7">Total Corporativo (MXN)</td><td></td>
-            <td style="text-align:right fw7">$11,483,034</td>
-            <td style="text-align:right fw7">$10,965,938</td>
-            <td style="text-align:right" class="ng fw7">−$517,096</td>
-            <td style="text-align:right"><span class="badge g">−4.5%</span></td>
-          </tr>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
 
-          <tr><td colspan="6" class="metric fw7" style="background:#b08b28;color:white;padding:6px 10px">DEUDA EN PESOS (MXN)</td></tr>
-          <tr>
-            <td class="metric">Carburante — Santander</td><td style="color:var(--tx3);font-size:12px">MXN</td>
-            <td style="text-align:right">$13,433,486</td>
-            <td style="text-align:right">$12,193,486</td>
-            <td style="text-align:right" class="ng">−$1,240,000</td>
-            <td style="text-align:right"><span class="badge g">−9.2%</span></td>
-          </tr>
-          <tr>
-            <td class="metric">RYSF — Santander</td><td style="color:var(--tx3);font-size:12px">MXN</td>
-            <td style="text-align:right">$20,000,000</td>
-            <td style="text-align:right">$20,000,000</td>
-            <td style="text-align:right">—</td>
-            <td style="text-align:right"><span class="badge">0.0%</span></td>
-          </tr>
-          <tr>
-            <td class="metric">ESM — Santander</td><td style="color:var(--tx3);font-size:12px">MXN</td>
-            <td style="text-align:right">$19,000,000</td>
-            <td style="text-align:right">$19,000,000</td>
-            <td style="text-align:right">—</td>
-            <td style="text-align:right"><span class="badge">0.0%</span></td>
-          </tr>
-          <tr style="border-top:2px solid #c9a84c">
-            <td class="metric fw7">Total Pesos (MXN)</td><td></td>
-            <td style="text-align:right fw7">$56,261,986</td>
-            <td style="text-align:right fw7">$55,021,986</td>
-            <td style="text-align:right" class="ng fw7">−$1,240,000</td>
-            <td style="text-align:right"><span class="badge g">−2.2%</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- Columna Izquierda: Pesos -->
+      <div>
+        <div class="sdiv" style="margin-bottom:12px;display:flex;align-items:center;gap:8px">
+          <img src="https://flagcdn.com/w40/mx.png" style="height:18px;border-radius:2px">
+          Deuda en Pesos (MXN)
+        </div>
+        <div class="cc" style="padding:0">
+          <table class="dtbl">
+            <thead>
+              <tr><th>Crédito</th><th style="text-align:right">Saldo Enero</th><th style="text-align:right">Saldo Feb</th><th style="text-align:right">Var</th><th style="text-align:right">%</th></tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="5" class="metric fw7" style="background:var(--g800);color:white;padding:5px 10px">CORPORATIVA</td></tr>
+              <tr>
+                <td class="metric">Santander</td>
+                <td style="text-align:right">$10,291,441</td>
+                <td style="text-align:right">$9,791,441</td>
+                <td style="text-align:right" class="ng">−$500,000</td>
+                <td style="text-align:right"><span class="badge g">−4.9%</span></td>
+              </tr>
+              <tr>
+                <td class="metric">Ford</td>
+                <td style="text-align:right">$1,191,593</td>
+                <td style="text-align:right">$1,174,497</td>
+                <td style="text-align:right" class="ng">−$17,096</td>
+                <td style="text-align:right"><span class="badge g">−1.4%</span></td>
+              </tr>
+              <tr><td colspan="5" class="metric fw7" style="background:#1a6b3c;color:white;padding:5px 10px">CARBURANTE</td></tr>
+              <tr>
+                <td class="metric">Santander</td>
+                <td style="text-align:right">$13,433,486</td>
+                <td style="text-align:right">$12,193,486</td>
+                <td style="text-align:right" class="ng">−$1,240,000</td>
+                <td style="text-align:right"><span class="badge g">−9.2%</span></td>
+              </tr>
+              <tr><td colspan="5" class="metric fw7" style="background:#b08b28;color:white;padding:5px 10px">ALIMENTOS MX</td></tr>
+              <tr>
+                <td class="metric">RYSF-Santander</td>
+                <td style="text-align:right">$20,000,000</td>
+                <td style="text-align:right">$20,000,000</td>
+                <td style="text-align:right">—</td>
+                <td style="text-align:right"><span class="badge">0.0%</span></td>
+              </tr>
+              <tr>
+                <td class="metric">ESM-Santander</td>
+                <td style="text-align:right">$19,000,000</td>
+                <td style="text-align:right">$19,000,000</td>
+                <td style="text-align:right">—</td>
+                <td style="text-align:right"><span class="badge">0.0%</span></td>
+              </tr>
+              <tr style="border-top:2px solid var(--g800)">
+                <td class="metric fw7">Total Pesos</td>
+                <td style="text-align:right" class="fw7">$63,916,520</td>
+                <td style="text-align:right" class="fw7">$62,159,424</td>
+                <td style="text-align:right" class="ng fw7">−$1,757,096</td>
+                <td style="text-align:right"><span class="badge g">−2.7%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Dólares -->
+      <div>
+        <div class="sdiv" style="margin-bottom:12px;display:flex;align-items:center;gap:8px">
+          <img src="https://flagcdn.com/w40/us.png" style="height:18px;border-radius:2px">
+          Deuda en Dólares (USD)
+        </div>
+        <div class="cc" style="padding:0">
+          <table class="dtbl">
+            <thead>
+              <tr><th>Crédito</th><th style="text-align:right">Saldo Enero</th><th style="text-align:right">Saldo Feb</th><th style="text-align:right">Var</th><th style="text-align:right">%</th></tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="5" class="metric fw7" style="background:#b08b28;color:white;padding:5px 10px">CORPORATIVA</td></tr>
+              <tr>
+                <td class="metric">IBC Line of Credit</td>
+                <td style="text-align:right">$3,828,500</td>
+                <td style="text-align:right">$3,828,500</td>
+                <td style="text-align:right">—</td>
+                <td style="text-align:right"><span class="badge">0.0%</span></td>
+              </tr>
+              <tr><td colspan="5" class="metric fw7" style="background:#2a5caa;color:white;padding:5px 10px">RELACION PASIVOS EU</td></tr>
+              <tr>
+                <td class="metric">Tesoro Realty</td>
+                <td style="text-align:right">$4,586,250</td>
+                <td style="text-align:right">$3,045,922</td>
+                <td style="text-align:right" class="ng">−$1,540,328</td>
+                <td style="text-align:right"><span class="badge g">−33.6%</span></td>
+              </tr>
+              <tr style="border-top:2px solid #2a5caa">
+                <td class="metric fw7">Total Dólares</td>
+                <td style="text-align:right" class="fw7">$8,414,750</td>
+                <td style="text-align:right" class="fw7">$6,874,422</td>
+                <td style="text-align:right" class="ng fw7">−$1,540,328</td>
+                <td style="text-align:right"><span class="badge g">−18.3%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </div>
 

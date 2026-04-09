@@ -18,6 +18,12 @@
 .ph-right .ph-div{flex-direction:row-reverse}
 .ph-icon svg{width:40px;height:40px;fill:var(--g800)}
 .ph-right .ph-icon svg{fill:var(--navy)}
+.ph-icon.neu svg{fill:#2563eb}
+.ph-icon.neg svg{fill:#dc2626}
+.ph-icon.pos svg{fill:#16a34a}
+.ph-right .ph-icon.neu svg{fill:#2563eb}
+.ph-right .ph-icon.neg svg{fill:#dc2626}
+.ph-right .ph-icon.pos svg{fill:#16a34a}
 .ph-div-info{}
 .ph-div-label{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--gray400);font-weight:700;margin-bottom:1px}
 .ph-div-val{font-size:22px;font-weight:800;color:var(--g800);font-family:'Courier New',monospace;line-height:1}
@@ -587,9 +593,19 @@ const ENE=[1468,599,109,61,32,7];
 const FEB=[1468,589,107,61,33,7];
 
 document.addEventListener('DOMContentLoaded',()=>{
+  // Colorear íconos según variación
+  document.querySelectorAll('.ph-div').forEach(div=>{
+    const icon=div.querySelector('.ph-icon');
+    const delta=div.querySelector('.ph-div-delta');
+    if(icon&&delta){
+      if(delta.classList.contains('neg')) icon.classList.add('neg');
+      else if(delta.classList.contains('pos')) icon.classList.add('pos');
+      else icon.classList.add('neu');
+    }
+  });
   const barOpts={responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false}},
-    scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},ticks:{stepSize:200}}}};
+    scales:{x:{grid:{display:false},ticks:{font:{size:14,weight:'700'}}},y:{grid:{color:'#f0f0f0'},ticks:{stepSize:200,font:{size:14,weight:'700'}}}}};
 
   new Chart(document.getElementById('chartEne'),{type:'bar',
     data:{labels:DIVS,datasets:[{data:ENE,backgroundColor:COLORS,borderRadius:5}]},
@@ -606,7 +622,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     ]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'}}}}});
+      scales:{x:{grid:{display:false},ticks:{font:{size:14,weight:'700'}}},y:{grid:{color:'#f0f0f0'},ticks:{font:{size:14,weight:'700'}}}}}});
 });
 </script>
 </body>
