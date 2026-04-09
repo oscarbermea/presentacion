@@ -5,6 +5,13 @@
 <link rel="icon" href="exelco.ico" type="image/x-icon">
 <title>01 · Dashboard Ejecutivo — Exelco 2026</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+.sdiv{cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between}
+.sdiv .toggle-icon{font-size:13px;font-weight:700;margin-left:10px;transition:transform .25s}
+.sdiv.open .toggle-icon{transform:rotate(180deg)}
+.collapsible{overflow:hidden;transition:max-height .3s ease,opacity .3s ease;max-height:0;opacity:0}
+.collapsible.open{max-height:3000px;opacity:1}
+</style>
 <script src="auth.js"></script>
 <script src="chart.min.js"></script>
 </head>
@@ -72,10 +79,10 @@
       <div class="kpi cg"><div class="lb">Utilidad Neta</div><div class="vl">24,210</div><div class="dl pos">6.8% de ventas</div></div>
     </div>
     <div class="kpis kpis4">
-      <div class="kpi cgr"><div class="lb">Costo Directo</div><div class="vl">207,906</div><div class="dl neu">58.4% de ventas</div></div>
+      <div class="kpi cr"><div class="lb">Costo Directo</div><div class="vl">207,906</div><div class="dl neu">58.4% de ventas</div></div>
       <div class="kpi cg"><div class="lb">Margen de Contribución</div><div class="vl">148,263</div><div class="dl pos">41.6% de ventas</div></div>
-      <div class="kpi cgr"><div class="lb">Gastos Operativos</div><div class="vl">114,968</div><div class="dl neu">32.3% de ventas</div></div>
-      <div class="kpi cgr"><div class="lb">Tipo de Cambio Prom.</div><div class="vl">17.3310</div><div class="dl neu">MXN / USD</div></div>
+      <div class="kpi cgo"><div class="lb">Gastos Operativos</div><div class="vl">114,968</div><div class="dl neu">32.3% de ventas</div></div>
+      <div class="kpi cg"><div class="lb">Net Cash Flow</div><div class="vl">+14,234</div><div class="dl pos">▲ Flujo neto del mes</div></div>
     </div>
 
     <div class="cc">
@@ -94,8 +101,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Métricas Clave</div>
-    <div class="g2">
+    <div class="sdiv" onclick="toggleDtl(this)">Métricas Clave <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="g2">
       <div class="cc" style="margin-bottom:0">
         <div class="cc-head"><div><div class="ey">Enero 2026</div><h2>Estado de Resultados</h2></div></div>
         <div class="mrow"><span class="mk">Ventas Netas</span><span class="mv p">$356,169</span></div>
@@ -115,7 +122,7 @@
         <div class="mrow"><span class="mk">Inmobiliaria EU</span><span class="mv">$1,768 — 0.5%</span></div>
         <div class="mrow"><span class="mk" style="font-weight:700">Total</span><span class="mv p" style="color:#1a3d2b">$356,169</span></div>
       </div>
-    </div>
+    </div></div>
   </div>
 
   <!-- FEBRERO -->
@@ -127,10 +134,10 @@
       <div class="kpi cr"><div class="lb">Utilidad Neta</div><div class="vl">8,310</div><div class="dl neg">2.7% de ventas</div></div>
     </div>
     <div class="kpis kpis4">
-      <div class="kpi cgr"><div class="lb">Costo Directo</div><div class="vl">184,196</div><div class="dl neu">59.3% de ventas</div></div>
+      <div class="kpi cr"><div class="lb">Costo Directo</div><div class="vl">184,196</div><div class="dl neu">59.3% de ventas</div></div>
       <div class="kpi cg"><div class="lb">Margen de Contribución</div><div class="vl">126,397</div><div class="dl neg">40.7% de ventas</div></div>
-      <div class="kpi cgr"><div class="lb">Gastos Operativos</div><div class="vl">109,058</div><div class="dl neu">35.1% de ventas</div></div>
-      <div class="kpi cgr"><div class="lb">Tipo de Cambio Prom.</div><div class="vl">17.2193</div><div class="dl neg">▼ −0.65% vs Ene</div></div>
+      <div class="kpi cgo"><div class="lb">Gastos Operativos</div><div class="vl">109,058</div><div class="dl neu">35.1% de ventas</div></div>
+      <div class="kpi cr"><div class="lb">Net Cash Flow</div><div class="vl">−4,251</div><div class="dl neg">▼ Flujo neto del mes</div></div>
     </div>
 
     <div class="cc">
@@ -149,8 +156,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Métricas Clave</div>
-    <div class="g2">
+    <div class="sdiv" onclick="toggleDtl(this)">Métricas Clave <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="g2">
       <div class="cc" style="margin-bottom:0">
         <div class="cc-head"><div><div class="ey">Febrero 2026</div><h2>Estado de Resultados</h2></div></div>
         <div class="mrow"><span class="mk">Ventas Netas</span><span class="mv r">$310,593</span></div>
@@ -170,7 +177,7 @@
         <div class="mrow"><span class="mk">Inmobiliaria EU</span><span class="mv">$1,756 — 0.6%</span></div>
         <div class="mrow"><span class="mk" style="font-weight:700">Total</span><span class="mv r">$310,593</span></div>
       </div>
-    </div>
+    </div></div>
   </div>
 
   <!-- COMPARATIVO -->
@@ -198,8 +205,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Tabla Comparativa Detallada</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Tabla Comparativa Detallada <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead>
           <tr>
@@ -219,10 +226,10 @@
           <tr><td class="metric fw7">UAFIR</td><td style="text-align:right" class="ng fw7">33,295</td><td style="text-align:right" class="nr fw7">17,338</td><td style="text-align:right" class="nr fw7">−15,957</td><td style="text-align:right"><span class="badge r">−47.9%</span></td></tr>
           <tr><td class="metric">UAFIR FL</td><td style="text-align:right" class="ng">40,174</td><td style="text-align:right" class="nr">24,324</td><td style="text-align:right" class="nr">−15,850</td><td style="text-align:right"><span class="badge r">−39.5%</span></td></tr>
           <tr><td class="metric fw7">Utilidad Neta</td><td style="text-align:right" class="ng fw7">24,210</td><td style="text-align:right" class="nr fw7">8,310</td><td style="text-align:right" class="nr fw7">−15,900</td><td style="text-align:right"><span class="badge r">−65.7%</span></td></tr>
-          <tr><td class="metric">Tipo de Cambio</td><td style="text-align:right">17.3310</td><td style="text-align:right">17.2193</td><td style="text-align:right" class="nr">−0.1117</td><td style="text-align:right"><span class="badge r">−0.6%</span></td></tr>
+          <tr><td class="metric">Net Cash Flow</td><td style="text-align:right" class="ng">+14,234</td><td style="text-align:right" class="nr">−4,251</td><td style="text-align:right" class="nr">−18,485</td><td style="text-align:right"><span class="badge r">−129.9%</span></td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
   <div class="foot">
@@ -232,6 +239,13 @@
 </main>
 
 <script>
+function toggleDtl(hdr){
+  const panel=hdr.nextElementSibling;
+  const isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  hdr.classList.toggle('open',!isOpen);
+}
+
 const G = {g800:'#1a3d2b',g700:'#1f5c37',g600:'#2e7d4f',gold:'#c9a84c',navy:'#1e3a5f',red:'#c0392b',gray:'#9ca3af'};
 
 // P&L waterfall helper

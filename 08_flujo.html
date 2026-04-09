@@ -5,6 +5,31 @@
 <link rel="icon" href="exelco.ico" type="image/x-icon">
 <title>08 · Flujo Operativo — Exelco 2026</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+.sdiv{cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between}
+.sdiv .toggle-icon{font-size:13px;font-weight:700;margin-left:10px;transition:transform .25s}
+.sdiv.open .toggle-icon{transform:rotate(180deg)}
+.collapsible{overflow:hidden;transition:max-height .3s ease,opacity .3s ease;max-height:0;opacity:0}
+.collapsible.open{max-height:3000px;opacity:1}
+.ins-rank{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:6px 12px;margin-top:12px;font-size:13px}
+.ins-rank-num{font-size:11px;font-weight:800;background:var(--g800);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center}
+.ins-rank-lbl{font-weight:600;color:var(--tx1)}
+.ins-rank-sub{font-size:11px;color:var(--gray400);grid-column:2;margin-top:-4px}
+.ins-rank-val{font-family:'Courier New',monospace;font-weight:800;font-size:13px;text-align:right;white-space:nowrap}
+.ins-rank-val.pos{color:#1a3d2b}.ins-rank-val.neg{color:#c0392b}
+.ins-rank-sep{grid-column:1/-1;border:none;border-top:1px solid var(--g200);margin:2px 0}
+/* ── DIV NARRATIVE GRID ── */
+.dn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+@media(max-width:700px){.dn-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.dn-grid{grid-template-columns:1fr}}
+.dn-card{background:var(--g050,#f8faf9);border:1px solid var(--g200,#d1e8d9);border-radius:10px;padding:11px 13px;display:flex;flex-direction:column;gap:0}
+.dn-head{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--g800,#1a3d2b);margin-bottom:6px;padding-bottom:5px;border-bottom:1px solid var(--g200);display:flex;align-items:center;gap:5px}
+.dn-body{font-size:11.5px;color:var(--tx2);line-height:1.55;flex:1}
+.dn-foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:6px;border-top:1px solid var(--g200)}
+.dn-foot-lbl{font-size:10px;color:var(--gray400)}
+.dn-fn{font-family:'Courier New',monospace;font-weight:800;font-size:14px}
+.dn-fn.pos{color:#1a3d2b}.dn-fn.neg{color:#c0392b}
+</style>
 <script src="auth.js"></script>
 <script src="chart.min.js"></script>
 </head>
@@ -53,19 +78,19 @@
   <div class="ph">
     <div class="ey">08 · Flujo Operativo</div>
     <h1>Flujo Operativo</h1>
-    <p class="sub">Fuente: Hoja FC en MXN — Saldo Inicial → Generación → Capital de Trabajo → Partidas → Inversiones → Eficiencia → Saldo Final (En Miles MXN)</p>
+    <p class="sub">Fuente: Hoja FC en MXN — Saldo Inicial → Generación → Capital de Trabajo → Partida no Operativa → Inversiones → Otros Ingresos → Saldo Final (En Miles MXN)</p>
   </div>
 
   <div class="mtabs">
     <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
     <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
-    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+    <button class="mtab" onclick="goM('cmp',this)">Acumulado</button>
   </div>
 
   <!-- ══════════ ENERO ══════════ -->
   <div id="m-ene" class="mpnl on">
     <div class="kpis kpis4">
-      <div class="kpi cgr"><div class="lb">Saldo Inicial Bancos</div><div class="vl">70,505</div><div class="dl neu">&nbsp;</div></div>
+      <div class="kpi cn"><div class="lb">Saldo Inicial Bancos</div><div class="vl">70,505</div><div class="dl neu">&nbsp;</div></div>
       <div class="kpi cg"><div class="lb">Generación Bruta</div><div class="vl">+31,267</div><div class="dl pos">Flujo operativo generado</div></div>
       <div class="kpi cr"><div class="lb">Variación C de T</div><div class="vl">−26,248</div><div class="dl neg">Deudores Div. −32,789</div></div>
       <div class="kpi cg"><div class="lb">Saldo Final Bancos</div><div class="vl">67,090</div><div class="dl neg">▼ −3,416 vs SI</div></div>
@@ -82,16 +107,45 @@
       </div>
       <div class="cw cw-lg" style="position:relative"><canvas id="wfEne"></canvas></div>
       <div class="ins">
-        <strong>Enero 2026:</strong> La generación bruta de <strong>+$31,267</strong> se erosiona principalmente por la
-        <strong>variación en Capital de Trabajo de −$26,248</strong>, impulsada por Deudores Diversos
-        (<span style="color:#c0392b;font-weight:700">−$32,789</span>).
-        Las partidas no operativas suman +$14,569, pero las inversiones (−$9,568) y la eficiencia (−$13,436)
-        resultan en un <strong>Flujo Neto de −$3,416</strong>, con Saldo Final de <strong>$67,090</strong>.
+        <strong>Enero 2026 — Narrativa por División (FC en MXN):</strong>
+        <div class="dn-grid">
+          <div class="dn-card">
+            <div class="dn-head">🍽 Alim MX</div>
+            <div class="dn-body">La generación bruta de +$7,870 es superada por la variación en Capital de Trabajo de −$10,658, donde la reducción del saldo a proveedores (−$11,649) es el principal consumidor de caja. Con partidas no operativas marginales (+$324) e inversiones de −$6,569, el mes cierra en terreno negativo.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn neg">−$9,033</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🌎 Alim EU</div>
+            <div class="dn-body">División con actividad acotada: generación bruta de +$748 es superada por el Capital de Trabajo de −$928, impulsado por cobros de clientes pendientes (−$824). Las inversiones de −$55 definen un flujo neto mínimo pero negativo.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn neg">−$235</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🏢 Inmob EU</div>
+            <div class="dn-body">Generación bruta modesta de +$695; la presión principal llega del Capital de Trabajo (−$17,531) por Deudores Diversos (−$17,248). Esta salida se compensa con partidas no operativas de +$17,087 (aumento de documentos LP), resultando en equilibrio casi neutro.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn pos">+$251</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🔥 Gas (LP+Pozos)</div>
+            <div class="dn-body">La generación bruta de +$10,290 se apoya en Capital de Trabajo positivo de +$1,813 (Proveedores libera +$9,439). Sin embargo, Otros Ingresos (−$8,262) e inversiones (−$2,849) moderan el resultado a un flujo neto positivo marginal.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn pos">+$244</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">⛽ Gasolina</div>
+            <div class="dn-body">Con generación bruta de +$9,406 y Capital de Trabajo favorable de +$2,173 —por liberación de Pagos Anticipados (+$9,449)— la división genera buena entrada. Otros Ingresos (−$5,174) y partidas no operativas (−$1,240) moderan, pero el Flujo Neto se mantiene sólido.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn pos">+$5,086</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🏠 Inmob MX</div>
+            <div class="dn-body">Generación bruta de +$2,257 con Capital de Trabajo que consume −$1,116 neto. Las partidas no operativas de −$853 (ajustes LP) e inversiones mínimas de −$17 dejan un flujo positivo, confirmando la estabilidad de la división.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn pos">+$271</span></div>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:var(--gray400)">Flujo Neto Grupo: <strong style="color:#c0392b">−$3,416</strong> · Saldo Final: <strong style="color:#1a3d2b">$67,090</strong></div>
       </div>
     </div>
 
-    <div class="sdiv">Detalle de Componentes — Enero 2026</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle de Componentes — Enero 2026 <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead>
           <tr><th>Concepto</th><th style="text-align:right">Monto (MXN)</th><th style="text-align:right">Impacto</th><th>Observación</th></tr>
@@ -100,17 +154,17 @@
           <tr><td class="metric fw7">Saldo Inicial</td><td style="text-align:right" class="fw7">70,505</td><td style="text-align:right">—</td><td>Cierre Diciembre 2025</td></tr>
           <tr><td class="metric">(+) Generación Bruta</td><td style="text-align:right" class="ng">+31,267</td><td style="text-align:right"><span class="badge g">+44.4%</span></td><td>Flujo operativo bruto</td></tr>
           <tr><td class="metric">(±) Variación C de T</td><td style="text-align:right" class="nr">−26,248</td><td style="text-align:right"><span class="badge r">−37.2%</span></td><td>Deudores Diversos −32,789</td></tr>
-          <tr><td class="metric">(+) Total Partidas no Op.</td><td style="text-align:right" class="ng">+14,569</td><td style="text-align:right"><span class="badge g">+20.7%</span></td><td>Partidas no monetarias</td></tr>
+          <tr><td class="metric">(+) Partida no Operativa</td><td style="text-align:right" class="ng">+14,569</td><td style="text-align:right"><span class="badge g">+20.7%</span></td><td>Partidas no monetarias</td></tr>
           <tr><td class="metric">(−) Total Inversiones</td><td style="text-align:right" class="nr">−9,568</td><td style="text-align:right"><span class="badge r">−13.6%</span></td><td>CAPEX y financiero</td></tr>
-          <tr><td class="metric">(−) Eficiencia</td><td style="text-align:right" class="nr">−13,436</td><td style="text-align:right"><span class="badge r">−19.1%</span></td><td>Principalmente Energía</td></tr>
+          <tr><td class="metric">(−) Otros Ingresos</td><td style="text-align:right" class="nr">−13,436</td><td style="text-align:right"><span class="badge r">−19.1%</span></td><td>Principalmente Energía</td></tr>
           <tr style="border-top:2px solid var(--g800)"><td class="metric">= Flujo Neto</td><td style="text-align:right" class="nr fw7">−3,416</td><td style="text-align:right">—</td><td>Variación neta de caja</td></tr>
           <tr><td class="metric fw7">= Saldo Final</td><td style="text-align:right" class="ng fw7">67,090</td><td style="text-align:right">—</td><td>Cierre Enero 2026</td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
 
-    <div class="sdiv">Desglose Capital de Trabajo — Enero 2026</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Desglose Capital de Trabajo — Enero 2026 <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead><tr><th>Partida</th><th style="text-align:right">Monto (MXN)</th><th>Impacto</th></tr></thead>
         <tbody>
@@ -124,13 +178,13 @@
           <tr><td class="metric fw7">TOTAL C de T</td><td style="text-align:right" class="nr fw7">−26,248</td><td></td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
   <!-- ══════════ FEBRERO ══════════ -->
   <div id="m-feb" class="mpnl">
     <div class="kpis kpis4">
-      <div class="kpi cgr"><div class="lb">Saldo Inicial Bancos</div><div class="vl">67,044</div><div class="dl neu">&nbsp;</div></div>
+      <div class="kpi cn"><div class="lb">Saldo Inicial Bancos</div><div class="vl">67,044</div><div class="dl neu">&nbsp;</div></div>
       <div class="kpi cg"><div class="lb">Generación Bruta</div><div class="vl">+18,787</div><div class="dl pos">Flujo operativo generado</div></div>
       <div class="kpi cg"><div class="lb">Variación C de T</div><div class="vl">+13,879</div><div class="dl pos">Recuperación parcial</div></div>
       <div class="kpi cr"><div class="lb">Saldo Final Bancos</div><div class="vl">64,547</div><div class="dl neg">▼ −2,497 vs SI</div></div>
@@ -147,15 +201,45 @@
       </div>
       <div class="cw cw-lg"><canvas id="wfFeb"></canvas></div>
       <div class="ins">
-        <strong>Febrero 2026:</strong> La generación bruta baja a <strong>+$18,787</strong> (vs +$31,267 en enero, −39.9%).
-        El Capital de Trabajo es <strong>positivo +$13,879</strong> gracias a la recuperación parcial de Deudores Diversos (+$5,146)
-        y el aumento de Acreedores (+$23,645). Sin embargo, las partidas no operativas (−$28,777) y la eficiencia (−$9,671)
-        resultan en un <strong>Flujo Neto de −$2,497</strong>, con Saldo Final de <strong>$64,547</strong>.
+        <strong>Febrero 2026 — Narrativa por División (FC en MXN):</strong>
+        <div class="dn-grid">
+          <div class="dn-card">
+            <div class="dn-head">🍽 Alim MX</div>
+            <div class="dn-body">La generación bruta cae a +$3,896 (−51% vs enero). El Capital de Trabajo de −$2,042 sigue presionado por Proveedores (−$10,147 pagados neto). Con inversiones de −$3,812, la división no logra revertir el resultado negativo del mes.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn neg">−$1,978</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🌎 Alim EU</div>
+            <div class="dn-body">Generación bruta estable en +$750, pero el Capital de Trabajo se deteriora a −$2,207, ahora impulsado por acumulación de Gastos por Pagar (−$1,028). Las inversiones de −$119 confirman un mes de mayor presión que enero para esta división.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn neg">−$1,576</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🏢 Inmob EU</div>
+            <div class="dn-body">El Capital de Trabajo revierte positivamente a +$24,492 (Acreedores +$15,740), pero es dominado por el pago de documentos LP (−$26,523). Inversiones recuperadas de +$5,994 amortiguan el golpe, resultando en un flujo neto positivo — un desapalancamiento puntual, no recurrente.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn pos">+$4,651</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🔥 Gas (LP+Pozos)</div>
+            <div class="dn-body">Generación bruta de +$4,329 apoyada por Capital de Trabajo positivo de +$3,553 (recuperación de Deudores +$8,310). Otros Ingresos (−$4,687) e inversiones (−$1,225) moderan el resultado, manteniendo el flujo neto en terreno positivo.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn pos">+$1,790</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">⛽ Gasolina</div>
+            <div class="dn-body">Generación bruta sólida de +$9,936, pero el Capital de Trabajo se deteriora a −$8,038, impulsado por el aumento de Pagos Anticipados (−$13,054). Otros Ingresos (−$4,984) y partidas no operativas (−$1,240) invierten el resultado positivo de enero.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn neg">−$1,763</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🏠 Inmob MX</div>
+            <div class="dn-body">La generación bruta cae a terreno negativo (−$812), combinada con Capital de Trabajo de −$1,878 y partidas no operativas de −$816. Es el peor mes de la división en el período — concentrado en ajustes internos más que en deterioro comercial.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto</span><span class="dn-fn neg">−$3,629</span></div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:12px;color:var(--gray400)">Flujo Neto: <strong style="color:#c0392b">−$2,504</strong> · Saldo Final: <strong style="color:#c0392b">$64,547</strong></div>
       </div>
     </div>
 
-    <div class="sdiv">Detalle de Componentes — Febrero 2026</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle de Componentes — Febrero 2026 <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead>
           <tr><th>Concepto</th><th style="text-align:right">Monto (MXN)</th><th style="text-align:right">Impacto</th><th>Observación</th></tr>
@@ -164,17 +248,17 @@
           <tr><td class="metric fw7">Saldo Inicial</td><td style="text-align:right" class="fw7">67,044</td><td style="text-align:right">—</td><td>Cierre Enero 2026</td></tr>
           <tr><td class="metric">(+) Generación Bruta</td><td style="text-align:right" class="ng">+18,787</td><td style="text-align:right"><span class="badge g">+28.0%</span></td><td>−39.9% vs enero</td></tr>
           <tr><td class="metric">(+) Variación C de T</td><td style="text-align:right" class="ng">+13,879</td><td style="text-align:right"><span class="badge g">+20.7%</span></td><td>Acreedores +23,645</td></tr>
-          <tr><td class="metric">(−) Total Partidas no Op.</td><td style="text-align:right" class="nr">−28,777</td><td style="text-align:right"><span class="badge r">−42.9%</span></td><td>Partidas no monetarias</td></tr>
+          <tr><td class="metric">(−) Partida no Operativa</td><td style="text-align:right" class="nr">−28,777</td><td style="text-align:right"><span class="badge r">−42.9%</span></td><td>Partidas no monetarias</td></tr>
           <tr><td class="metric">(+) Total Inversiones</td><td style="text-align:right" class="ng">+3,278</td><td style="text-align:right"><span class="badge g">+4.9%</span></td><td>Neto positivo en feb</td></tr>
-          <tr><td class="metric">(−) Eficiencia</td><td style="text-align:right" class="nr">−9,671</td><td style="text-align:right"><span class="badge r">−14.4%</span></td><td>Principalmente Energía</td></tr>
+          <tr><td class="metric">(−) Otros Ingresos</td><td style="text-align:right" class="nr">−9,671</td><td style="text-align:right"><span class="badge r">−14.4%</span></td><td>Principalmente Energía</td></tr>
           <tr style="border-top:2px solid var(--g800)"><td class="metric">= Flujo Neto</td><td style="text-align:right" class="nr fw7">−2,504</td><td style="text-align:right">—</td><td>Variación neta de caja</td></tr>
           <tr><td class="metric fw7">= Saldo Final</td><td style="text-align:right" class="nr fw7">64,547</td><td style="text-align:right">—</td><td>Cierre Febrero 2026</td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
 
-    <div class="sdiv">Desglose Capital de Trabajo — Febrero 2026</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Desglose Capital de Trabajo — Febrero 2026 <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead><tr><th>Partida</th><th style="text-align:right">Monto (MXN)</th><th>Impacto</th></tr></thead>
         <tbody>
@@ -188,53 +272,99 @@
           <tr><td class="metric fw7">TOTAL C de T</td><td style="text-align:right" class="ng fw7">+13,879</td><td></td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
-  <!-- ══════════ COMPARATIVO ══════════ -->
+  <!-- ══════════ ACUMULADO ══════════ -->
   <div id="m-cmp" class="mpnl">
     <div class="kpis kpis4">
-      <div class="kpi cr"><div class="lb">Δ Gen. Bruta</div><div class="vl">−12,480</div><div class="dl neg">▼ −39.9%</div></div>
-      <div class="kpi cr"><div class="lb">Δ Saldo Final</div><div class="vl">−2,543</div><div class="dl neg">67,090 → 64,547</div></div>
-      <div class="kpi cg"><div class="lb">Δ Variación CT</div><div class="vl">+40,127</div><div class="dl pos">−26,248 → +13,879</div></div>
-      <div class="kpi cr"><div class="lb">Δ Partidas no Op.</div><div class="vl">−43,347</div><div class="dl neg">+14,569 → −28,777</div></div>
+      <div class="kpi cn"><div class="lb">Saldo Inicial Bancos</div><div class="vl">70,505</div><div class="dl neu">Cierre Dic 2025</div></div>
+      <div class="kpi cg"><div class="lb">Gen. Bruta Acum.</div><div class="vl">+50,054</div><div class="dl pos">Ene +31,267 · Feb +18,787</div></div>
+      <div class="kpi cr"><div class="lb">Var. C de T Acum.</div><div class="vl">−12,369</div><div class="dl neg">Deudores Div. −27,643</div></div>
+      <div class="kpi cr"><div class="lb">Saldo Final Bancos</div><div class="vl">64,547</div><div class="dl neg">▼ −5,958 vs SI</div></div>
     </div>
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Ene vs Feb 2026 · Miles MXN</div><h2>Comparativo de Componentes del Flujo</h2><p>FC en MXN · Mes a mes</p></div>
+        <div><div class="ey">Acumulado Ene–Feb 2026 · Miles MXN</div><h2>Flujo Operativo Acumulado</h2><p>FC en MXN · Ene+Feb 2026</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
-          <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
+          <div class="li"><div class="ld" style="background:#111111"></div>Saldo</div>
+          <div class="li"><div class="ld" style="background:#1d4ed8"></div>Positivo</div>
+          <div class="li"><div class="ld" style="background:#c0392b"></div>Negativo</div>
         </div>
       </div>
       <div class="cw cw-lg"><canvas id="cmpChart"></canvas></div>
       <div class="ins">
-        <strong>Principales movimientos Ene→Feb:</strong>
-        La Generación Bruta cae −39.9% (−$12,480) acorde con la baja de ventas.
-        El Capital de Trabajo invierte su señal radicalmente: de −$26,248 a <strong>+$13,879 (+$40,127)</strong>
-        por recuperación de Deudores Diversos y aumento de Acreedores.
-        Las Partidas no Operativas se revierten de +$14,569 a <strong>−$28,777</strong>, siendo el factor de mayor volatilidad.
-        El Saldo Final cae de $67,090 a $64,547 (<strong>−$2,543</strong>).
+        <strong>Acumulado Ene–Feb 2026 — Narrativa por División (FC en MXN):</strong>
+        <div class="dn-grid">
+          <div class="dn-card">
+            <div class="dn-head">🍽 Alim MX</div>
+            <div class="dn-body">La generación bruta acumulada de +$11,766 resultó insuficiente frente al Capital de Trabajo negativo de −$12,700, presionado en ambos meses por reducción de saldo a proveedores (−$21,796 acum.). Con inversiones de −$10,381, es la división con mayor déficit de flujo del bimestre.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto Acum.</span><span class="dn-fn neg">−$11,011</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🌎 Alim EU</div>
+            <div class="dn-body">Con generación bruta acumulada de +$1,498, el Capital de Trabajo fue consistentemente negativo en ambos meses (−$3,135 acum.), impulsado por cobros de clientes pendientes en enero y gastos acumulados en febrero. Sin partidas no operativas, el déficit refleja presión sostenida en cobranza.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto Acum.</span><span class="dn-fn neg">−$1,811</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🏢 Inmob EU</div>
+            <div class="dn-body">Bimestre marcado por movimientos de gran magnitud que se compensan: Capital de Trabajo acumula +$6,961 neto (Deudores −$17,248 enero vs. Acreedores +$15,740 febrero). El pago masivo de documentos LP (−$9,436) es el principal uso, pero inversiones recuperadas (+$5,994) sostienen el resultado positivo.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto Acum.</span><span class="dn-fn pos">+$4,902</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🔥 Gas (LP+Pozos)</div>
+            <div class="dn-body">La generación bruta acumulada de +$14,619 y Capital de Trabajo positivo de +$5,366 son el motor de la división. Otros Ingresos (−$12,949 acum.) representan el principal drenador del período, seguido por inversiones de −$4,074. El flujo neto acumulado se mantiene positivo aunque moderado.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto Acum.</span><span class="dn-fn pos">+$2,034</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">⛽ Gasolina</div>
+            <div class="dn-body">La mayor generación bruta del grupo en el bimestre (+$19,342) sostiene el resultado positivo a pesar del Capital de Trabajo negativo de −$5,865 y Otros Ingresos de −$10,158. La reversión de inversiones acumuladas (+$2,485) contribuye al cierre favorable del período.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto Acum.</span><span class="dn-fn pos">+$3,323</span></div>
+          </div>
+          <div class="dn-card">
+            <div class="dn-head">🏠 Inmob MX</div>
+            <div class="dn-body">El deterioro de febrero (GenBruta −$812) arrastra el acumulado: la generación bruta de +$1,445 no cubre el Capital de Trabajo de −$2,994 ni las partidas no operativas de −$1,669. El flujo acumulado negativo refleja principalmente un mes de febrero atípico, no una tendencia estructural.</div>
+            <div class="dn-foot"><span class="dn-foot-lbl">Flujo Neto Acum.</span><span class="dn-fn neg">−$3,358</span></div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:12px;color:var(--gray400)">Flujo Neto Grupo: <strong style="color:#c0392b">−$5,958</strong> · Saldo Final: <strong style="color:#c0392b">$64,547</strong></div>
       </div>
     </div>
 
-    <div class="sdiv">Tabla Comparativa de Flujo</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle de Componentes — Acumulado <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
-        <thead><tr><th>Concepto</th><th style="text-align:right">Enero $</th><th style="text-align:right">Febrero $</th><th style="text-align:right">Variación $</th><th style="text-align:right">Var %</th></tr></thead>
+        <thead><tr><th>Concepto</th><th style="text-align:right">Enero</th><th style="text-align:right">Febrero</th><th style="text-align:right">Acumulado</th><th>Observación</th></tr></thead>
         <tbody>
-          <tr><td class="metric fw7">Saldo Inicial</td><td style="text-align:right">70,505</td><td style="text-align:right">67,044</td><td style="text-align:right" class="nr">−3,461</td><td style="text-align:right">—</td></tr>
-          <tr><td class="metric">(+) Generación Bruta</td><td style="text-align:right" class="ng">31,267</td><td style="text-align:right" class="ng">18,787</td><td style="text-align:right" class="nr">−12,480</td><td style="text-align:right"><span class="badge r">−39.9%</span></td></tr>
-          <tr><td class="metric">(±) Variación C de T</td><td style="text-align:right" class="nr">−26,248</td><td style="text-align:right" class="ng">+13,879</td><td style="text-align:right" class="ng">+40,127</td><td style="text-align:right"><span class="badge g">Reversión</span></td></tr>
-          <tr><td class="metric">(±) Total Partidas</td><td style="text-align:right" class="ng">+14,569</td><td style="text-align:right" class="nr">−28,777</td><td style="text-align:right" class="nr">−43,347</td><td style="text-align:right"><span class="badge r">Reversión</span></td></tr>
-          <tr><td class="metric">(±) Total Inversiones</td><td style="text-align:right" class="nr">−9,568</td><td style="text-align:right" class="ng">+3,278</td><td style="text-align:right" class="ng">+12,846</td><td style="text-align:right"><span class="badge g">Reversión</span></td></tr>
-          <tr><td class="metric">(−) Eficiencia</td><td style="text-align:right" class="nr">−13,436</td><td style="text-align:right" class="nr">−9,671</td><td style="text-align:right" class="ng">+3,765</td><td style="text-align:right"><span class="badge g">−28.0%</span></td></tr>
-          <tr><td class="metric">= Flujo Neto</td><td style="text-align:right" class="nr">−3,416</td><td style="text-align:right" class="nr">−2,504</td><td style="text-align:right" class="ng">+912</td><td style="text-align:right"><span class="badge g">Mejora</span></td></tr>
-          <tr><td class="metric fw7">= Saldo Final</td><td style="text-align:right" class="ng fw7">67,090</td><td style="text-align:right" class="nr fw7">64,547</td><td style="text-align:right" class="nr fw7">−2,543</td><td style="text-align:right"><span class="badge r">−3.8%</span></td></tr>
+          <tr><td class="metric fw7">Saldo Inicial</td><td style="text-align:right" class="fw7">70,505</td><td style="text-align:right">67,044</td><td style="text-align:right" class="fw7">70,505</td><td>Cierre Dic 2025</td></tr>
+          <tr><td class="metric">(+) Generación Bruta</td><td style="text-align:right" class="ng">+31,267</td><td style="text-align:right" class="ng">+18,787</td><td style="text-align:right" class="ng fw7">+50,054</td><td>Flujo operativo bruto</td></tr>
+          <tr><td class="metric">(±) Variación C de T</td><td style="text-align:right" class="nr">−26,248</td><td style="text-align:right" class="ng">+13,879</td><td style="text-align:right" class="nr fw7">−12,369</td><td>Deudores Div. −27,643</td></tr>
+          <tr><td class="metric">(±) Partida no Operativa</td><td style="text-align:right" class="ng">+14,569</td><td style="text-align:right" class="nr">−28,777</td><td style="text-align:right" class="nr fw7">−14,208</td><td>Partidas no monetarias</td></tr>
+          <tr><td class="metric">(±) Total Inversiones</td><td style="text-align:right" class="nr">−9,568</td><td style="text-align:right" class="ng">+3,278</td><td style="text-align:right" class="nr fw7">−6,290</td><td>CAPEX y financiero</td></tr>
+          <tr><td class="metric">(−) Otros Ingresos</td><td style="text-align:right" class="nr">−13,436</td><td style="text-align:right" class="nr">−9,671</td><td style="text-align:right" class="nr fw7">−23,107</td><td>Principalmente Energía</td></tr>
+          <tr style="border-top:2px solid var(--g800)"><td class="metric">= Flujo Neto</td><td style="text-align:right" class="nr">−3,416</td><td style="text-align:right" class="nr">−2,504</td><td style="text-align:right" class="nr fw7">−5,958</td><td>Variación neta de caja</td></tr>
+          <tr><td class="metric fw7">= Saldo Final</td><td style="text-align:right" class="ng">67,090</td><td style="text-align:right" class="nr">64,547</td><td style="text-align:right" class="nr fw7">64,547</td><td>Cierre Feb 2026</td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
+
+    <div class="sdiv" onclick="toggleDtl(this)">Desglose Capital de Trabajo — Acumulado <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
+      <table class="dtbl">
+        <thead><tr><th>Partida</th><th style="text-align:right">Enero</th><th style="text-align:right">Febrero</th><th style="text-align:right">Acumulado</th><th>Impacto</th></tr></thead>
+        <tbody>
+          <tr><td class="metric">Clientes</td><td style="text-align:right" class="ng">+2,380</td><td style="text-align:right" class="ng">+8,583</td><td style="text-align:right" class="ng fw7">+10,963</td><td><span class="badge g">Positivo</span></td></tr>
+          <tr><td class="metric fw7" style="color:var(--red)">Deudores Diversos ⚠</td><td style="text-align:right" class="nr fw7">−32,789</td><td style="text-align:right" class="ng">+5,146</td><td style="text-align:right" class="nr fw7">−27,643</td><td><span class="badge r">Principal driver −</span></td></tr>
+          <tr><td class="metric">Inventarios</td><td style="text-align:right" class="ng">+2,102</td><td style="text-align:right" class="nr">−7,822</td><td style="text-align:right" class="nr fw7">−5,720</td><td><span class="badge r">Negativo</span></td></tr>
+          <tr><td class="metric">Pagos Anticipados</td><td style="text-align:right" class="ng">+12,857</td><td style="text-align:right" class="nr">−11,887</td><td style="text-align:right" class="ng fw7">+970</td><td><span class="badge g">Positivo</span></td></tr>
+          <tr><td class="metric">Proveedores</td><td style="text-align:right" class="nr">−7,147</td><td style="text-align:right" class="nr">−6,519</td><td style="text-align:right" class="nr fw7">−13,666</td><td><span class="badge r">Negativo</span></td></tr>
+          <tr><td class="metric fw7">Acreedores Diversos</td><td style="text-align:right" class="nr">−403</td><td style="text-align:right" class="ng fw7">+23,645</td><td style="text-align:right" class="ng fw7">+23,242</td><td><span class="badge g">Principal driver +</span></td></tr>
+          <tr><td class="metric">Gastos Acum. por Pagar</td><td style="text-align:right" class="nr">−3,248</td><td style="text-align:right" class="ng">+2,733</td><td style="text-align:right" class="nr fw7">−515</td><td><span class="badge r">Negativo</span></td></tr>
+          <tr><td class="metric fw7">TOTAL C de T</td><td style="text-align:right" class="nr">−26,248</td><td style="text-align:right" class="ng">+13,879</td><td style="text-align:right" class="nr fw7">−12,369</td><td></td></tr>
+        </tbody>
+      </table>
+    </div></div>
   </div>
 
   <div class="foot">
@@ -244,6 +374,12 @@
 </main>
 
 <script>
+function toggleDtl(hdr){
+  const panel=hdr.nextElementSibling;
+  const isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  hdr.classList.toggle('open',!isOpen);
+}
 const G={g800:'#1a3d2b',g600:'#2e7d4f',gold:'#c9a84c',gray:'#9b9ea0',red:'#c0392b',navy:'#1e3a5f',black:'#111111',blue:'#1d4ed8'};
 
 // Waterfall builder: returns [bases, absVals, colors]
@@ -260,7 +396,7 @@ function waterfallData(vals, colors){
   return {bases,abs};
 }
 
-const LABELS=['Saldo\nInicial','Gen.\nBruta','Var.\nC de T','Total\nPartidas','Total\nInversiones','Eficiencia','Saldo\nFinal'];
+const LABELS=['Saldo\nInicial','Gen.\nBruta','Var.\nC de T','Partida\nno Op.','Total\nInversiones','Otros\nIngresos','Saldo\nFinal'];
 
 // ── ENERO ──
 const ENE_VALS=[70505, 31267, -26248, 14569, -9568, -13436, 67090];
@@ -344,21 +480,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   buildWF('wfEne', ENE_VALS, ENE_COLS, false);
   buildWF('wfFeb', FEB_VALS, FEB_COLS, false);
 
-  // Comparativo grouped bars (components only, no totals)
-  const cmpLabels=['Gen. Bruta','Var. C de T','Total Partidas','Total Inversiones','Eficiencia'];
-  const eneComp=[31267,-26248,14569,-9568,-13436];
-  const febComp=[18787,13879,-28777,3278,-9671];
-  new Chart(document.getElementById('cmpChart'),{
-    type:'bar',
-    data:{labels:cmpLabels,datasets:[
-      {label:'Enero 2026',data:eneComp,backgroundColor:G.g800,borderRadius:4},
-      {label:'Febrero 2026',data:febComp,backgroundColor:G.red,borderRadius:4}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{font:{size:14,weight:'700'}}},
-              y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v>=0?'+'+v.toLocaleString():v.toLocaleString(),font:{size:14,weight:'700'}}}}}
-  });
+  // Acumulado waterfall
+  const ACU_VALS=[70505, 50054, -12369, -14208, -6290, -23107, 64547];
+  const ACU_COLS=[G.black, G.blue, G.red, G.red, G.red, G.red, G.black];
+  buildWF('cmpChart', ACU_VALS, ACU_COLS, false);
 });
 </script>
 </body>

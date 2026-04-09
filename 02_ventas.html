@@ -5,6 +5,13 @@
 <link rel="icon" href="exelco.ico" type="image/x-icon">
 <title>02 · Ventas — Exelco 2026</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+.sdiv{cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between}
+.sdiv .toggle-icon{font-size:13px;font-weight:700;margin-left:10px;transition:transform .25s}
+.sdiv.open .toggle-icon{transform:rotate(180deg)}
+.collapsible{overflow:hidden;transition:max-height .3s ease,opacity .3s ease;max-height:0;opacity:0}
+.collapsible.open{max-height:3000px;opacity:1}
+</style>
 <script src="auth.js"></script>
 <script src="chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -60,7 +67,7 @@
   <div class="mtabs">
     <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
     <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
-    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+    <button class="mtab" onclick="goM('cmp',this)">Acumulado</button>
   </div>
 
   <!-- ENERO -->
@@ -81,16 +88,16 @@
         <div class="kb-val">$33.3MM</div>
         <div class="kb-rows">
           <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−15.9%</span><span class="kb-lbl">vs Presupuesto</span></div>
-          <div class="kb-row row-grn"><div class="kb-arrow up"></div><span class="kb-pct">+40.2%</span><span class="kb-lbl">vs Año Anterior</span></div>
+          <div class="kb-row row-grn"><div class="kb-arrow up"></div><span class="kb-pct">+40.1%</span><span class="kb-lbl">vs Año Anterior</span></div>
         </div>
       </div>
       <div class="kpi-big kb-grn">
         <div class="kb-title">Utilidad Neta</div>
-        <div class="kb-sub">Enero 2026 · Ppto $30.3MM · AA $15.1MM</div>
+        <div class="kb-sub">Enero 2026 · Ppto $29.7MM · AA $14.6MM</div>
         <div class="kb-val">$24.2MM</div>
         <div class="kb-rows">
-          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−18.0%</span><span class="kb-lbl">vs Presupuesto</span></div>
-          <div class="kb-row row-grn"><div class="kb-arrow up"></div><span class="kb-pct">+64.2%</span><span class="kb-lbl">vs Año Anterior</span></div>
+          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−18.5%</span><span class="kb-lbl">vs Presupuesto</span></div>
+          <div class="kb-row row-grn"><div class="kb-arrow up"></div><span class="kb-pct">+66.1%</span><span class="kb-lbl">vs Año Anterior</span></div>
         </div>
       </div>
     </div>
@@ -103,7 +110,8 @@
       <div style="position:relative;height:280px"><canvas id="vtasErcEne"></canvas></div>
     </div>
 
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Ventas por División <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <div class="cc-head">
         <div><div class="ey">Enero 2026</div><h2>Ventas por División</h2><p>Miles MXN</p></div>
         <div class="leg">
@@ -121,10 +129,10 @@
         <strong>Enero 2026:</strong> Gas LP lidera con $127,825 (35.9%), complementado por Gas Pozos con $7,626 (2.1%).
         Gasolina aporta $112,601 (31.6%). Alimentos contribuye $99,508 (27.9%) y la División Inmobiliaria $8,610 (2.4%).
       </div>
-    </div>
+    </div></div>
 
-    <div class="sdiv">Detalle por División</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle por División <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead>
           <tr><th>División</th><th style="text-align:right">Real (MXN)</th><th style="text-align:right">Ppto</th><th style="text-align:right">Año Ant.</th><th style="text-align:right">% Total</th><th style="text-align:right">Participación</th></tr>
@@ -140,7 +148,7 @@
           <tr><td class="metric fw7">TOTAL</td><td style="text-align:right" class="ng fw7">356,169</td><td style="text-align:right" class="fw7">391,006</td><td style="text-align:right" class="fw7">376,854</td><td style="text-align:right" class="fw7">100%</td><td></td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
   <!-- FEBRERO -->
@@ -166,11 +174,11 @@
       </div>
       <div class="kpi-big kb-red">
         <div class="kb-title">Utilidad Neta</div>
-        <div class="kb-sub">Febrero 2026 · Ppto $18.9MM · AA $41.1MM</div>
+        <div class="kb-sub">Febrero 2026 · Ppto $18.4MM · AA $40.7MM</div>
         <div class="kb-val">$8.3MM</div>
         <div class="kb-rows">
-          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−53.0%</span><span class="kb-lbl">vs Presupuesto</span></div>
-          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−78.3%</span><span class="kb-lbl">vs Año Anterior</span></div>
+          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−54.9%</span><span class="kb-lbl">vs Presupuesto</span></div>
+          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−79.6%</span><span class="kb-lbl">vs Año Anterior</span></div>
         </div>
       </div>
     </div>
@@ -183,7 +191,8 @@
       <div style="position:relative;height:280px"><canvas id="vtasErcFeb"></canvas></div>
     </div>
 
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Ventas por División <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <div class="cc-head">
         <div><div class="ey">Febrero 2026</div><h2>Ventas por División</h2><p>Miles MXN</p></div>
         <div class="leg">
@@ -202,10 +211,10 @@
         <strong>Alimentos MX</strong> sufre la mayor caída proporcional: −18.7% ($69,036).
         Inmobiliaria MX es la única división estable (+0.4%).
       </div>
-    </div>
+    </div></div>
 
-    <div class="sdiv">Detalle por División</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle por División <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead>
           <tr><th>División</th><th style="text-align:right">Real (MXN)</th><th style="text-align:right">Ppto</th><th style="text-align:right">Año Ant.</th><th style="text-align:right">% Total</th><th style="text-align:right">Participación</th></tr>
@@ -221,37 +230,37 @@
           <tr><td class="metric fw7">TOTAL</td><td style="text-align:right" class="nr fw7">310,593</td><td style="text-align:right" class="fw7">358,319</td><td style="text-align:right" class="fw7">367,487</td><td style="text-align:right" class="fw7">100%</td><td></td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
-  <!-- COMPARATIVO -->
+  <!-- ACUMULADO -->
   <div id="m-cmp" class="mpnl">
     <div class="kpis-big">
       <div class="kpi-big kb-red">
         <div class="kb-title">Ventas Netas</div>
-        <div class="kb-sub">Feb $310.6MM vs Ene $356.2MM · Ppto Feb $358.3MM</div>
-        <div class="kb-val">−12.8%</div>
+        <div class="kb-sub">Acum Ene–Feb 2026 · Ppto $749.3MM · AA $744.6MM</div>
+        <div class="kb-val">$666.8MM</div>
         <div class="kb-rows">
-          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−13.3%</span><span class="kb-lbl">Feb vs Presupuesto</span></div>
-          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−15.5%</span><span class="kb-lbl">Feb vs Año Anterior</span></div>
+          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−11.0%</span><span class="kb-lbl">vs Presupuesto</span></div>
+          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−10.4%</span><span class="kb-lbl">vs Año Anterior</span></div>
         </div>
       </div>
       <div class="kpi-big kb-red">
         <div class="kb-title">UAFIR</div>
-        <div class="kb-sub">Feb $17.3MM vs Ene $33.3MM · Ppto Feb $28.2MM</div>
-        <div class="kb-val">−47.9%</div>
+        <div class="kb-sub">Acum Ene–Feb 2026 · Ppto $67.7MM · AA $57.6MM</div>
+        <div class="kb-val">$50.6MM</div>
         <div class="kb-rows">
-          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−38.4%</span><span class="kb-lbl">Feb vs Presupuesto</span></div>
-          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−48.8%</span><span class="kb-lbl">Feb vs Año Anterior</span></div>
+          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−25.3%</span><span class="kb-lbl">vs Presupuesto</span></div>
+          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−12.1%</span><span class="kb-lbl">vs Año Anterior</span></div>
         </div>
       </div>
       <div class="kpi-big kb-red">
         <div class="kb-title">Utilidad Neta</div>
-        <div class="kb-sub">Feb $8.3MM vs Ene $24.2MM · Ppto Feb $18.9MM</div>
-        <div class="kb-val">−65.7%</div>
+        <div class="kb-sub">Acum Ene–Feb 2026 · Ppto $48.1MM · AA $55.3MM</div>
+        <div class="kb-val">$32.5MM</div>
         <div class="kb-rows">
-          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−53.0%</span><span class="kb-lbl">Feb vs Presupuesto</span></div>
-          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−78.3%</span><span class="kb-lbl">Feb vs Año Anterior</span></div>
+          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−32.4%</span><span class="kb-lbl">vs Presupuesto</span></div>
+          <div class="kb-row row-red"><div class="kb-arrow dn"></div><span class="kb-pct">−41.2%</span><span class="kb-lbl">vs Año Anterior</span></div>
         </div>
       </div>
     </div>
@@ -264,9 +273,10 @@
       <div style="position:relative;height:280px"><canvas id="vtasErcAcum"></canvas></div>
     </div>
 
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Ventas por División — Acumulado Ene–Feb <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Ene vs Feb 2026</div><h2>Ventas por División — Comparativo</h2><p>Miles MXN</p></div>
+        <div><div class="ey">Acumulado Ene–Feb 2026</div><h2>Ventas por División — Acumulado</h2><p>Miles MXN</p></div>
         <div class="leg">
           <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
           <div class="li"><div class="ld" style="background:#dc2626"></div>Febrero 2026</div>
@@ -279,10 +289,10 @@
         Gasolina muestra mayor resiliencia con solo −5.3%.
         <strong>Inmobiliaria MX es la única división estable</strong> con +$28 (+0.4%).
       </div>
-    </div>
+    </div></div>
 
-    <div class="sdiv">Tabla Comparativa</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Tabla Comparativa Ene vs Feb <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead>
           <tr><th>División</th><th style="text-align:right">Enero 2026</th><th style="text-align:right">Febrero 2026</th><th style="text-align:right">Var. $</th><th style="text-align:right">Var. %</th></tr>
@@ -298,7 +308,7 @@
           <tr><td class="metric fw7">TOTAL</td><td style="text-align:right" class="ng fw7">356,169</td><td style="text-align:right" class="nr fw7">310,593</td><td style="text-align:right" class="nr fw7">−45,576</td><td style="text-align:right"><span class="badge r">−12.8%</span></td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
   <div class="foot">
@@ -308,6 +318,13 @@
 </main>
 
 <script>
+function toggleDtl(hdr){
+  const panel=hdr.nextElementSibling;
+  const isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  hdr.classList.toggle('open',!isOpen);
+}
+
 Chart.register(ChartDataLabels);
 
 const G={g800:'#1a3d2b',red:'#dc2626'};
@@ -318,8 +335,8 @@ const FEB=[105620,6746,106685,69036,13879,6870,1756];
 
 /* ── ERC Mxn · Acumulado · Vtas Netas ── */
 const ERC={
-  ene:{real:356169,ppto:391006,aa:376854,vsPpto:-34837,vsAA:-20685},
-  acum:{real:666762,ppto:749325,aa:744341,vsPpto:-82563,vsAA:-77579}
+  ene:{real:356169,ppto:391006,aa:376854,vsPpto:-34838,vsAA:-20685},
+  acum:{real:666762,ppto:749324,aa:744560,vsPpto:-82562,vsAA:-77798}
 };
 
 function fKE(v){

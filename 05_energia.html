@@ -5,6 +5,13 @@
 <link rel="icon" href="exelco.ico" type="image/x-icon">
 <title>05 · División Energía — Exelco 2026</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+.sdiv{cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between}
+.sdiv .toggle-icon{font-size:13px;font-weight:700;margin-left:10px;transition:transform .25s}
+.sdiv.open .toggle-icon{transform:rotate(180deg)}
+.collapsible{overflow:hidden;transition:max-height .3s ease,opacity .3s ease;max-height:0;opacity:0}
+.collapsible.open{max-height:3000px;opacity:1}
+</style>
 <script src="auth.js"></script>
 <script src="chart.min.js"></script>
 </head>
@@ -59,7 +66,7 @@
   <div class="mtabs">
     <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
     <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
-    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+    <button class="mtab" onclick="goM('cmp',this)">Acumulado</button>
   </div>
 
   <!-- ENERO -->
@@ -75,9 +82,9 @@
       <div class="cc-head">
         <div><div class="ey">Enero 2026</div><h2>División Energía — Ventas</h2><p>Gas LP · Gas Pozos · Gasolina · Miles MXN</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#15803d"></div>Gas LP</div>
-          <div class="li"><div class="ld" style="background:#4ade80"></div>Gas Pozos</div>
-          <div class="li"><div class="ld" style="background:#dc2626"></div>Gasolina</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Real</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Presupuesto</div>
+          <div class="li"><div class="ld" style="background:#4a7298"></div>Año Anterior</div>
         </div>
       </div>
       <div class="cw cw-md"><canvas id="energiaEne"></canvas></div>
@@ -88,7 +95,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Detalle por Producto — Enero</div>
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle por Producto — Enero <span class="toggle-icon">▼</span></div>
+    <div class="collapsible">
     <div class="g2">
       <div class="divc">
         <div class="dtitle">Gas LP</div>
@@ -130,6 +138,7 @@
       </div>
       <div class="divc" style="background:transparent;border:none;box-shadow:none"></div>
     </div>
+    </div>
   </div>
 
   <!-- FEBRERO -->
@@ -145,9 +154,9 @@
       <div class="cc-head">
         <div><div class="ey">Febrero 2026</div><h2>División Energía — Ventas</h2><p>Gas LP · Gas Pozos · Gasolina · Miles MXN</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#15803d"></div>Gas LP</div>
-          <div class="li"><div class="ld" style="background:#4ade80"></div>Gas Pozos</div>
-          <div class="li"><div class="ld" style="background:#dc2626"></div>Gasolina</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Real</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Presupuesto</div>
+          <div class="li"><div class="ld" style="background:#4a7298"></div>Año Anterior</div>
         </div>
       </div>
       <div class="cw cw-md"><canvas id="energiaFeb"></canvas></div>
@@ -158,7 +167,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Detalle por Producto — Febrero</div>
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle por Producto — Febrero <span class="toggle-icon">▼</span></div>
+    <div class="collapsible">
     <div class="g2">
       <div class="divc">
         <div class="dtitle">Gas LP</div>
@@ -200,44 +210,48 @@
       </div>
       <div class="divc" style="background:transparent;border:none;box-shadow:none"></div>
     </div>
+    </div>
   </div>
 
-  <!-- COMPARATIVO -->
+  <!-- ACUMULADO -->
   <div id="m-cmp" class="mpnl">
     <div class="kpis kpis4">
-      <div class="kpi cr"><div class="lb">Δ Total Energía</div><div class="vl">−29,000</div><div class="dl neg">▼ −11.7%</div></div>
-      <div class="kpi cr"><div class="lb">Δ Gas LP</div><div class="vl">−22,205</div><div class="dl neg">▼ −17.4%</div></div>
-      <div class="kpi cr"><div class="lb">Δ Gas Pozos</div><div class="vl">−880</div><div class="dl neg">▼ −11.5%</div></div>
-      <div class="kpi cr"><div class="lb">Δ Gasolina</div><div class="vl">−5,916</div><div class="dl neg">▼ −5.3%</div></div>
+      <div class="kpi cr"><div class="lb">Total Energía Acum.</div><div class="vl">467,103</div><div class="dl neg">▼ −4.9% vs Ppto</div></div>
+      <div class="kpi cr"><div class="lb">Gas LP</div><div class="vl">233,445</div><div class="dl neg">▼ −9.5% vs Ppto</div></div>
+      <div class="kpi cn"><div class="lb">Gas Pozos</div><div class="vl">14,372</div><div class="dl neg">▼ −2.9% vs Ppto</div></div>
+      <div class="kpi cgo"><div class="lb">Gasolina</div><div class="vl">219,286</div><div class="dl pos">▲ +0.4% vs Ppto</div></div>
     </div>
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Ene vs Feb 2026</div><h2>Energía — Comparativo</h2><p>Miles MXN</p></div>
+        <div><div class="ey">Acumulado Ene–Feb 2026</div><h2>División Energía — Ventas Acumuladas</h2><p>Gas LP · Gas Pozos · Gasolina · Miles MXN</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
-          <div class="li"><div class="ld" style="background:#dc2626"></div>Febrero 2026</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Real</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Presupuesto</div>
+          <div class="li"><div class="ld" style="background:#4a7298"></div>Año Anterior</div>
         </div>
       </div>
       <div class="cw cw-md"><canvas id="energiaCmp"></canvas></div>
       <div class="ins">
-        <strong>Gasolina más resiliente:</strong> cae solo −5.3% vs −17.4% de Gas LP y −11.5% de Gas Pozos.
-        Gas LP pierde la mayor parte en valor absoluto (−$22,205). Gas Pozos muestra caída moderada acorde a su tamaño.
-        La participación de Gasolina dentro de Energía sube de 45.4% a 48.7%.
+        <strong>Acumulado Ene–Feb — Energía:</strong> Total de <strong>$467,103</strong> vs Ppto $491,060 (−4.9%) y AA $498,979 (−6.4%).
+        Gas LP acumula $233,445 (−9.5% vs Ppto). Gas Pozos $14,372 (−2.9% vs Ppto).
+        Gasolina destaca con $219,286, <strong>superando su presupuesto en +0.4%</strong>.
       </div>
     </div>
 
-    <div class="sdiv">Tabla Comparativa Energía</div>
+    <div class="sdiv" onclick="toggleDtl(this)">Tabla Acumulada Energía <span class="toggle-icon">▼</span></div>
+    <div class="collapsible">
     <div class="cc">
       <table class="dtbl">
-        <thead><tr><th>Producto</th><th style="text-align:right">Enero $K</th><th style="text-align:right">Febrero $K</th><th style="text-align:right">Var $K</th><th style="text-align:right">Var %</th><th style="text-align:right">Mix Ene</th><th style="text-align:right">Mix Feb</th></tr></thead>
+        <thead><tr><th>Producto</th><th style="text-align:right">Real Acum</th><th style="text-align:right">Ppto Acum</th><th style="text-align:right">AA Acum</th><th style="text-align:right">vs Ppto</th><th style="text-align:right">vs AA</th></tr></thead>
         <tbody>
-          <tr><td class="metric">Gas LP</td><td style="text-align:right" class="ng fw7">127,825</td><td style="text-align:right" class="nr fw7">105,620</td><td style="text-align:right" class="nr">−22,205</td><td style="text-align:right"><span class="badge r">−17.4%</span></td><td style="text-align:right">51.5%</td><td style="text-align:right">48.2%</td></tr>
-          <tr><td class="metric">Gas Pozos</td><td style="text-align:right" class="ng fw7">7,626</td><td style="text-align:right" class="nr fw7">6,746</td><td style="text-align:right" class="nr">−880</td><td style="text-align:right"><span class="badge r">−11.5%</span></td><td style="text-align:right">3.1%</td><td style="text-align:right">3.1%</td></tr>
-          <tr><td class="metric">Gasolina</td><td style="text-align:right" class="ng fw7">112,601</td><td style="text-align:right" class="ngo fw7">106,685</td><td style="text-align:right" class="nr">−5,916</td><td style="text-align:right"><span class="badge r">−5.3%</span></td><td style="text-align:right">45.4%</td><td style="text-align:right">48.7%</td></tr>
-          <tr><td class="metric fw7">Total Energía</td><td style="text-align:right" class="ng fw7">248,051</td><td style="text-align:right" class="nr fw7">219,051</td><td style="text-align:right" class="nr fw7">−29,000</td><td style="text-align:right"><span class="badge r">−11.7%</span></td><td style="text-align:right fw7">69.6%</td><td style="text-align:right fw7">70.5%</td></tr>
+          <tr><td class="metric">Gas LP</td><td style="text-align:right" class="ng fw7">233,445</td><td style="text-align:right">257,871</td><td style="text-align:right">264,743</td><td style="text-align:right"><span class="badge r">−9.5%</span></td><td style="text-align:right"><span class="badge r">−11.8%</span></td></tr>
+          <tr><td class="metric">Gas Pozos</td><td style="text-align:right" class="ng fw7">14,372</td><td style="text-align:right">14,797</td><td style="text-align:right">15,730</td><td style="text-align:right"><span class="badge r">−2.9%</span></td><td style="text-align:right"><span class="badge r">−8.6%</span></td></tr>
+          <tr><td class="metric">Gasolina</td><td style="text-align:right" class="ng fw7">219,286</td><td style="text-align:right">218,392</td><td style="text-align:right">218,506</td><td style="text-align:right"><span class="badge g">+0.4%</span></td><td style="text-align:right"><span class="badge g">+0.4%</span></td></tr>
+          <tr><td class="metric fw7">Total Energía</td><td style="text-align:right" class="ng fw7">467,103</td><td style="text-align:right fw7">491,060</td><td style="text-align:right fw7">498,979</td><td style="text-align:right"><span class="badge r">−4.9%</span></td><td style="text-align:right"><span class="badge r">−6.4%</span></td></tr>
         </tbody>
       </table>
+    </div>
     </div>
   </div>
 
@@ -248,31 +262,44 @@
 </main>
 
 <script>
-const G={g800:'#1a3d2b',red:'#dc2626'};
+function toggleDtl(hdr){
+  const panel=hdr.nextElementSibling;
+  const isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  hdr.classList.toggle('open',!isOpen);
+}
+const G={g800:'#1a3d2b',gold:'#c9a84c',slate:'#4a7298',red:'#dc2626'};
 const LBLS=['Gas LP','Gas Pozos','Gasolina','Total Energía'];
-const COLS_ENE=['#15803d','#4ade80','#dc2626','#0d4a20'];
-const COLS_FEB=['#b91c1c','#f87171','#d97706','#7f1d1d'];
+
+const ENE_R  =[127825,7626,112601,248051];
+const ENE_PP =[135540,7775,112280,255595];
+const ENE_AA =[142234,7627,110798,260659];
+const FEB_R  =[105620,6746,106685,219052];
+const FEB_PP =[122331,7022,106112,235465];
+const FEB_AA =[122509,8103,107708,238320];
+const ACU_R  =[233445,14372,219286,467103];
+const ACU_PP =[257871,14797,218392,491060];
+const ACU_AA =[264743,15730,218506,498979];
+
+function make3Bar(id,real,ppto,aa){
+  const ctx=document.getElementById(id);
+  if(!ctx) return;
+  const opts={responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},ticks:{font:{size:13,weight:'700'}}},
+            y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString(),font:{size:12,weight:'700'}}}}};
+  new Chart(ctx,{type:'bar',
+    data:{labels:LBLS,datasets:[
+      {label:'Real',    data:real, backgroundColor:G.g800,  borderRadius:4},
+      {label:'Ppto',    data:ppto, backgroundColor:G.gold,  borderRadius:4},
+      {label:'AA',      data:aa,   backgroundColor:G.slate, borderRadius:4}
+    ]},options:opts});
+}
 
 document.addEventListener('DOMContentLoaded',()=>{
-  const barOpts={responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false}},
-    scales:{x:{grid:{display:false},ticks:{font:{size:14,weight:'700'}}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString(),font:{size:14,weight:'700'}}}}};
-
-  new Chart(document.getElementById('energiaEne'),{type:'bar',
-    data:{labels:LBLS,datasets:[{data:[127825,7626,112601,248051],backgroundColor:COLS_ENE,borderRadius:5}]},
-    options:barOpts});
-
-  new Chart(document.getElementById('energiaFeb'),{type:'bar',
-    data:{labels:LBLS,datasets:[{data:[105620,6746,106685,219051],backgroundColor:COLS_FEB,borderRadius:5}]},
-    options:barOpts});
-
-  new Chart(document.getElementById('energiaCmp'),{type:'bar',
-    data:{labels:LBLS,datasets:[
-      {label:'Enero 2026',data:[127825,7626,112601,248051],backgroundColor:G.g800,borderRadius:4},
-      {label:'Febrero 2026',data:[105620,6746,106685,219051],backgroundColor:G.red,borderRadius:4}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{font:{size:14,weight:'700'}}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString(),font:{size:14,weight:'700'}}}}}});
+  make3Bar('energiaEne', ENE_R, ENE_PP, ENE_AA);
+  make3Bar('energiaFeb', FEB_R, FEB_PP, FEB_AA);
+  make3Bar('energiaCmp', ACU_R, ACU_PP, ACU_AA);
 });
 </script>
 </body>

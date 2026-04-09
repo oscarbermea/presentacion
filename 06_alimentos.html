@@ -5,6 +5,13 @@
 <link rel="icon" href="exelco.ico" type="image/x-icon">
 <title>06 · División Alimentos — Exelco 2026</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+.sdiv{cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between}
+.sdiv .toggle-icon{font-size:13px;font-weight:700;margin-left:10px;transition:transform .25s}
+.sdiv.open .toggle-icon{transform:rotate(180deg)}
+.collapsible{overflow:hidden;transition:max-height .3s ease,opacity .3s ease;max-height:0;opacity:0}
+.collapsible.open{max-height:3000px;opacity:1}
+</style>
 <script src="auth.js"></script>
 <script src="chart.min.js"></script>
 </head>
@@ -59,7 +66,7 @@
   <div class="mtabs">
     <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
     <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
-    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+    <button class="mtab" onclick="goM('cmp',this)">Acumulado</button>
   </div>
 
   <!-- ENERO -->
@@ -75,8 +82,9 @@
       <div class="cc-head">
         <div><div class="ey">Enero 2026</div><h2>División Alimentos — Ventas</h2><p>México vs Estados Unidos · Miles MXN</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#c9a84c"></div>México</div>
-          <div class="li"><div class="ld" style="background:#1e3a5f"></div>Estados Unidos</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Real</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Presupuesto</div>
+          <div class="li"><div class="ld" style="background:#4a7298"></div>Año Anterior</div>
         </div>
       </div>
       <div class="cw cw-md"><canvas id="alimentosEne"></canvas></div>
@@ -88,7 +96,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Detalle por Mercado — Enero</div>
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle por Mercado — Enero <span class="toggle-icon">▼</span></div>
+    <div class="collapsible">
     <div class="g2">
       <div class="divc">
         <div class="dtitle">Alimentos México</div>
@@ -117,6 +126,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 
   <!-- FEBRERO -->
@@ -132,8 +142,9 @@
       <div class="cc-head">
         <div><div class="ey">Febrero 2026</div><h2>División Alimentos — Ventas</h2><p>México vs Estados Unidos · Miles MXN</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#c9a84c"></div>México</div>
-          <div class="li"><div class="ld" style="background:#1e3a5f"></div>Estados Unidos</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Real</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Presupuesto</div>
+          <div class="li"><div class="ld" style="background:#4a7298"></div>Año Anterior</div>
         </div>
       </div>
       <div class="cw cw-md"><canvas id="alimentosFeb"></canvas></div>
@@ -145,7 +156,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Detalle por Mercado — Febrero</div>
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle por Mercado — Febrero <span class="toggle-icon">▼</span></div>
+    <div class="collapsible">
     <div class="g2">
       <div class="divc">
         <div class="dtitle">Alimentos México</div>
@@ -172,43 +184,47 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 
-  <!-- COMPARATIVO -->
+  <!-- ACUMULADO -->
   <div id="m-cmp" class="mpnl">
     <div class="kpis kpis4">
-      <div class="kpi cr"><div class="lb">Δ Total Alimentos</div><div class="vl">−16,593</div><div class="dl neg">▼ −16.7%</div></div>
-      <div class="kpi cr"><div class="lb">Δ Alimentos MX</div><div class="vl">−15,931</div><div class="dl neg">▼ −18.7%</div></div>
-      <div class="kpi cr"><div class="lb">Δ Alimentos EU</div><div class="vl">−662</div><div class="dl neg">▼ −4.6%</div></div>
-      <div class="kpi cg"><div class="lb">Resiliencia EU</div><div class="vl">4.1x</div><div class="dl pos">Mejor que MX</div></div>
+      <div class="kpi cr"><div class="lb">Total Alimentos Acum.</div><div class="vl">182,423</div><div class="dl neg">▼ −15.4% vs Ppto</div></div>
+      <div class="kpi cr"><div class="lb">Alimentos MX</div><div class="vl">154,003</div><div class="dl neg">▼ −17.3% vs Ppto</div></div>
+      <div class="kpi cn"><div class="lb">Alimentos EU</div><div class="vl">28,420</div><div class="dl neg">▼ −3.2% vs Ppto</div></div>
+      <div class="kpi cgo"><div class="lb">MX / EU ratio</div><div class="vl">5.42x</div><div class="dl neu">Acumulado</div></div>
     </div>
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Ene vs Feb 2026</div><h2>Alimentos — Comparativo</h2><p>Miles MXN</p></div>
+        <div><div class="ey">Acumulado Ene–Feb 2026</div><h2>División Alimentos — Ventas Acumuladas</h2><p>México vs Estados Unidos · Miles MXN</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
-          <div class="li"><div class="ld" style="background:#c0392b"></div>Febrero 2026</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Real</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Presupuesto</div>
+          <div class="li"><div class="ld" style="background:#4a7298"></div>Año Anterior</div>
         </div>
       </div>
       <div class="cw cw-md"><canvas id="alimentosCmp"></canvas></div>
       <div class="ins">
-        <strong>Alimentos MX es la división más golpeada de la empresa (−18.7%).</strong>
-        La operación en EU demuestra 4.1x mayor resiliencia (−4.6%), posiblemente por contratos de suministro más estables en el mercado americano.
-        La caída de MX puede estar relacionada con estacionalidad post-temporada navideña y menor demanda institucional en febrero.
+        <strong>Acumulado Ene–Feb — Alimentos:</strong> Total de <strong>$182,423</strong> vs Ppto $215,582 (−15.4%) y AA $195,009 (−6.5%).
+        Alimentos MX acumula $154,003 (−17.3% vs Ppto). EU muestra mayor resiliencia con $28,420 (−3.2% vs Ppto).
+        La brecha MX/EU se mantiene en <strong>5.42x</strong>.
       </div>
     </div>
 
-    <div class="sdiv">Tabla Comparativa Alimentos</div>
+    <div class="sdiv" onclick="toggleDtl(this)">Tabla Acumulada Alimentos <span class="toggle-icon">▼</span></div>
+    <div class="collapsible">
     <div class="cc">
       <table class="dtbl">
-        <thead><tr><th>Mercado</th><th style="text-align:right">Enero $</th><th style="text-align:right">Febrero $</th><th style="text-align:right">Var $</th><th style="text-align:right">Var %</th><th style="text-align:right">Mix Ene</th><th style="text-align:right">Mix Feb</th></tr></thead>
+        <thead><tr><th>Mercado</th><th style="text-align:right">Real Acum</th><th style="text-align:right">Ppto Acum</th><th style="text-align:right">AA Acum</th><th style="text-align:right">vs Ppto</th><th style="text-align:right">vs AA</th></tr></thead>
         <tbody>
-          <tr><td class="metric">Alimentos MX</td><td style="text-align:right" class="ng fw7">84,967</td><td style="text-align:right" class="nr fw7">69,036</td><td style="text-align:right" class="nr">−15,931</td><td style="text-align:right"><span class="badge r">−18.7%</span></td><td style="text-align:right">85.4%</td><td style="text-align:right">83.3%</td></tr>
-          <tr><td class="metric">Alimentos EU</td><td style="text-align:right" class="ng">14,541</td><td style="text-align:right" class="ngo">13,879</td><td style="text-align:right" class="nr">−662</td><td style="text-align:right"><span class="badge r">−4.6%</span></td><td style="text-align:right">14.6%</td><td style="text-align:right">16.7%</td></tr>
-          <tr><td class="metric fw7">Total Alimentos</td><td style="text-align:right" class="ng fw7">99,508</td><td style="text-align:right" class="nr fw7">82,915</td><td style="text-align:right" class="nr fw7">−16,593</td><td style="text-align:right"><span class="badge r">−16.7%</span></td><td style="text-align:right fw7">27.9%</td><td style="text-align:right fw7">26.7%</td></tr>
+          <tr><td class="metric">Alimentos MX</td><td style="text-align:right" class="ng fw7">154,003</td><td style="text-align:right">186,232</td><td style="text-align:right">157,677</td><td style="text-align:right"><span class="badge r">−17.3%</span></td><td style="text-align:right"><span class="badge r">−2.3%</span></td></tr>
+          <tr><td class="metric">Alimentos EU</td><td style="text-align:right" class="ng fw7">28,420</td><td style="text-align:right">29,350</td><td style="text-align:right">37,332</td><td style="text-align:right"><span class="badge r">−3.2%</span></td><td style="text-align:right"><span class="badge r">−23.9%</span></td></tr>
+          <tr><td class="metric fw7">Total Alimentos</td><td style="text-align:right" class="ng fw7">182,423</td><td style="text-align:right fw7">215,582</td><td style="text-align:right fw7">195,009</td><td style="text-align:right"><span class="badge r">−15.4%</span></td><td style="text-align:right"><span class="badge r">−6.5%</span></td></tr>
         </tbody>
       </table>
+    </div>
     </div>
   </div>
 
@@ -219,31 +235,44 @@
 </main>
 
 <script>
-const G={g800:'#1a3d2b',gold:'#c9a84c',goldd:'#a07c2a',navy:'#1e3a5f',red:'#c0392b'};
+function toggleDtl(hdr){
+  const panel=hdr.nextElementSibling;
+  const isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  hdr.classList.toggle('open',!isOpen);
+}
+const G={g800:'#1a3d2b',gold:'#c9a84c',slate:'#4a7298',navy:'#1e3a5f',red:'#c0392b'};
+const LBLS=['Alim. MX','Alim. EU','Total Alimentos'];
+
+const ENE_R  =[84967,14541,99508];
+const ENE_PP =[101635,14627,116262];
+const ENE_AA =[84296,18649,102945];
+const FEB_R  =[69036,13879,82915];
+const FEB_PP =[84597,14723,99320];
+const FEB_AA =[73381,18683,92064];
+const ACU_R  =[154003,28420,182423];
+const ACU_PP =[186232,29350,215582];
+const ACU_AA =[157677,37332,195009];
+
+function make3Bar(id,real,ppto,aa){
+  const ctx=document.getElementById(id);
+  if(!ctx) return;
+  const opts={responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},ticks:{font:{size:13,weight:'700'}}},
+            y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString(),font:{size:12,weight:'700'}}}}};
+  new Chart(ctx,{type:'bar',
+    data:{labels:LBLS,datasets:[
+      {label:'Real', data:real, backgroundColor:G.g800,  borderRadius:4},
+      {label:'Ppto', data:ppto, backgroundColor:G.gold,  borderRadius:4},
+      {label:'AA',   data:aa,   backgroundColor:G.slate, borderRadius:4}
+    ]},options:opts});
+}
 
 function initCharts(){
-  const barOpts={responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false}},
-    scales:{x:{grid:{display:false},ticks:{font:{size:14,weight:'700'}}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString(),font:{size:14,weight:'700'}}}}};
-
-  new Chart(document.getElementById('alimentosEne'),{type:'bar',
-    data:{labels:['Alim. MX','Alim. EU','Total Alimentos'],
-      datasets:[{data:[84967,14541,99508],backgroundColor:[G.gold,G.navy,'#856a20'],borderRadius:5}]},
-    options:barOpts});
-
-  new Chart(document.getElementById('alimentosFeb'),{type:'bar',
-    data:{labels:['Alim. MX','Alim. EU','Total Alimentos'],
-      datasets:[{data:[69036,13879,82915],backgroundColor:[G.red,'#2b4f82','#8b1a1a'],borderRadius:5}]},
-    options:barOpts});
-
-  new Chart(document.getElementById('alimentosCmp'),{type:'bar',
-    data:{labels:['Alim. MX','Alim. EU','Total Alimentos'],
-      datasets:[
-        {label:'Enero 2026',data:[84967,14541,99508],backgroundColor:G.g800,borderRadius:4},
-        {label:'Febrero 2026',data:[69036,13879,82915],backgroundColor:G.red,borderRadius:4}
-      ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{font:{size:14,weight:'700'}}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString(),font:{size:14,weight:'700'}}}}}}  );
+  make3Bar('alimentosEne', ENE_R, ENE_PP, ENE_AA);
+  make3Bar('alimentosFeb', FEB_R, FEB_PP, FEB_AA);
+  make3Bar('alimentosCmp', ACU_R, ACU_PP, ACU_AA);
 }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', initCharts);
 else initCharts();

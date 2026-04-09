@@ -39,6 +39,11 @@
 .fc-saldo-val{font-size:16px;font-weight:800;color:var(--tx1)}
 /* Comparison chart */
 .fc-cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px}
+.sdiv{cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between}
+.sdiv .toggle-icon{font-size:13px;font-weight:700;margin-left:10px;transition:transform .25s}
+.sdiv.open .toggle-icon{transform:rotate(180deg)}
+.collapsible{overflow:hidden;transition:max-height .3s ease,opacity .3s ease;max-height:0;opacity:0}
+.collapsible.open{max-height:3000px;opacity:1}
 </style>
 </head>
 <body>
@@ -113,7 +118,7 @@
         <div class="vl">−878</div>
         <div class="dl neg">Egresos &gt; Ingresos</div>
       </div>
-      <div class="kpi cgr">
+      <div class="kpi cn">
         <div class="lb">Saldo Final</div>
         <div class="vl">32,036</div>
         <div class="dl neg">▼ −878 vs Saldo Ini</div>
@@ -219,8 +224,8 @@
     </div>
 
     <!-- DETAIL TABLE -->
-    <div class="sdiv">Detalle vs Presupuesto — Enero 2026</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle vs Presupuesto — Enero 2026 <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead>
           <tr><th>Concepto</th><th style="text-align:right">Real (MXN)</th><th style="text-align:right">Presupuesto</th><th style="text-align:right">Variación $</th><th style="text-align:right">Variación %</th></tr>
@@ -254,7 +259,7 @@
           <tr><td class="metric fw7">Saldo Final</td><td style="text-align:right" class="fw7">32,036</td><td colspan="3"></td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
   <!-- ══════════ FEBRERO ══════════ -->
@@ -379,8 +384,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Detalle vs Presupuesto — Febrero 2026</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle vs Presupuesto — Febrero 2026 <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead>
           <tr><th>Concepto</th><th style="text-align:right">Real (MXN)</th><th style="text-align:right">Presupuesto</th><th style="text-align:right">Variación $</th><th style="text-align:right">Variación %</th></tr>
@@ -412,7 +417,7 @@
           <tr><td class="metric fw7">Saldo Final</td><td style="text-align:right" class="fw7">34,595</td><td colspan="3"></td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
   <!-- ══════════ COMPARATIVO ══════════ -->
@@ -505,8 +510,18 @@
       </div>
     </div>
 
-    <div class="sdiv">Tabla Comparativa Ene vs Feb</div>
-    <div class="cc">
+    <div class="ins">
+      <strong>Análisis Ene→Feb:</strong>
+      El flujo corporativo <strong>revierte de −$878 a +$2,559</strong> (+$3,437 de mejora).
+      Por el lado de ingresos, <strong>Energéticos sube +16.9%</strong> y <strong>Proyecto Pozos +72.8%</strong>,
+      parcialmente compensados por la caída de Otros Ingresos (−44.1%).
+      Por el lado de egresos, la <strong>reducción de Inversiones (−83.1%)</strong> libera $4,929,
+      aunque Gastos Corporativos sube +21.5% (+$2,100).
+      El acumulado Ene+Feb muestra un <strong>Flujo Neto positivo de +$1,681</strong> y un saldo final de <strong>$34,595</strong>.
+    </div>
+
+    <div class="sdiv" onclick="toggleDtl(this)">Tabla Comparativa Ene vs Feb <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead>
           <tr><th>Concepto</th><th style="text-align:right">Enero $</th><th style="text-align:right">Febrero $</th><th style="text-align:right">Variación $</th><th style="text-align:right">Var %</th></tr>
@@ -538,17 +553,7 @@
           <tr><td class="metric fw7">Saldo Final</td><td style="text-align:right fw7">32,036</td><td style="text-align:right" class="ng fw7">34,595</td><td colspan="2"></td></tr>
         </tbody>
       </table>
-    </div>
-
-    <div class="ins">
-      <strong>Análisis Ene→Feb:</strong>
-      El flujo corporativo <strong>revierte de −$878 a +$2,559</strong> (+$3,437 de mejora).
-      Por el lado de ingresos, <strong>Energéticos sube +16.9%</strong> y <strong>Proyecto Pozos +72.8%</strong>,
-      parcialmente compensados por la caída de Otros Ingresos (−44.1%).
-      Por el lado de egresos, la <strong>reducción de Inversiones (−83.1%)</strong> libera $4,929,
-      aunque Gastos Corporativos sube +21.5% (+$2,100).
-      El acumulado Ene+Feb muestra un <strong>Flujo Neto positivo de +$1,681</strong> y un saldo final de <strong>$34,595</strong>.
-    </div>
+    </div></div>
   </div>
 
   <div class="foot">
@@ -558,6 +563,14 @@
 </main>
 
 <script>
+/* ── Collapsible ── */
+function toggleDtl(hdr){
+  const panel=hdr.nextElementSibling;
+  const isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  hdr.classList.toggle('open',!isOpen);
+}
+
 /* ── Helpers ── */
 function fmt(n){return Math.abs(n).toLocaleString('es-MX',{maximumFractionDigits:0})}
 

@@ -5,6 +5,13 @@
 <link rel="icon" href="exelco.ico" type="image/x-icon">
 <title>07 · División Inmobiliaria — Exelco 2026</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+.sdiv{cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between}
+.sdiv .toggle-icon{font-size:13px;font-weight:700;margin-left:10px;transition:transform .25s}
+.sdiv.open .toggle-icon{transform:rotate(180deg)}
+.collapsible{overflow:hidden;transition:max-height .3s ease,opacity .3s ease;max-height:0;opacity:0}
+.collapsible.open{max-height:3000px;opacity:1}
+</style>
 <script src="auth.js"></script>
 <script src="chart.min.js"></script>
 </head>
@@ -59,7 +66,7 @@
   <div class="mtabs">
     <button class="mtab on" onclick="goM('ene',this)">Enero 2026</button>
     <button class="mtab" onclick="goM('feb',this)">Febrero 2026</button>
-    <button class="mtab" onclick="goM('cmp',this)">Ene vs Feb</button>
+    <button class="mtab" onclick="goM('cmp',this)">Acumulado</button>
   </div>
 
   <!-- ENERO -->
@@ -75,8 +82,9 @@
       <div class="cc-head">
         <div><div class="ey">Enero 2026</div><h2>División Inmobiliaria — Ingresos</h2><p>México vs Estados Unidos · Miles MXN</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#1e3a5f"></div>México</div>
-          <div class="li"><div class="ld" style="background:#2b4f82"></div>Estados Unidos</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Real</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Presupuesto</div>
+          <div class="li"><div class="ld" style="background:#4a7298"></div>Año Anterior</div>
         </div>
       </div>
       <div class="cw cw-md"><canvas id="inmobEne"></canvas></div>
@@ -87,7 +95,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Detalle por Mercado — Enero</div>
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle por Mercado — Enero <span class="toggle-icon">▼</span></div>
+    <div class="collapsible">
     <div class="g2">
       <div class="divc">
         <div class="dtitle">Inmobiliaria México</div>
@@ -116,6 +125,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 
   <!-- FEBRERO -->
@@ -131,8 +141,9 @@
       <div class="cc-head">
         <div><div class="ey">Febrero 2026</div><h2>División Inmobiliaria — Ingresos</h2><p>México vs Estados Unidos · Miles MXN</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#1e3a5f"></div>México</div>
-          <div class="li"><div class="ld" style="background:#2b4f82"></div>Estados Unidos</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Real</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Presupuesto</div>
+          <div class="li"><div class="ld" style="background:#4a7298"></div>Año Anterior</div>
         </div>
       </div>
       <div class="cw cw-md"><canvas id="inmobFeb"></canvas></div>
@@ -144,7 +155,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Detalle por Mercado — Febrero</div>
+    <div class="sdiv" onclick="toggleDtl(this)">Detalle por Mercado — Febrero <span class="toggle-icon">▼</span></div>
+    <div class="collapsible">
     <div class="g2">
       <div class="divc">
         <div class="dtitle">Inmobiliaria México</div>
@@ -171,44 +183,47 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 
-  <!-- COMPARATIVO -->
+  <!-- ACUMULADO -->
   <div id="m-cmp" class="mpnl">
     <div class="kpis kpis4">
-      <div class="kpi cg"><div class="lb">Δ Total Inmobiliaria</div><div class="vl">+16</div><div class="dl pos">▲ +0.2%</div></div>
-      <div class="kpi cg"><div class="lb">Δ Inmob MX</div><div class="vl">+28</div><div class="dl pos">▲ +0.4%</div></div>
-      <div class="kpi cr"><div class="lb">Δ Inmob EU</div><div class="vl">−12</div><div class="dl neg">▼ −0.7%</div></div>
-      <div class="kpi cg"><div class="lb">Vs Empresa</div><div class="vl">+0.2%</div><div class="dl pos">Mejor división Feb</div></div>
+      <div class="kpi cn"><div class="lb">Total Inmob. Acum.</div><div class="vl">17,236</div><div class="dl neg">▼ −59.6% vs Ppto</div></div>
+      <div class="kpi cn"><div class="lb">Inmob MX</div><div class="vl">13,712</div><div class="dl neg">▼ −64.9% vs Ppto</div></div>
+      <div class="kpi cn"><div class="lb">Inmob EU</div><div class="vl">3,524</div><div class="dl neg">▼ −2.9% vs Ppto</div></div>
+      <div class="kpi cg"><div class="lb">Estabilidad EU</div><div class="vl">Alta</div><div class="dl pos">Ingresos en USD</div></div>
     </div>
 
     <div class="cc">
       <div class="cc-head">
-        <div><div class="ey">Ene vs Feb 2026</div><h2>Inmobiliaria — Comparativo</h2><p>Miles MXN</p></div>
+        <div><div class="ey">Acumulado Ene–Feb 2026</div><h2>División Inmobiliaria — Ingresos Acumulados</h2><p>México vs Estados Unidos · Miles MXN</p></div>
         <div class="leg">
-          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Enero 2026</div>
-          <div class="li"><div class="ld" style="background:#1e3a5f"></div>Febrero 2026</div>
+          <div class="li"><div class="ld" style="background:#1a3d2b"></div>Real</div>
+          <div class="li"><div class="ld" style="background:#c9a84c"></div>Presupuesto</div>
+          <div class="li"><div class="ld" style="background:#4a7298"></div>Año Anterior</div>
         </div>
       </div>
       <div class="cw cw-md"><canvas id="inmobCmp"></canvas></div>
       <div class="ins">
-        <strong>La División Inmobiliaria es el ancla de estabilidad de Exelco.</strong>
-        Sus ingresos por renta son recurrentes y prácticamente no se ven afectados por la caída de actividad económica general.
-        Con solo +0.2% de variación vs −12.8% del consolidado, esta división actúa como <strong>colchón ante la volatilidad operativa</strong>.
-        Aunque pequeña (2.4% del total), su valor radica en la predictibilidad.
+        <strong>Acumulado Ene–Feb — Inmobiliaria:</strong> Total de <strong>$17,236</strong> vs Ppto $42,682 (−59.6%) y AA $50,353 (−65.8%).
+        La gran desviación vs Ppto en MX ($13,712 vs Ppto $39,054) refleja proyectos de desarrollo pendientes de ejecutarse.
+        EU muestra mayor estabilidad: $3,524 vs Ppto $3,628 (−2.9% solamente).
       </div>
     </div>
 
-    <div class="sdiv">Tabla Comparativa Inmobiliaria</div>
+    <div class="sdiv" onclick="toggleDtl(this)">Tabla Acumulada Inmobiliaria <span class="toggle-icon">▼</span></div>
+    <div class="collapsible">
     <div class="cc">
       <table class="dtbl">
-        <thead><tr><th>Mercado</th><th style="text-align:right">Enero $K</th><th style="text-align:right">Febrero $K</th><th style="text-align:right">Var $K</th><th style="text-align:right">Var %</th><th style="text-align:right">Mix Ene</th><th style="text-align:right">Mix Feb</th></tr></thead>
+        <thead><tr><th>Mercado</th><th style="text-align:right">Real Acum</th><th style="text-align:right">Ppto Acum</th><th style="text-align:right">AA Acum</th><th style="text-align:right">vs Ppto</th><th style="text-align:right">vs AA</th></tr></thead>
         <tbody>
-          <tr><td class="metric">Inmob MX</td><td style="text-align:right" class="ng">6,842</td><td style="text-align:right" class="ng">6,870</td><td style="text-align:right" class="ng">+28</td><td style="text-align:right"><span class="badge g">+0.4%</span></td><td style="text-align:right">79.5%</td><td style="text-align:right">79.6%</td></tr>
-          <tr><td class="metric">Inmob EU</td><td style="text-align:right">1,768</td><td style="text-align:right">1,756</td><td style="text-align:right" class="nr">−12</td><td style="text-align:right"><span class="badge r">−0.7%</span></td><td style="text-align:right">20.5%</td><td style="text-align:right">20.4%</td></tr>
-          <tr><td class="metric fw7">Total Inmob.</td><td style="text-align:right" class="ng fw7">8,610</td><td style="text-align:right" class="ng fw7">8,626</td><td style="text-align:right" class="ng fw7">+16</td><td style="text-align:right"><span class="badge g">+0.2%</span></td><td style="text-align:right fw7">2.4%</td><td style="text-align:right fw7">2.8%</td></tr>
+          <tr><td class="metric">Inmob MX</td><td style="text-align:right" class="ng fw7">13,712</td><td style="text-align:right">39,054</td><td style="text-align:right">46,159</td><td style="text-align:right"><span class="badge r">−64.9%</span></td><td style="text-align:right"><span class="badge r">−70.3%</span></td></tr>
+          <tr><td class="metric">Inmob EU</td><td style="text-align:right" class="ng fw7">3,524</td><td style="text-align:right">3,628</td><td style="text-align:right">4,194</td><td style="text-align:right"><span class="badge r">−2.9%</span></td><td style="text-align:right"><span class="badge r">−16.0%</span></td></tr>
+          <tr><td class="metric fw7">Total Inmob.</td><td style="text-align:right" class="ng fw7">17,236</td><td style="text-align:right fw7">42,682</td><td style="text-align:right fw7">50,353</td><td style="text-align:right"><span class="badge r">−59.6%</span></td><td style="text-align:right"><span class="badge r">−65.8%</span></td></tr>
         </tbody>
       </table>
+    </div>
     </div>
   </div>
 
@@ -219,31 +234,44 @@
 </main>
 
 <script>
-const G={navy:'#1e3a5f',navyl:'#2b4f82',g800:'#1a3d2b',red:'#c0392b'};
+function toggleDtl(hdr){
+  const panel=hdr.nextElementSibling;
+  const isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  hdr.classList.toggle('open',!isOpen);
+}
+const G={navy:'#1e3a5f',navyl:'#2b4f82',g800:'#1a3d2b',gold:'#c9a84c',slate:'#4a7298',red:'#c0392b'};
+const LBLS=['Inmob MX','Inmob EU','Total'];
+
+const ENE_R  =[6842,1768,8610];
+const ENE_PP =[17329,1820,19149];
+const ENE_AA =[11085,2164,13249];
+const FEB_R  =[6870,1756,8626];
+const FEB_PP =[21725,1808,23533];
+const FEB_AA =[35074,2030,37104];
+const ACU_R  =[13712,3524,17236];
+const ACU_PP =[39054,3628,42682];
+const ACU_AA =[46159,4194,50353];
+
+function make3Bar(id,real,ppto,aa){
+  const ctx=document.getElementById(id);
+  if(!ctx) return;
+  const opts={responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},ticks:{font:{size:13,weight:'700'}}},
+            y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString(),font:{size:12,weight:'700'}}}}};
+  new Chart(ctx,{type:'bar',
+    data:{labels:LBLS,datasets:[
+      {label:'Real', data:real, backgroundColor:G.g800,  borderRadius:4},
+      {label:'Ppto', data:ppto, backgroundColor:G.gold,  borderRadius:4},
+      {label:'AA',   data:aa,   backgroundColor:G.slate, borderRadius:4}
+    ]},options:opts});
+}
 
 document.addEventListener('DOMContentLoaded',()=>{
-  const barOpts={responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false}},
-    scales:{x:{grid:{display:false},ticks:{font:{size:14,weight:'700'}}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString(),font:{size:14,weight:'700'}}}}};
-
-  new Chart(document.getElementById('inmobEne'),{type:'bar',
-    data:{labels:['Inmob MX','Inmob EU','Total'],
-      datasets:[{data:[6842,1768,8610],backgroundColor:[G.navy,G.navyl,'#0d2240'],borderRadius:5}]},
-    options:barOpts});
-
-  new Chart(document.getElementById('inmobFeb'),{type:'bar',
-    data:{labels:['Inmob MX','Inmob EU','Total'],
-      datasets:[{data:[6870,1756,8626],backgroundColor:[G.navy,G.navyl,'#0d2240'],borderRadius:5}]},
-    options:barOpts});
-
-  new Chart(document.getElementById('inmobCmp'),{type:'bar',
-    data:{labels:['Inmob MX','Inmob EU','Total Inmob.'],
-      datasets:[
-        {label:'Enero 2026',data:[6842,1768,8610],backgroundColor:G.g800,borderRadius:4},
-        {label:'Febrero 2026',data:[6870,1756,8626],backgroundColor:G.navy,borderRadius:4}
-      ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{font:{size:14,weight:'700'}}},y:{grid:{color:'#f0f0f0'},ticks:{callback:v=>v.toLocaleString(),font:{size:14,weight:'700'}}}}}});
+  make3Bar('inmobEne', ENE_R, ENE_PP, ENE_AA);
+  make3Bar('inmobFeb', FEB_R, FEB_PP, FEB_AA);
+  make3Bar('inmobCmp', ACU_R, ACU_PP, ACU_AA);
 });
 </script>
 </body>

@@ -5,6 +5,13 @@
 <link rel="icon" href="exelco.ico" type="image/x-icon">
 <title>03 · E.R. — Exelco 2026</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+.sdiv{cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between}
+.sdiv .toggle-icon{font-size:13px;font-weight:700;margin-left:10px;transition:transform .25s}
+.sdiv.open .toggle-icon{transform:rotate(180deg)}
+.collapsible{overflow:hidden;transition:max-height .3s ease,opacity .3s ease;max-height:0;opacity:0}
+.collapsible.open{max-height:3000px;opacity:1}
+</style>
 <script src="auth.js"></script>
 <script src="chart.min.js"></script>
 </head>
@@ -88,8 +95,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Desglose del E.R.</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Desglose del E.R. <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead><tr><th>Concepto</th><th style="text-align:right">Monto (MXN)</th><th style="text-align:right">% Ventas</th><th>Nota</th></tr></thead>
         <tbody>
@@ -102,7 +109,7 @@
           <tr><td class="metric fw7">= Utilidad Neta</td><td style="text-align:right" class="ng fw7">24,210</td><td style="text-align:right fw7">6.8%</td><td>Resultado final</td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
   <!-- FEBRERO -->
@@ -131,8 +138,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Desglose del E.R.</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Desglose del E.R. <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead><tr><th>Concepto</th><th style="text-align:right">Monto (MXN)</th><th style="text-align:right">% Ventas</th><th>Nota</th></tr></thead>
         <tbody>
@@ -145,7 +152,7 @@
           <tr><td class="metric fw7">= Utilidad Neta</td><td style="text-align:right" class="nr fw7">8,310</td><td style="text-align:right fw7">2.7%</td><td>−4.1pp vs enero</td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
   <!-- COMPARATIVO -->
@@ -173,8 +180,8 @@
       </div>
     </div>
 
-    <div class="sdiv">Comparativo de Márgenes</div>
-    <div class="cc">
+    <div class="sdiv" onclick="toggleDtl(this)">Comparativo de Márgenes <span class="toggle-icon">▼</span></div>
+    <div class="collapsible"><div class="cc">
       <table class="dtbl">
         <thead><tr><th>Línea E.R.</th><th style="text-align:right">Enero $</th><th style="text-align:right">Feb $</th><th style="text-align:right">Var $</th><th style="text-align:right">Ene %V</th><th style="text-align:right">Feb %V</th><th style="text-align:right">Δ pp</th></tr></thead>
         <tbody>
@@ -187,7 +194,7 @@
           <tr><td class="metric fw7">Utilidad Neta</td><td style="text-align:right" class="ng fw7">24,210</td><td style="text-align:right" class="nr fw7">8,310</td><td style="text-align:right" class="nr fw7">−15,900</td><td style="text-align:right fw7">6.8%</td><td style="text-align:right fw7">2.7%</td><td style="text-align:right" class="nr fw7">−4.1pp</td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </div>
 
   <div class="foot">
@@ -197,6 +204,12 @@
 </main>
 
 <script>
+function toggleDtl(hdr){
+  const panel=hdr.nextElementSibling;
+  const isOpen=panel.classList.contains('open');
+  panel.classList.toggle('open',!isOpen);
+  hdr.classList.toggle('open',!isOpen);
+}
 const G={g800:'#1a3d2b',g600:'#2e7d4f',red:'#c0392b',gold:'#c9a84c',gray:'#9b9ea0'};
 const LABELS=['Ventas','C. Directo','M. Contrib.','Gastos Op.','UAFIR','Fin+ISR','Ut. Neta'];
 
